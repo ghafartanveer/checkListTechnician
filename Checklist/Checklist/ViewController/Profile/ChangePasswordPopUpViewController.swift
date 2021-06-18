@@ -13,6 +13,10 @@ protocol ChangePasswordPopUpViewControllerDelegate: NSObjectProtocol {
 
 class ChangePasswordPopUpViewController: BaseViewController {
 
+    //MARK: - OUTLETS
+    @IBOutlet weak var currentPasswordFildContainerView: UIView!
+    @IBOutlet weak var newPasswordContainerView: UIView!
+    
     
     //MARK: - OBJECT AND VERIABLES
     weak var delegate: ChangePasswordPopUpViewControllerDelegate?
@@ -20,7 +24,8 @@ class ChangePasswordPopUpViewController: BaseViewController {
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        currentPasswordFildContainerView.addshadow()
+        newPasswordContainerView.addshadow()
         // Do any additional setup after loading the view.
     }
     

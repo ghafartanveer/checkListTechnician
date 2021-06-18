@@ -8,16 +8,28 @@
 import UIKit
 
 class ProfileSettingViewController: BaseViewController, TopBarDelegate {
-   
+    
     @IBOutlet weak var imgProfile: UIImageView!
     
+    @IBOutlet weak var fNameTF: UITextField!
+    @IBOutlet weak var lNameTF: UITextField!
+    @IBOutlet weak var emailTF: UITextField!
+    @IBOutlet weak var phoneTF: UITextField!
+    
+    @IBOutlet weak var fNameUnderLineView: UIView!
+    @IBOutlet weak var lNameUnderLineView: UIView!
+    @IBOutlet weak var emailUnderLineView: UIView!
+    @IBOutlet weak var phoneUnderLineView: UIView!
     
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUsrData()
+        
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let container = self.mainContainer{
@@ -43,8 +55,27 @@ class ProfileSettingViewController: BaseViewController, TopBarDelegate {
     func actionBack() {
         self.loadHomeController()
     }
+    
     override func callBackActionSubmit() {
         self.alertView?.close()
+    }
+    
+    func setUsrData() {
+        if let userData = UserDefaultsManager.shared.userInfo {
+            fNameTF.text = userData.firstName
+            lNameTF.text = userData.lastName
+            emailTF.text = userData.email
+            phoneTF.text = userData.phoneNumber
+            setImageWithUrl(imageView: imgProfile, url: userData.image)
+        }
+    }
+    
+    func setUnderLineBGColor(view: UIView) {
+        fNameUnderLineView.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        lNameUnderLineView.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        emailUnderLineView.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        phoneUnderLineView.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.3450980392, blue: 0.3960784314, alpha: 1)
     }
     
     //MARK: - IMAGE PICKER CONTROLLER DELEGATE METHODS
@@ -52,5 +83,23 @@ class ProfileSettingViewController: BaseViewController, TopBarDelegate {
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         self.imgProfile.image = image
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ProfileSettingViewController :  UITextFieldDelegate {
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch textField {
+        case fNameTF:
+            setUnderLineBGColor(view: fNameUnderLineView)
+        case lNameTF:
+            setUnderLineBGColor(view: lNameUnderLineView)
+        case emailTF:
+            setUnderLineBGColor(view: emailUnderLineView)
+        case phoneTF:
+            setUnderLineBGColor(view: phoneUnderLineView)
+        default:
+            print("default not defined yet")
+        }
     }
 }

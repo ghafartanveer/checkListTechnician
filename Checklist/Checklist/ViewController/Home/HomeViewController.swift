@@ -21,7 +21,14 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let container = self.mainContainer{
-            container.setMenuButton(false, title: TitleNames.Home)
+            container.setMenuButton(false, title: "")//TitleNames.Home)
+            
+            container.btnRightMenu.cornerRadius = container.btnRightMenu.frame.height/2
+            container.btnRightMenu.clipsToBounds = true
+        
+            if let userData = UserDefaultsManager.shared.userInfo {
+            setBtnImageWithUrl(btn: container.btnRightMenu, urlStr: userData.image)
+            }
         }
     }
     
@@ -47,32 +54,38 @@ class HomeViewController: BaseViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource, TaskCategoryTableViewCellDelegate{
    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
+        //return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 1{
-            return 2
-        }else{
-            return 1
-        }
+        
+        return 1
+
+//        if section == 1{
+//            return 2
+//        }else{
+//            return 1
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0{
+        //if indexPath.section == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.TaskCategoryTableViewCell) as! TaskCategoryTableViewCell
             cell.delegate = self
             cell.viewCollection.reloadData()
             return cell
-        }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.TaskTypesTableViewCell) as! TaskTypesTableViewCell
-            cell.ConfigureTypes(index: indexPath.row)
-            
-            return cell
-        }
+        //}
+//        else{
+//            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.TaskTypesTableViewCell) as! TaskTypesTableViewCell
+//            cell.ConfigureTypes(index: indexPath.row)
+//
+//            return cell
+//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
 //        if indexPath.section == 1{
 //            if indexPath.row == 0 || indexPath.row == 3{
 //                self.moveToWorkListVC(indexPath: indexPath.row)
@@ -86,25 +99,39 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, TaskCa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0{
-            return 420
-            
-        }else{
-            return 80
-        }
+        return 400
+//        if indexPath.section == 0{
+//            return 420
+//
+//        }else{
+//            return 80
+//        }
     }
     
     //MARK: - DELEGATE METHODS
     func callBackMoveOnContoller(index: Int) {
-        if index == 1 || index == 3{
-            self.moveToWorkListVC(indexPath: index)
-        }else{
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.CalenderViewController) as! CalenderViewController
+        switch index {
+        case 0:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.WorkListViewController) as! WorkListViewController
             self.navigationController?.pushViewController(vc, animated: true)
+            print("All Check Lists")
+        case 1:
+            print("History")
+        case 2:
+            print("Check In")
+        case 3:
+            print("Check Out")
+
+        default:
+            print("Default case")
         }
         
+//        if index == 1 || index == 3{
+//            self.moveToWorkListVC(indexPath: index)
+//        }else{
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.CalenderViewController) as! CalenderViewController
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+        
     }
-    
-    
-    
 }

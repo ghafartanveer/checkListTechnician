@@ -10,19 +10,31 @@ let ALERT_TITLE_APP_NAME        = "CheckList"
 let EMAIL_REGULAR_EXPRESSION    = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
 struct SideMenu {
-    static let MENULIST = [["title":"Top Priority/Task","image":"settings"],
-                           ["title":"Reminder","image":"Reminder"],
-                           ["title":"Notes","image":"notes_Icon"],
-                           ["title":"Language-English","image":"global"],
-                           ["title":"Setting/Profile","image":"settings"],
-                           ["title":"Notification - On/Off","image":"bell"],
-                           ["title":"About Us","image":"information_Icon"]]
+//    static let MENULIST = [["title":"Top Priority/Task","image":"settings"],
+//                           ["title":"Reminder","image":"Reminder"],
+//                           ["title":"Notes","image":"notes_Icon"],
+//                           ["title":"Language-English","image":"global"],
+//                           ["title":"Setting/Profile","image":"settings"],
+//                           ["title":"Notification - On/Off","image":"bell"],
+//                           ["title":"About Us","image":"information_Icon"]]
+    
+    static let MENULIST = [["title":"Home","image":"settings"],
+                           ["title":"About Us","image":"information_Icon"],
+                           ["title":"Help","image":"notes_Icon"],
+                           ["title":"Settings","image":"settings"]]
+
 }
 struct HomeMenu {
-    static let MENU_LIST = [["title":"Check In","image":"Group14"],
-                            ["title":"All Tasks","image":"Group16"],
-                            ["title":"Check Out","image":"Group18"],
-                            ["title":"History","image":"Group22"]]
+//    static let MENU_LIST = [["title":"Check In","image":"Group14"],
+//                            ["title":"All Tasks","image":"Group16"],
+//                            ["title":"Check Out","image":"Group18"],
+//                            ["title":"History","image":"Group22"]]
+    
+    static let MENU_LIST = [
+        ["title":"All Check List","image":"Group18"],
+        ["title":"Hostory","image":"Group22"],
+        ["title":"Check In","image":"Group16"],
+        ["title":"Chck Out","image":"Group14"]]
 }
 
 
@@ -37,6 +49,8 @@ struct StoryboardNames {
     static let Main = "Main"
     static let Home = "Home"
     static let Setting = "Setting"
+    static let AboutUs = "AboutUs"
+    static let Help = "Help"
 }
 
 struct TitleNames {
@@ -48,6 +62,8 @@ struct TitleNames {
     static let History = "History"
     static let Pending_Task = "Pending Task"
     static let Completed_Task = "Completed Task"
+    static let About_Us = "About Us"
+    static let Help = "Help"
 }
 
 struct LoginType {
@@ -97,7 +113,8 @@ struct ControllerIdentifier {
     static let ForgetPasswordViewController = "ForgetPasswordViewController"
     static let VehicleDetailPopUpViewController = "VehicleDetailPopUpViewController"
     static let UpdatePasswordViewController = "UpdatePasswordViewController"
-    
+    static let aboutUsVc = "aboutUsVc"
+    static let helpVC = "helpVC"
 }
 
 struct ValidationMessages {

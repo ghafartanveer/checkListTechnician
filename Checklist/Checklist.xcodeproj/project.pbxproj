@@ -138,6 +138,10 @@
 		355FE2F226319B0200A2B770 /* ChangePasswordPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FE2F126319B0200A2B770 /* ChangePasswordPopUpViewController.swift */; };
 		35678C4F2632A4090092BB7D /* CalenderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35678C4E2632A4090092BB7D /* CalenderTableViewCell.swift */; };
 		6AA8C703B7DC71FC05F71A3D /* Pods_Checklist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9137637D5696CF4876270B83 /* Pods_Checklist.framework */; };
+		DE21FC6C267B21D200F09090 /* AboutUs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE21FC6B267B21D200F09090 /* AboutUs.storyboard */; };
+		DE21FC73267B23A700F09090 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FC72267B23A700F09090 /* AboutUsViewController.swift */; };
+		DE21FC78267B33A300F09090 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE21FC77267B33A300F09090 /* Help.storyboard */; };
+		DED14DF2267B5203000326A2 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED14DF1267B5203000326A2 /* HelpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -308,6 +312,10 @@
 		355FE2F126319B0200A2B770 /* ChangePasswordPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordPopUpViewController.swift; sourceTree = "<group>"; };
 		35678C4E2632A4090092BB7D /* CalenderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderTableViewCell.swift; sourceTree = "<group>"; };
 		9137637D5696CF4876270B83 /* Pods_Checklist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Checklist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE21FC6B267B21D200F09090 /* AboutUs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutUs.storyboard; sourceTree = "<group>"; };
+		DE21FC72267B23A700F09090 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		DE21FC77267B33A300F09090 /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
+		DED14DF1267B5203000326A2 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		F4532F2DE96F667677DC1D46 /* Pods-Checklist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Checklist.debug.xcconfig"; path = "Target Support Files/Pods-Checklist/Pods-Checklist.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -769,6 +777,8 @@
 				352B8838262D728900E7B12E /* Main.storyboard */,
 				352B897B262ECF9200E7B12E /* Home.storyboard */,
 				355FE2C62631723F00A2B770 /* Setting.storyboard */,
+				DE21FC6B267B21D200F09090 /* AboutUs.storyboard */,
+				DE21FC77267B33A300F09090 /* Help.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -784,6 +794,8 @@
 				3553D7B8263FDC7E004C255D /* PopUp */,
 				35F0FF642636D8C400A752CC /* CheckList */,
 				35F0FF682636D8D900A752CC /* Profile */,
+				DE21FC71267B230800F09090 /* AboutUs */,
+				DED14DEF267B51AD000326A2 /* Help */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -884,6 +896,22 @@
 				9137637D5696CF4876270B83 /* Pods_Checklist.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE21FC71267B230800F09090 /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+				DE21FC72267B23A700F09090 /* AboutUsViewController.swift */,
+			);
+			path = AboutUs;
+			sourceTree = "<group>";
+		};
+		DED14DEF267B51AD000326A2 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				DED14DF1267B5203000326A2 /* HelpViewController.swift */,
+			);
+			path = Help;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1016,6 +1044,7 @@
 				352B89CE26315DCD00E7B12E /* Poppins-BoldItalic.ttf in Resources */,
 				352B89DA26315DCD00E7B12E /* Poppins-Thin.ttf in Resources */,
 				352B883F262D728A00E7B12E /* Assets.xcassets in Resources */,
+				DE21FC78267B33A300F09090 /* Help.storyboard in Resources */,
 				352B892C262D745300E7B12E /* chinese.stsong.ttf in Resources */,
 				352B89CD26315DCD00E7B12E /* Poppins-ExtraLightItalic.ttf in Resources */,
 				352B89DB26315DCD00E7B12E /* Poppins-SemiBold.ttf in Resources */,
@@ -1026,6 +1055,7 @@
 				352B883A262D728900E7B12E /* Main.storyboard in Resources */,
 				352B8931262D745300E7B12E /* GOTHICB_0.TTF in Resources */,
 				352B89D226315DCD00E7B12E /* Poppins-ExtraBoldItalic.ttf in Resources */,
+				DE21FC6C267B21D200F09090 /* AboutUs.storyboard in Resources */,
 				352B89D826315DCD00E7B12E /* Poppins-Bold.ttf in Resources */,
 				352B893D262D745300E7B12E /* open_sans_regular.ttf in Resources */,
 				352B89D326315DCD00E7B12E /* Poppins-ExtraBold.ttf in Resources */,
@@ -1146,12 +1176,14 @@
 				352B8919262D745300E7B12E /* MKActivityIndicatorView.swift in Sources */,
 				352B89AE26314EE500E7B12E /* WorkListViewController.swift in Sources */,
 				352B8990262ED4D900E7B12E /* TaskCategoryTableViewCell.swift in Sources */,
+				DED14DF2267B5203000326A2 /* HelpViewController.swift in Sources */,
 				352B889F262D72D100E7B12E /* BaseView.swift in Sources */,
 				352B8837262D728900E7B12E /* ViewController.swift in Sources */,
 				352B88B3262D72D200E7B12E /* ServiceRequestMessage.swift in Sources */,
 				352B8899262D72D100E7B12E /* BaseTabbarController.swift in Sources */,
 				355FE2D6263184A100A2B770 /* SideMenuTableViewCell.swift in Sources */,
 				352B8936262D745300E7B12E /* ActiveLabel.swift in Sources */,
+				DE21FC73267B23A700F09090 /* AboutUsViewController.swift in Sources */,
 				352B8927262D745300E7B12E /* BReachability.swift in Sources */,
 				355FE2EA2631939500A2B770 /* ProfileSettingViewController.swift in Sources */,
 				352B88A9262D72D100E7B12E /* UITableView+Extension.swift in Sources */,

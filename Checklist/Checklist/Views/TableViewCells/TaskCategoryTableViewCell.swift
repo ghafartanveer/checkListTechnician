@@ -19,9 +19,6 @@ class TaskCategoryTableViewCell: BaseTableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-   
-
 }
 //MARK: - EXTENSION COLLECTION VIEW METHODS
 extension TaskCategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -37,7 +34,7 @@ extension TaskCategoryTableViewCell: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let collection = collectionView.bounds.width
-        return CGSize(width: collection / 2, height: 200)
+        return CGSize(width: (collection-10) / 2 ,height: collection / 2)//200)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.callBackMoveOnContoller(index: indexPath.row)

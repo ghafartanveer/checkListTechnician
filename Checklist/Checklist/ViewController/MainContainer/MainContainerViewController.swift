@@ -72,11 +72,11 @@ class MainContainerViewController: BaseViewController, SWRevealViewControllerDel
             self.btnMenu.addTarget(self, action: #selector(actionSideMenu(_:)), for: .touchUpInside)
         }
         if isWhiteBtnBack{
-            self.viewTopColour.backgroundColor = UIColor.init(hexFromString: "#FA1100")
+            self.viewTopColour.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.3450980392, blue: 0.3960784314, alpha: 1) // UIColor.init(hexFromString: "#FA1100")
             self.titleLabel.textColor = .white
             self.btnMenu.tintColor = .white
         }else{
-            self.viewTopColour.backgroundColor = UIColor.init(hexFromString: "#FA1100")
+            self.viewTopColour.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.3450980392, blue: 0.3960784314, alpha: 1) // UIColor.init(hexFromString: "#FA1100")
             self.titleLabel.textColor = .white
             self.btnMenu.tintColor = .white
 //            self.viewTopColour.backgroundColor = UIColor.init(hexFromString: "#FAFAFA")
@@ -115,6 +115,37 @@ class MainContainerViewController: BaseViewController, SWRevealViewControllerDel
         self.viewContainer.addSubview(controller.view)
         controller.didMove(toParent: self)
     }
+    
+    func showAboutUsController()  {
+        let storyBoard = UIStoryboard(name: StoryboardNames.AboutUs, bundle: nil)
+        var controller = BaseNavigationController()
+        controller = storyBoard.instantiateViewController(withIdentifier: ControllerIdentifier.aboutUsVc) as! BaseNavigationController
+        if let oldRef = self.baseNavigationController {
+            oldRef.viewDidDisappear(true)
+            oldRef.view.removeFromSuperview()
+        }
+        self.baseNavigationController = controller
+        addChild(controller)
+        controller.view.frame = self.viewContainer.bounds
+        self.viewContainer.addSubview(controller.view)
+        controller.didMove(toParent: self)
+    }
+    
+    func showHelpController()  {
+        let storyBoard = UIStoryboard(name: StoryboardNames.Help, bundle: nil)
+        var controller = BaseNavigationController()
+        controller = storyBoard.instantiateViewController(withIdentifier: ControllerIdentifier.helpVC) as! BaseNavigationController
+        if let oldRef = self.baseNavigationController {
+            oldRef.viewDidDisappear(true)
+            oldRef.view.removeFromSuperview()
+        }
+        self.baseNavigationController = controller
+        addChild(controller)
+        controller.view.frame = self.viewContainer.bounds
+        self.viewContainer.addSubview(controller.view)
+        controller.didMove(toParent: self)
+    }
+    
     
     func logoutUser()  {
         Global.shared.user = nil

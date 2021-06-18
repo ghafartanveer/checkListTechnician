@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -64,15 +64,15 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lX-0m-i9y">
-                                        <rect key="frame" x="66" y="0.0" width="298" height="54"/>
+                                        <rect key="frame" x="66" y="0.0" width="290" height="54"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="21"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIu-dg-Jdx">
-                                        <rect key="frame" x="374" y="0.0" width="40" height="54"/>
+                                        <rect key="frame" x="366" y="8" width="38" height="38"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="xTh-59-UiK"/>
+                                            <constraint firstAttribute="width" secondItem="QIu-dg-Jdx" secondAttribute="height" multiplier="1:1" id="LL9-L3-tEF"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="sideMenuDot"/>
@@ -81,24 +81,24 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.98039215690000003" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.98039215686274506" green="0.34509803921568627" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="2m8-sT-3km"/>
                                     <constraint firstAttribute="bottom" secondItem="eDD-Fz-Ul6" secondAttribute="bottom" id="7L0-yu-aov"/>
                                     <constraint firstAttribute="bottom" secondItem="7lX-0m-i9y" secondAttribute="bottom" id="9EB-a3-Uzc"/>
                                     <constraint firstItem="eDD-Fz-Ul6" firstAttribute="leading" secondItem="ExZ-wX-GAV" secondAttribute="leading" constant="10" id="OMJ-9q-C0d"/>
-                                    <constraint firstItem="QIu-dg-Jdx" firstAttribute="top" secondItem="ExZ-wX-GAV" secondAttribute="top" id="Wh0-8e-GAL"/>
+                                    <constraint firstItem="QIu-dg-Jdx" firstAttribute="top" secondItem="ExZ-wX-GAV" secondAttribute="top" constant="8" id="Wh0-8e-GAL"/>
                                     <constraint firstItem="QIu-dg-Jdx" firstAttribute="leading" secondItem="7lX-0m-i9y" secondAttribute="trailing" constant="10" id="j64-bh-Wcb"/>
-                                    <constraint firstAttribute="trailing" secondItem="QIu-dg-Jdx" secondAttribute="trailing" id="lSL-kH-eZr"/>
+                                    <constraint firstAttribute="trailing" secondItem="QIu-dg-Jdx" secondAttribute="trailing" constant="10" id="lSL-kH-eZr"/>
                                     <constraint firstItem="7lX-0m-i9y" firstAttribute="leading" secondItem="eDD-Fz-Ul6" secondAttribute="trailing" constant="10" id="oBJ-zN-B6L"/>
-                                    <constraint firstAttribute="bottom" secondItem="QIu-dg-Jdx" secondAttribute="bottom" id="plf-GR-xZI"/>
+                                    <constraint firstAttribute="bottom" secondItem="QIu-dg-Jdx" secondAttribute="bottom" constant="8" id="plf-GR-xZI"/>
                                     <constraint firstItem="7lX-0m-i9y" firstAttribute="top" secondItem="ExZ-wX-GAV" secondAttribute="top" id="s7G-Lk-bbf"/>
                                     <constraint firstItem="eDD-Fz-Ul6" firstAttribute="top" secondItem="ExZ-wX-GAV" secondAttribute="top" id="v3M-zg-erJ"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8Ip-gd-Pg2"/>
-                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.34509803921568627" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="gMK-vS-mcD" firstAttribute="leading" secondItem="8Ip-gd-Pg2" secondAttribute="leading" id="0Ft-Xy-Ghk"/>
                             <constraint firstItem="ExZ-wX-GAV" firstAttribute="trailing" secondItem="8Ip-gd-Pg2" secondAttribute="trailing" id="1sE-fR-TcB"/>

@@ -17,6 +17,8 @@ class SideMenuViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUsrData()
+        
     }
     //MARK: - IBACTION METHODS
     @IBAction func actionLogOut(_ sender: UIButton){
@@ -27,6 +29,14 @@ class SideMenuViewController: BaseViewController {
         }
     }
     
+    func setUsrData() {
+        if let userData = UserDefaultsManager.shared.userInfo {
+           
+            lblTitle.text = userData.firstName + " " + userData.lastName
+            lblEmail.text = userData.email
+            setImageWithUrl(imageView: imgImageUser, url: userData.image)
+        }
+    }
     
 }
 
@@ -46,7 +56,18 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let container = self.revealViewController()?.frontViewController as? MainContainerViewController{
             self.revealViewController()?.revealToggle(nil)
-            container.showSettingController()
+            switch indexPath.item {
+            case 0:
+                container.showHomeController()
+            case 1:
+                container.showAboutUsController()
+            case 2:
+                container.showHelpController()
+            case 3:
+                container.showSettingController()
+            default:
+                print("Default case is not yet defined")
+            }
         }
     }
     

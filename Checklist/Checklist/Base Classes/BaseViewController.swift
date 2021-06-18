@@ -196,6 +196,7 @@ public class BaseViewController : UIViewController, UIGestureRecognizerDelegate,
         view.layer.rasterizationScale = UIScreen.main.scale
         //self.view.addSubview(view)
     }
+    
     func setBorderColor(view:UIView,color:UIColor? = .white, width:CGFloat? = 1) {
         view.layer.borderWidth = width!
         view.layer.borderColor = color!.cgColor
@@ -231,6 +232,13 @@ public class BaseViewController : UIViewController, UIGestureRecognizerDelegate,
             imageView.sd_setImage(with: imageurl as URL?, placeholderImage: UIImage(named:placeholderImage!))
         }
     }
+    
+    func setBtnImageWithUrl(btn: UIButton, urlStr: String, placeholderImage:String? = "") {
+        btn.sd_setImage(with: URL(string: urlStr), for: UIControl.State.normal, placeholderImage: UIImage(named: placeholderImage!), options: SDWebImageOptions(rawValue: 0)) { (image, error, cache, url) in
+            
+        }
+    }
+    
     
     func setPlaceholderTextColor(textfield:UITextField,text:String) {
         
@@ -420,9 +428,7 @@ extension BaseViewController{
             container.navigationController?.popToRootViewController(animated: true)
         }
     }
-    
 }
-
 
 extension BaseViewController: ChangePasswordPopUpViewControllerDelegate {
     
@@ -441,8 +447,8 @@ extension BaseViewController: ChangePasswordPopUpViewControllerDelegate {
             vc.delegate = self
             
             self.objAlertVC = vc
-            demoView.frame = CGRect(x:0, y:0, width: ScreenSize.SCREEN_WIDTH - 30, height: 300)
-            vc.view.frame = CGRect(x:0, y:0, width: ScreenSize.SCREEN_WIDTH - 30, height: 300)
+            demoView.frame = CGRect(x:0, y:0, width: ScreenSize.SCREEN_WIDTH - 30, height: 350)
+            vc.view.frame = CGRect(x:0, y:0, width: ScreenSize.SCREEN_WIDTH - 30, height: 350)
             
             demoView.addSubview(vc.view)
             
