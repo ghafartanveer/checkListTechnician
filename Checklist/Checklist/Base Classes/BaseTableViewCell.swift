@@ -63,7 +63,6 @@ public class BaseTableViewCell : UITableViewCell {
         
         buttonDone = UIBarButtonItem(customView: button)
         
-        
         toolbar.setItems(Array.init(arrayLiteral: buttonflexible,buttonDone), animated: true)
         textField.inputAccessoryView = toolbar
         

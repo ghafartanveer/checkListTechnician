@@ -158,7 +158,7 @@ extension UIView {
         }
     }
     
-    func dropShadow(radius: CGFloat? = 1 , opacity: Float? = 1) {
+    func dropShadow(radius: CGFloat? = 2 , opacity: Float? = 1) {
         layer.masksToBounds = false
         layer.shadowColor = UIColor.lightGray.cgColor
         layer.shadowOpacity = opacity!

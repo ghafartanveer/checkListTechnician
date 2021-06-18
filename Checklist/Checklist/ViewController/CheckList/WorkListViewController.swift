@@ -25,6 +25,7 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
         // self.calender.to
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let container = self.mainContainer{
@@ -43,7 +44,6 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
-    
     //MARK: - VehicleDetailPopUpViewController DELEGATE MEHTHOD
     override func callBackActionSave() {
         self.alertView?.close()
@@ -51,7 +51,6 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.CheckListViewController) as! CheckListViewController
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        
     }
 }
 

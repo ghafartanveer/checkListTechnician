@@ -71,11 +71,14 @@ class ProfileSettingViewController: BaseViewController, TopBarDelegate {
     }
     
     func setUnderLineBGColor(view: UIView) {
-        fNameUnderLineView.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
-        lNameUnderLineView.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
-        emailUnderLineView.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
-        phoneUnderLineView.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
-        view.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.3450980392, blue: 0.3960784314, alpha: 1)
+        
+        let inativeBottomLinecolor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        
+        fNameUnderLineView.backgroundColor = inativeBottomLinecolor
+        lNameUnderLineView.backgroundColor = inativeBottomLinecolor
+        emailUnderLineView.backgroundColor = inativeBottomLinecolor
+        phoneUnderLineView.backgroundColor = inativeBottomLinecolor
+        view.backgroundColor = UIColor(named: AssetColors.pinkThemeColor)
     }
     
     //MARK: - IMAGE PICKER CONTROLLER DELEGATE METHODS

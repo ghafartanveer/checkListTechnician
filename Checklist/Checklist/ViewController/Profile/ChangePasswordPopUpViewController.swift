@@ -17,6 +17,8 @@ class ChangePasswordPopUpViewController: BaseViewController {
     @IBOutlet weak var currentPasswordFildContainerView: UIView!
     @IBOutlet weak var newPasswordContainerView: UIView!
     
+    @IBOutlet weak var currentPasswordTF: UITextField!
+    @IBOutlet weak var newPasswordTF: UITextField!
     
     //MARK: - OBJECT AND VERIABLES
     weak var delegate: ChangePasswordPopUpViewControllerDelegate?
@@ -32,10 +34,25 @@ class ChangePasswordPopUpViewController: BaseViewController {
      
     //MARK: - IBACTION METHODS
     @IBAction func actionSubmit(_ sender: UIButton){
-        delegate?.callBackActionSubmit()
+        if checkValidations() {
+            delegate?.callBackActionSubmit()
+        }
     }
     @IBAction func actionClose(_ sender: UIButton){
         delegate?.callBackActionSubmit()
     }
 
+    func checkValidations() -> Bool{
+        var isValid: Bool = true
+        
+        if self.currentPasswordTF.text!.isEmpty{
+            self.showAlertView(message: PopupMessages.Enter_Current_Password)
+            isValid = false
+        }else if self.newPasswordTF.text!.isEmpty{
+            self.showAlertView(message: PopupMessages.Enter_New_Password)
+            isValid = false
+        }
+        
+        return isValid
+    }
 }

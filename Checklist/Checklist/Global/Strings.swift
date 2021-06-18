@@ -90,6 +90,10 @@ struct AssetNames {
     static let Edit_Icon = "editIcon"
     
 }
+
+struct AssetColors {
+    static let pinkThemeColor = "PinkThemeColor"
+}
 struct ServiceMessage {
     static let LocationTitle       = "Location Service Off"
     static let LocationMessage     = "Turn on Location in Settings > Privacy to allow myLUMS to determine your Location"
@@ -101,6 +105,7 @@ struct ServiceMessage {
 struct ControllerIdentifier {
     static let SWRevealViewController = "SWRevealViewController"
     static let CheckListViewController = "CheckListViewController"
+    static let CheckListHistoryViewController = "CheckListHistoryViewController"
     static let HomeVC = "HomeVC"
     static let settingVC = "settingVC"
     static let SWRevealVC = "SWRevealVC"
@@ -157,11 +162,15 @@ struct CellIdentifier {
     static let SideMenuTableViewCell = "SideMenuTableViewCell"
     static let UploadFileCollectionViewCell = "UploadFileCollectionViewCell"
     static let CalenderTableViewCell = "CalenderTableViewCell"
+    static let TaskHistoryTableViewCell = "TaskHistoryTableViewCell"
+    
 }
 
 struct PopupMessages {
     static let Empty_Vehicle_Number = "Please enter vehicle registration number"
     static let Enter_Customer_Name = "Please enter customer name"
+    static let Enter_Current_Password = "Please enter your current password"
+    static let Enter_New_Password = "Please enter your new password"
     static let emptySearch = "Please enter something for search"
     static let verification = "Verification Code Sent Again Successfully"
     static let LocationNotFound             = "Location Not found"
@@ -174,8 +183,6 @@ struct PopupMessages {
     static let cameraPermissionNeeded       = "Camera permission needed to scan QR Code. Goto settings to enable camera permission"
     static let SomethingWentWrong           = "Something went wrong, please check your internet connection or try again later!"
 }
-
-
 
 struct LocalStrings {
     static let success              = "Success"

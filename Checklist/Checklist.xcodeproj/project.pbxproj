@@ -138,10 +138,12 @@
 		355FE2F226319B0200A2B770 /* ChangePasswordPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FE2F126319B0200A2B770 /* ChangePasswordPopUpViewController.swift */; };
 		35678C4F2632A4090092BB7D /* CalenderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35678C4E2632A4090092BB7D /* CalenderTableViewCell.swift */; };
 		6AA8C703B7DC71FC05F71A3D /* Pods_Checklist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9137637D5696CF4876270B83 /* Pods_Checklist.framework */; };
+		DE0E4FE5267CCC0500081F03 /* TaskHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0E4FE4267CCC0500081F03 /* TaskHistoryTableViewCell.swift */; };
 		DE21FC6C267B21D200F09090 /* AboutUs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE21FC6B267B21D200F09090 /* AboutUs.storyboard */; };
 		DE21FC73267B23A700F09090 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FC72267B23A700F09090 /* AboutUsViewController.swift */; };
 		DE21FC78267B33A300F09090 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE21FC77267B33A300F09090 /* Help.storyboard */; };
 		DED14DF2267B5203000326A2 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED14DF1267B5203000326A2 /* HelpViewController.swift */; };
+		DEE961B2267CD69400FE6351 /* CheckListHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE961B1267CD69400FE6351 /* CheckListHistoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -312,10 +314,12 @@
 		355FE2F126319B0200A2B770 /* ChangePasswordPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordPopUpViewController.swift; sourceTree = "<group>"; };
 		35678C4E2632A4090092BB7D /* CalenderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderTableViewCell.swift; sourceTree = "<group>"; };
 		9137637D5696CF4876270B83 /* Pods_Checklist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Checklist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE0E4FE4267CCC0500081F03 /* TaskHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		DE21FC6B267B21D200F09090 /* AboutUs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutUs.storyboard; sourceTree = "<group>"; };
 		DE21FC72267B23A700F09090 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		DE21FC77267B33A300F09090 /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
 		DED14DF1267B5203000326A2 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		DEE961B1267CD69400FE6351 /* CheckListHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListHistoryViewController.swift; sourceTree = "<group>"; };
 		F4532F2DE96F667677DC1D46 /* Pods-Checklist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Checklist.debug.xcconfig"; path = "Target Support Files/Pods-Checklist/Pods-Checklist.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -497,6 +501,7 @@
 				352B89B226314F0700E7B12E /* WorkListTableViewCell.swift */,
 				355FE2D5263184A100A2B770 /* SideMenuTableViewCell.swift */,
 				35678C4E2632A4090092BB7D /* CalenderTableViewCell.swift */,
+				DE0E4FE4267CCC0500081F03 /* TaskHistoryTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -868,6 +873,7 @@
 				355FE2E42631893600A2B770 /* CalenderViewController.swift */,
 				352B89AD26314EE500E7B12E /* WorkListViewController.swift */,
 				352B8999262EEE9900E7B12E /* CheckListViewController.swift */,
+				DEE961B1267CD69400FE6351 /* CheckListHistoryViewController.swift */,
 			);
 			path = CheckList;
 			sourceTree = "<group>";
@@ -1130,6 +1136,7 @@
 				352B88AC262D72D200E7B12E /* MainContainerViewController.swift in Sources */,
 				352B889C262D72D100E7B12E /* BaseTableViewController.swift in Sources */,
 				354E0C93265682E20079C7AF /* UpdatePasswordViewController.swift in Sources */,
+				DE0E4FE5267CCC0500081F03 /* TaskHistoryTableViewCell.swift in Sources */,
 				352B88AA262D72D200E7B12E /* Protocols.swift in Sources */,
 				352B891D262D745300E7B12E /* MKProgressBackgroundView.swift in Sources */,
 				352B88A8262D72D100E7B12E /* String+Extension.swift in Sources */,
@@ -1140,6 +1147,7 @@
 				354E0C9D265697E50079C7AF /* CategoryViewModel.swift in Sources */,
 				352B8920262D745300E7B12E /* GCD.swift in Sources */,
 				355FE2F226319B0200A2B770 /* ChangePasswordPopUpViewController.swift in Sources */,
+				DEE961B2267CD69400FE6351 /* CheckListHistoryViewController.swift in Sources */,
 				352B8934262D745300E7B12E /* CustomIOSAlertView.m in Sources */,
 				352B8956262D7FFF00E7B12E /* SignUpViewController.swift in Sources */,
 				352B891F262D745300E7B12E /* MKConfig.swift in Sources */,

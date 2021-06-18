@@ -41,11 +41,18 @@ class HomeViewController: BaseViewController {
     //MARK: - FUNCTIONS
     func moveToWorkListVC(indexPath: Int){
         var isHistory = false
-        if indexPath == 3{
+        //if indexPath == 3{
+        if indexPath == 1 {
             isHistory = true
         }
         let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.WorkListViewController) as! WorkListViewController
         vc.isFromHistory = isHistory
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func moveToTaskListHistiryVC() {
+               
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.CheckListHistoryViewController) as! CheckListHistoryViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -112,13 +119,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, TaskCa
     func callBackMoveOnContoller(index: Int) {
         switch index {
         case 0:
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.WorkListViewController) as! WorkListViewController
-            self.navigationController?.pushViewController(vc, animated: true)
-            print("All Check Lists")
+            moveToWorkListVC(indexPath: index)
+            print("Check In")
         case 1:
+            moveToTaskListHistiryVC()
             print("History")
         case 2:
-            print("Check In")
+            showVehicleDetailPopUP()
+            self.alertView?.show()
+            print("Show check in popUp")
         case 3:
             print("Check Out")
 
