@@ -31,6 +31,7 @@ class CheckListHistoryViewController: BaseViewController, TopBarDelegate {
 
 //MARK: - EXTENISON TABEL VIEW METHODS
 extension CheckListHistoryViewController: UITableViewDelegate, UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
         
@@ -57,6 +58,10 @@ extension CheckListHistoryViewController: UITableViewDelegate, UITableViewDataSo
 extension CheckListHistoryViewController : TaskHistoryTableViewCellDelegate {
     
     func seeDetilsCallBack(index: Int) {
+        let storyboard = UIStoryboard(name: StoryboardNames.Home, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: ControllerIdentifier.HistoryDetailsViewController) as! HistoryDetailsViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+        
         print("See details of index: ", index)
     }
 }

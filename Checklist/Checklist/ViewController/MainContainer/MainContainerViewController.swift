@@ -146,7 +146,6 @@ class MainContainerViewController: BaseViewController, SWRevealViewControllerDel
         controller.didMove(toParent: self)
     }
     
-    
     func logoutUser()  {
         Global.shared.user = nil
         Global.shared.isLogedIn = false

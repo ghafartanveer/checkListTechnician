@@ -34,3 +34,4 @@ class CategoryListViewModel {
 //        return object
 //    }
 }
+

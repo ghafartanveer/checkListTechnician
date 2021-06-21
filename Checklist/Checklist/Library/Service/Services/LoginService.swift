@@ -60,7 +60,4 @@ class LoginService: BaseService {
             completion(message,success)
         }
     }
-    
-    
-    
 }

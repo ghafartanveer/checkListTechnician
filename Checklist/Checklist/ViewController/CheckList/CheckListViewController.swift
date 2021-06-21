@@ -24,10 +24,20 @@ class CheckListViewController: BaseViewController, TopBarDelegate {
         }
     }
     
+     
     func actionBack() {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func nextButton(_ sender: Any) {
+        navigteToUploadFileVC()
+    }
+    
+    func navigteToUploadFileVC() {
+        let storyboard = UIStoryboard(name: StoryboardNames.Setting, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: ControllerIdentifier.UploadFileViewController) as! UploadFileViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 //MARK: - EXTENISON TABEL VIEW METHODS
 extension CheckListViewController: UITableViewDelegate, UITableViewDataSource{
@@ -49,6 +59,7 @@ extension CheckListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
-        
     }
+    
+    
 }

@@ -6,19 +6,27 @@
 //
 
 import UIKit
+import DropDown
 
 class UploadFileViewController: BaseViewController, TopBarDelegate {
     //MARK: - IBOUTLETS
+    @IBOutlet weak var dropDownContainer: UIView!
+    @IBOutlet weak var dropDownBtn: UIButton!
     @IBOutlet weak var viewCollection: UICollectionView!
     
     //MARK: - OBJECT AND VERIABLES
-    
+    let dropDown = DropDown()
     var imageList = [UIImage]()
+    
+    let dropDownsOptionList = ["Car", "Motorcycle", "Truck"]
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        setUpDropDown()
+
+        // The view to which the drop down will appear on
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,15 +38,34 @@ class UploadFileViewController: BaseViewController, TopBarDelegate {
     }
     
     //MARK: - IBACTION METHODS
+    
+    @IBAction func openDropDown(_ sender: Any) {
+        dropDown.show()
+    }
     @IBAction func actionChoosePhoto(_ sender: UIButton){
         self.fetchProfileImage()
     }
+    
     @IBAction func actionSubmit(_ sender: UIButton){
         self.navigationController?.popToRootViewController(animated: true)
     }
     //MARK: - FUNCTIONS
     func actionBack() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func setUpDropDown() {
+        dropDownContainer.addshadow()
+        dropDown.anchorView = dropDownContainer // UIView or UIBarButtonItem
+        
+        // The list of items to display. Can be changed dynamically
+        dropDown.dataSource = dropDownsOptionList
+        dropDownBtn.setTitle(dropDown.dataSource[0], for: .normal)
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            dropDownBtn.setTitle(item, for: .normal)
+            
+            print("Selected item: \(item) at index: \(index)")
+        }
     }
     
     //MARK: - IMAGE PICKER CONTOLLER METHODS

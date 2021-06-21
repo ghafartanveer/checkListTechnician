@@ -24,11 +24,10 @@ class LoginViewController: BaseViewController {
         self.viewPassword.dropShadow(radius: 5, opacity: 0.4)
         
         #if DEBUG
-        self.txtEmail.text = "testTechniciant@gmail.com"
-        self.txtPassword.text = "12345678"
+        self.txtEmail.text = "techmatloob@yopmail.com"//"testTechniciant@gmail.com"
+        self.txtPassword.text = "123456"//"12345678"
         #endif
     }
-    
     
     //MARK: - IBACTION METHODS
     @IBAction func actionLogin(_ sender: UIButton){

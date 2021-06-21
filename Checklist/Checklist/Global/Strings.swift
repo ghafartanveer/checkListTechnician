@@ -18,10 +18,10 @@ struct SideMenu {
 //                           ["title":"Notification - On/Off","image":"bell"],
 //                           ["title":"About Us","image":"information_Icon"]]
     
-    static let MENULIST = [["title":"Home","image":"settings"],
-                           ["title":"About Us","image":"information_Icon"],
-                           ["title":"Help","image":"notes_Icon"],
-                           ["title":"Settings","image":"settings"]]
+    static let MENULIST = [["title":"Home","image":"home_icon"],
+                           ["title":"About Us","image":"menu_about_us"],
+                           ["title":"Help","image":"help_icon"],
+                           ["title":"Settings","image":"menu_setting_icon"]]
 
 }
 struct HomeMenu {
@@ -34,7 +34,7 @@ struct HomeMenu {
         ["title":"All Check List","image":"Group18"],
         ["title":"Hostory","image":"Group22"],
         ["title":"Check In","image":"Group16"],
-        ["title":"Chck Out","image":"Group14"]]
+        ["title":"Chck Out","image":"ic_check_out"]]
 }
 
 
@@ -120,6 +120,8 @@ struct ControllerIdentifier {
     static let UpdatePasswordViewController = "UpdatePasswordViewController"
     static let aboutUsVc = "aboutUsVc"
     static let helpVC = "helpVC"
+    static let HistoryDetailsViewController = "HistoryDetailsViewController"
+    
 }
 
 struct ValidationMessages {
@@ -163,6 +165,7 @@ struct CellIdentifier {
     static let UploadFileCollectionViewCell = "UploadFileCollectionViewCell"
     static let CalenderTableViewCell = "CalenderTableViewCell"
     static let TaskHistoryTableViewCell = "TaskHistoryTableViewCell"
+    static let HistoryDetailsTaskListTableViewCell = "HistoryDetailsTaskListTableViewCell"
     
 }
 
