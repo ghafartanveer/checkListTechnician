@@ -28,10 +28,15 @@ class TaskHistoryTableViewCell: BaseTableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 
+    func configureHistoryList(info: HistoryTaskViewModel) {
+        self.customeNameLbl.text = info.activity?.customerName
+        self.regNoLbl.text = info.activity?.registrationNumber
+    }
+    
     @IBAction func seeDetails(_ sender: Any) {
         delegate?.seeDetilsCallBack(index: cellIndex)
     }

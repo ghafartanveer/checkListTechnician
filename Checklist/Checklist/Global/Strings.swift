@@ -121,7 +121,7 @@ struct ControllerIdentifier {
     static let aboutUsVc = "aboutUsVc"
     static let helpVC = "helpVC"
     static let HistoryDetailsViewController = "HistoryDetailsViewController"
-    
+    static let FilterSelctionPopUpViewController = "FilterSelctionPopUpViewController"
 }
 
 struct ValidationMessages {

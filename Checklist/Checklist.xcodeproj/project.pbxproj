@@ -142,6 +142,9 @@
 		DE21FC6C267B21D200F09090 /* AboutUs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE21FC6B267B21D200F09090 /* AboutUs.storyboard */; };
 		DE21FC73267B23A700F09090 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE21FC72267B23A700F09090 /* AboutUsViewController.swift */; };
 		DE21FC78267B33A300F09090 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE21FC77267B33A300F09090 /* Help.storyboard */; };
+		DE43BC022681C63B00C01AD4 /* HistoryTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43BC012681C63B00C01AD4 /* HistoryTaskViewModel.swift */; };
+		DE43BC072681F0E200C01AD4 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43BC062681F0E200C01AD4 /* HistoryService.swift */; };
+		DE43BC0D268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43BC0C268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift */; };
 		DE69790F26807D8900875B09 /* HistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE69790E26807D8900875B09 /* HistoryDetailsViewController.swift */; };
 		DE6979142680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6979132680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift */; };
 		DED14DF2267B5203000326A2 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED14DF1267B5203000326A2 /* HelpViewController.swift */; };
@@ -320,6 +323,9 @@
 		DE21FC6B267B21D200F09090 /* AboutUs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutUs.storyboard; sourceTree = "<group>"; };
 		DE21FC72267B23A700F09090 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		DE21FC77267B33A300F09090 /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
+		DE43BC012681C63B00C01AD4 /* HistoryTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTaskViewModel.swift; sourceTree = "<group>"; };
+		DE43BC062681F0E200C01AD4 /* HistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
+		DE43BC0C268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelctionPopUpViewController.swift; sourceTree = "<group>"; };
 		DE69790E26807D8900875B09 /* HistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsViewController.swift; sourceTree = "<group>"; };
 		DE6979132680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsTaskListTableViewCell.swift; sourceTree = "<group>"; };
 		DED14DF1267B5203000326A2 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
@@ -472,6 +478,7 @@
 				352B8883262D72D100E7B12E /* RegisterListViewModel.swift */,
 				354E0C9C265697E50079C7AF /* CategoryViewModel.swift */,
 				354E0CA1265697F30079C7AF /* CategoryListViewModel.swift */,
+				DE43BC012681C63B00C01AD4 /* HistoryTaskViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -578,6 +585,7 @@
 				352B8896262D72D100E7B12E /* BaseService.swift */,
 				352B8897262D72D100E7B12E /* LoginService.swift */,
 				354E0C97265696F50079C7AF /* CategoryServices.swift */,
+				DE43BC062681F0E200C01AD4 /* HistoryService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -851,6 +859,7 @@
 			isa = PBXGroup;
 			children = (
 				3553D7B9263FDCA8004C255D /* VehicleDetailPopUpViewController.swift */,
+				DE43BC0C268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -1146,6 +1155,7 @@
 				DE0E4FE5267CCC0500081F03 /* TaskHistoryTableViewCell.swift in Sources */,
 				352B88AA262D72D200E7B12E /* Protocols.swift in Sources */,
 				352B891D262D745300E7B12E /* MKProgressBackgroundView.swift in Sources */,
+				DE43BC022681C63B00C01AD4 /* HistoryTaskViewModel.swift in Sources */,
 				352B88A8262D72D100E7B12E /* String+Extension.swift in Sources */,
 				352B889B262D72D100E7B12E /* BaseTableViewCell.swift in Sources */,
 				352B88A4262D72D100E7B12E /* UserDefaultsManager.swift in Sources */,
@@ -1201,6 +1211,7 @@
 				DE21FC73267B23A700F09090 /* AboutUsViewController.swift in Sources */,
 				352B8927262D745300E7B12E /* BReachability.swift in Sources */,
 				355FE2EA2631939500A2B770 /* ProfileSettingViewController.swift in Sources */,
+				DE43BC0D268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift in Sources */,
 				352B88A9262D72D100E7B12E /* UITableView+Extension.swift in Sources */,
 				355FE2D12631796F00A2B770 /* UploadFileCollectionViewCell.swift in Sources */,
 				DE6979142680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift in Sources */,
@@ -1220,6 +1231,7 @@
 				352B898B262ED49F00E7B12E /* TaskTypesTableViewCell.swift in Sources */,
 				352B88A0262D72D100E7B12E /* Strings.swift in Sources */,
 				352B88B5262D72D200E7B12E /* RequestMessages.swift in Sources */,
+				DE43BC072681F0E200C01AD4 /* HistoryService.swift in Sources */,
 				352B88B7262D72D200E7B12E /* LoginService.swift in Sources */,
 				352B8833262D728900E7B12E /* AppDelegate.swift in Sources */,
 				352B88A7262D72D100E7B12E /* Extensions.swift in Sources */,
