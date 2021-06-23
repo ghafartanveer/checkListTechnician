@@ -20,8 +20,7 @@ class Global {
     var controllerTitle = ""
     var currentNavigationController = ""
     var currentStoryBoard = ""
-   
-  
+    var checkInId = 0
        
     
   }

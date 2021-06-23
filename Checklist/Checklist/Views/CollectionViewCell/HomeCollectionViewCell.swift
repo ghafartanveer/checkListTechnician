@@ -12,6 +12,7 @@ class HomeCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var imgImage: UIImageView!
     
+    @IBOutlet weak var checkinTickImg: UIImageView!
     
     func configureMenu(data: [String: String]){
         self.lblTitle.text = data["title"]

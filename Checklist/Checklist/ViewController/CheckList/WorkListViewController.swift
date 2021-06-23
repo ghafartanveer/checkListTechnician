@@ -10,17 +10,19 @@ import UIKit
 
 class WorkListViewController: BaseViewController, TopBarDelegate {
     //MARK: - IBOUTLETS
+    @IBOutlet weak var searchBarTF: UITextField!
+
     @IBOutlet weak var viewTabel: UITableView!
     
     //MARK: - OBJECT AND VERIABLES
     var categoryObject = CategoryListViewModel()
-    var isFromHistory: Bool = false
-    
+    var filteredList = [CategoryViewModel]()
     
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getCategoryListApi()
+        searchBarTF.addTarget(self, action: #selector(searchFieldHandler(textField:)), for: .editingChanged)
         //  FSCalendarScope.week
         // self.calender.to
         // Do any additional setup after loading the view.
@@ -30,22 +32,46 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
         super.viewWillAppear(animated)
         if let container = self.mainContainer{
             container.delegate = self
-            if self.isFromHistory{
-                container.setMenuButton(true, true, title: TitleNames.History)
-            }else{
+            
                 container.setMenuButton(true, true, title: TitleNames.Work_List)
-            }
             
         }
     }
     //MARK: - FUNCTIONS
     
+    @objc final private func searchFieldHandler(textField: UITextField) {
+        print("Text changed", textField.text)
+        
+        if(textField.text == ""){
+            self.categoryObject.categoryList = self.filteredList
+            self.viewTabel.reloadData()
+        }
+        else{
+            let filterdItemsArray = self.filteredList.filter({ ($0.name.lowercased().contains(textField.text!.lowercased()))
+            })
+            self.categoryObject.categoryList = filterdItemsArray
+            
+            self.viewTabel.reloadData()
+            print(filterdItemsArray)
+        }
+    }
+    
     func actionBack() {
         self.navigationController?.popViewController(animated: true)
     }
+    func moveTocheckListVC(index: Int) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.CheckListViewController) as! CheckListViewController
+        
+        let taskSubCategory = self.categoryObject.categoryList[index]
+        vc.taskSubCategoryList.append(taskSubCategory)// = taskSubCategory
+        vc.taskSubCategoryList.append(self.categoryObject.categoryList[index+1]
+)
+        //vc.taskSubCategoryList1 = self.categoryObject.categoryList[index].taskSubCategory?.taskSubCategoryList
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     //MARK: - VehicleDetailPopUpViewController DELEGATE MEHTHOD
-    override func callBackActionSave() {
+    override func callBackActionSave(txtVehicleNumber : String, txtCustomerName : String) {
         self.alertView?.close()
         GCD.async(.Main, delay: 0.3) {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.CheckListViewController) as! CheckListViewController
@@ -69,11 +95,17 @@ extension WorkListViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !self.isFromHistory{
-            self.showVehicleDetailPopUP()
-            self.alertView?.show()
-            
-        }
+        
+        moveTocheckListVC(index: indexPath.row)
+        
+//        if Global.shared.checkInId > 0 {
+//            moveTocheckListVC(index: indexPath.row)
+//        } else {
+//            self.showAlertView(message: PopupMessages.CheckInFirst)
+////            self.showVehicleDetailPopUP()
+////            self.alertView?.show()
+//        }
+        //}
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -93,6 +125,7 @@ extension WorkListViewController{
                     if success{
                         if let category = catInfo{
                             self.categoryObject = category
+                            self.filteredList.append(contentsOf: self.categoryObject.categoryList)
                             self.viewTabel.reloadData()
                         }
                         

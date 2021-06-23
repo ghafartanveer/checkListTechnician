@@ -29,6 +29,15 @@ extension TaskCategoryTableViewCell: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.HomeCollectionViewCell, for: indexPath) as! HomeCollectionViewCell
         cell.configureMenu(data: HomeMenu.MENU_LIST[indexPath.row])
+        if indexPath.item == 2 {
+            if Global.shared.checkInId < 0 {
+                cell.checkinTickImg.isHidden = false
+            } else {
+                cell.checkinTickImg.isHidden = true
+            }
+        } else {
+            cell.checkinTickImg.isHidden = true
+        }
         return cell
     }
     

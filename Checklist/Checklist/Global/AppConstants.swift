@@ -49,7 +49,10 @@ struct DictKeys {
     static let Current_Password = "current_password"
     static let New_Password = "new_password"
     static let Pin_Code = "pin_code"
-    static let Date = "date"
+    static let date = "date"
+    static let customer_name = "customer_name"
+    static let registration_number = "registration_number"
+    
 }
 
 struct EndPoints {
@@ -71,6 +74,7 @@ struct EndPoints {
     static let Block_User = "block_user"
     static let History = "history"
     static let Search = "search"
+    static let CheckIn = "technician_check_in"
 }
 
 //Default values for data types

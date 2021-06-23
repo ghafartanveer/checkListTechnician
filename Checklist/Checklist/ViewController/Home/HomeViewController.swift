@@ -15,6 +15,7 @@ class HomeViewController: BaseViewController {
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
+        
        // self.btnPlusShadow.dropShadow(radius: 3, opacity: 0.2)
     }
     
@@ -32,6 +33,14 @@ class HomeViewController: BaseViewController {
         }
     }
     
+    override func callBackActionSave(txtVehicleNumber : String, txtCustomerName :String) {
+        let userId = String(UserDefaultsManager.shared.userInfo.id)
+        
+        self.checkInServerCall(params: [DictKeys.User_Id: userId,
+                                 DictKeys.customer_name: txtCustomerName,
+                                 DictKeys.registration_number: txtVehicleNumber])
+        self.alertView?.close()
+    }
     
     //MARK: - IBACTION METHODS
     @IBAction func actionAddTask(_ sender: UIButton){
@@ -40,13 +49,13 @@ class HomeViewController: BaseViewController {
     
     //MARK: - FUNCTIONS
     func moveToWorkListVC(indexPath: Int){
-        var isHistory = false
+        //var isHistory = false
         //if indexPath == 3{
-        if indexPath == 1 {
-            isHistory = true
-        }
+//        if indexPath == 1 {
+//            isHistory = true
+//        }
         let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.WorkListViewController) as! WorkListViewController
-        vc.isFromHistory = isHistory
+       // vc.isFromHistory = isHistory
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -79,6 +88,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, TaskCa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //if indexPath.section == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.TaskCategoryTableViewCell) as! TaskCategoryTableViewCell
+        
             cell.delegate = self
             cell.viewCollection.reloadData()
             return cell
@@ -142,5 +152,33 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, TaskCa
 //            self.navigationController?.pushViewController(vc, animated: true)
 //        }
         
+    }
+}
+
+//MARK: - CheckInApiCall
+extension HomeViewController {
+    
+    func checkInServerCall(params: ParamsString){
+        self.startActivity()
+        GCD.async(.Background) {
+            CheckInOutServic.shared().checkInApi(params: params) { (message, success, checkInInfo) in
+                GCD.async(.Main) { [self] in
+                    self.stopActivity()
+                    if success{
+                        if let chinInDetail = checkInInfo{
+                           
+                           
+                                self.showAlertView(message: message)
+                                Global.shared.checkInId = chinInDetail.id
+                            
+                            // use data here
+                          
+                        }
+                    }else{
+                        self.showAlertView(message: message)
+                    }
+                }
+            }
+        }
     }
 }

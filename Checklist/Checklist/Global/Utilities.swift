@@ -273,11 +273,12 @@ class Utilities {
         
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "dd MMM YYYY"
+        formatter.dateFormat = "yyyy-MM-dd"
         let timeStemp = formatter.string(from: tomorrow!)
         
         return timeStemp
     }
+    
     static func getNextDateStringForDay(date:Date,value:Int? = 1) -> String{
         let today = date
         let tomorrow = Calendar.current.date(byAdding: .day, value: value!, to: today)

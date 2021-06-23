@@ -488,7 +488,7 @@ extension BaseViewController: VehicleDetailPopUpViewControllerDelegate {
         
     }
     
-    @objc func callBackActionSave() {
+    @objc func callBackActionSave(txtVehicleNumber _: String, txtCustomerName _: String) {
         
     }
     
@@ -511,8 +511,8 @@ extension BaseViewController: FilterSelctionPopUpViewControllerDelegte {
             vc.delegate = self
             
             self.objAlertVC = vc
-            demoView.frame = CGRect(x:0, y:0, width: ScreenSize.SCREEN_WIDTH - 40, height: 420)
-            vc.view.frame = CGRect(x:0, y:0, width: ScreenSize.SCREEN_WIDTH - 40, height: 420)
+            demoView.frame = CGRect(x:0, y:0, width: ScreenSize.SCREEN_WIDTH - 40, height: 320)
+            vc.view.frame = CGRect(x:0, y:0, width: ScreenSize.SCREEN_WIDTH - 40, height: 320)
             
             demoView.addSubview(vc.view)
             

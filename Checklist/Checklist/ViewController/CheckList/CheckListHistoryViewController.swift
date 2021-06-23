@@ -9,16 +9,28 @@ import UIKit
 
 class CheckListHistoryViewController: BaseViewController, TopBarDelegate {
     //MARK: - IBOUTLETS
+    
+    @IBOutlet weak var searchBarTF: UITextField!
+    
     @IBOutlet weak var historyTableView: UITableView!
     
     //MARK: - OBJECT AND VERIABLES
     var historyObject = HistoryTaskListViewModel()
+    var filteredObject = [HistoryTaskViewModel]()
+    
+//    var resturantFilterList = [RestaurantViewModel]()
+//
+//    var resturantObj = ResturantListViewModel()
     
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getHistoryListApi()
+        searchBarTF.delegate = self
+        
+        searchBarTF.addTarget(self, action: #selector(yourHandler(textField:)), for: .editingChanged)
+
         // Do any additional setup after loading the view.
     }
     
@@ -29,20 +41,33 @@ class CheckListHistoryViewController: BaseViewController, TopBarDelegate {
             
             container.setMenuButton(true, true, title: TitleNames.History)
         }
+        
+      
     }
     
     override func callBackYesterdayPressed() {
-        SearchHistoryListApi(params: ["date":"2021-07-16,2021-07-22"])
+        
+        let yesterDay = Utilities.getNextDateString(date: Date(), value: -1)
+        
+        SearchHistoryListApi(params: ["date":yesterDay])
         self.alertView?.close()
     }
     
     override func callBackLastWeekPressed() {
-        SearchHistoryListApi(params: ["date":"2021-07-16,2021-07-22"])
+        
+        let today = Utilities.getNextDateString(date: Date(), value: 0)
+        let lastWeek = Utilities.getNextDateString(date: Date(), value: -7)
+
+        SearchHistoryListApi(params: ["date":today+","+lastWeek])
         self.alertView?.close()
     }
     
     override func callBackLastMonthPressed() {
-        SearchHistoryListApi(params: ["date":"2021-07-16,2021-07-22"])
+        
+        let today = Utilities.getNextDateString(date: Date(), value: 0)
+        let lastMonth = Utilities.getNextDateString(date: Date(), value: -30)
+        
+        SearchHistoryListApi(params: ["date":today+","+lastMonth])
         self.alertView?.close()
     }
     
@@ -59,7 +84,27 @@ class CheckListHistoryViewController: BaseViewController, TopBarDelegate {
     }
     
     
-    //MARK: - FUNCTIONS
+    //MARK: - FUNCTIONS . Search
+    
+    @objc final private func yourHandler(textField: UITextField) {
+        print("Text changed", textField.text)
+    
+        if(textField.text == ""){
+            self.historyObject.historyTaskList = self.filteredObject
+            self.historyTableView.reloadData()
+        }
+        else{
+            let filterdItemsArray = self.filteredObject.filter({ ($0.activity?.customerName?.lowercased().contains(textField.text!.lowercased()))! || ($0.activity?.registrationNumber?.lowercased().contains(textField.text!.lowercased()))!
+            })
+            self.historyObject.historyTaskList = filterdItemsArray
+            
+            self.historyTableView.reloadData()
+            print(filterdItemsArray)
+        }
+        
+            
+    }
+    
     func actionBack() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -69,9 +114,7 @@ class CheckListHistoryViewController: BaseViewController, TopBarDelegate {
 extension CheckListHistoryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.historyObject.historyTaskList.count == 0 {
-        historyTableView.setNoDataMessage(LocalStrings.NoDataFound)
-        }
+        
         return self.historyObject.historyTaskList.count
         
     }
@@ -99,6 +142,12 @@ extension CheckListHistoryViewController: UITableViewDelegate, UITableViewDataSo
     }
 }
 
+//MARK: - Text field delegate
+extension CheckListHistoryViewController : UITextFieldDelegate {
+    
+    
+}
+
 //MARK: - Get task list History
 extension CheckListHistoryViewController{
     func getHistoryListApi(){
@@ -111,7 +160,15 @@ extension CheckListHistoryViewController{
                         if let history = historyInfo{
                             
                             self.historyObject = history
+                            self.filteredObject.append(contentsOf: self.historyObject.historyTaskList)
+                            if historyObject.historyTaskList.count == 0 {
+                                historyTableView.setNoDataMessage(LocalStrings.NoDataFound)
+                                self.historyTableView.reloadData()
+
+                            } else {
+                                historyTableView.setNoDataMessage("")
                             self.historyTableView.reloadData()
+                            }
                             
                         }
                         
@@ -132,9 +189,16 @@ extension CheckListHistoryViewController{
                     self.stopActivity()
                     if success{
                         if let history = historyInfo{
-                            
                             self.historyObject = history
-                            self.historyTableView.reloadData()
+                            self.filteredObject.append(contentsOf: self.historyObject.historyTaskList)
+                            if historyObject.historyTaskList.count == 0 {
+                                historyTableView.setNoDataMessage(LocalStrings.NoDataFound)
+                                self.historyTableView.reloadData()
+
+                            } else {
+                                historyTableView.setNoDataMessage("")
+                                self.historyTableView.reloadData()
+                            }
                         }
                     }else{
                         self.showAlertView(message: message)

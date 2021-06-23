@@ -9,6 +9,7 @@ import UIKit
 
 class CheckListTableViewCell: BaseTableViewCell {
     //MARK: -- IBOUTLETS
+    @IBOutlet weak var taskTitleLbl: UILabel!
     @IBOutlet weak var btnYes: UIButton!
     @IBOutlet weak var btnNo: UIButton!
     @IBOutlet weak var btnNotAvailable: UIButton!
@@ -19,6 +20,10 @@ class CheckListTableViewCell: BaseTableViewCell {
         // Initialization code
     }
     // MARK: - FUNCTIONS
+    func cofigureCellData(info:TaskSubcatgoryViewModel, index: Int) {
+        let indexStr = String(index+1)
+        self.taskTitleLbl.text = indexStr + ") " + info.subcategoryName
+    }
     func configureDefaultsBtn(){
         self.btnYes.isSelected = false
         self.btnNo.isSelected = false

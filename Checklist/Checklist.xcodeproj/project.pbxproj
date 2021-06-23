@@ -147,6 +147,8 @@
 		DE43BC0D268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43BC0C268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift */; };
 		DE69790F26807D8900875B09 /* HistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE69790E26807D8900875B09 /* HistoryDetailsViewController.swift */; };
 		DE6979142680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6979132680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift */; };
+		DE7492F02683462200AA7159 /* CheckInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7492EF2683462200AA7159 /* CheckInViewModel.swift */; };
+		DE7492F526834BA300AA7159 /* CheckInOutServic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7492F426834BA300AA7159 /* CheckInOutServic.swift */; };
 		DED14DF2267B5203000326A2 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED14DF1267B5203000326A2 /* HelpViewController.swift */; };
 		DEE961B2267CD69400FE6351 /* CheckListHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE961B1267CD69400FE6351 /* CheckListHistoryViewController.swift */; };
 /* End PBXBuildFile section */
@@ -328,6 +330,8 @@
 		DE43BC0C268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelctionPopUpViewController.swift; sourceTree = "<group>"; };
 		DE69790E26807D8900875B09 /* HistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsViewController.swift; sourceTree = "<group>"; };
 		DE6979132680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsTaskListTableViewCell.swift; sourceTree = "<group>"; };
+		DE7492EF2683462200AA7159 /* CheckInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewModel.swift; sourceTree = "<group>"; };
+		DE7492F426834BA300AA7159 /* CheckInOutServic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInOutServic.swift; sourceTree = "<group>"; };
 		DED14DF1267B5203000326A2 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		DEE961B1267CD69400FE6351 /* CheckListHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListHistoryViewController.swift; sourceTree = "<group>"; };
 		F4532F2DE96F667677DC1D46 /* Pods-Checklist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Checklist.debug.xcconfig"; path = "Target Support Files/Pods-Checklist/Pods-Checklist.debug.xcconfig"; sourceTree = "<group>"; };
@@ -479,6 +483,7 @@
 				354E0C9C265697E50079C7AF /* CategoryViewModel.swift */,
 				354E0CA1265697F30079C7AF /* CategoryListViewModel.swift */,
 				DE43BC012681C63B00C01AD4 /* HistoryTaskViewModel.swift */,
+				DE7492EF2683462200AA7159 /* CheckInViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -586,6 +591,7 @@
 				352B8897262D72D100E7B12E /* LoginService.swift */,
 				354E0C97265696F50079C7AF /* CategoryServices.swift */,
 				DE43BC062681F0E200C01AD4 /* HistoryService.swift */,
+				DE7492F426834BA300AA7159 /* CheckInOutServic.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1154,12 +1160,14 @@
 				354E0C93265682E20079C7AF /* UpdatePasswordViewController.swift in Sources */,
 				DE0E4FE5267CCC0500081F03 /* TaskHistoryTableViewCell.swift in Sources */,
 				352B88AA262D72D200E7B12E /* Protocols.swift in Sources */,
+				DE7492F526834BA300AA7159 /* CheckInOutServic.swift in Sources */,
 				352B891D262D745300E7B12E /* MKProgressBackgroundView.swift in Sources */,
 				DE43BC022681C63B00C01AD4 /* HistoryTaskViewModel.swift in Sources */,
 				352B88A8262D72D100E7B12E /* String+Extension.swift in Sources */,
 				352B889B262D72D100E7B12E /* BaseTableViewCell.swift in Sources */,
 				352B88A4262D72D100E7B12E /* UserDefaultsManager.swift in Sources */,
 				354E0C98265696F50079C7AF /* CategoryServices.swift in Sources */,
+				DE7492F02683462200AA7159 /* CheckInViewModel.swift in Sources */,
 				3553D7BA263FDCA8004C255D /* VehicleDetailPopUpViewController.swift in Sources */,
 				354E0C9D265697E50079C7AF /* CategoryViewModel.swift in Sources */,
 				352B8920262D745300E7B12E /* GCD.swift in Sources */,

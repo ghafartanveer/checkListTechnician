@@ -185,6 +185,7 @@ struct PopupMessages {
     static let unAuthorizedAccessMessage    = "Session expired, please login again"
     static let cameraPermissionNeeded       = "Camera permission needed to scan QR Code. Goto settings to enable camera permission"
     static let SomethingWentWrong           = "Something went wrong, please check your internet connection or try again later!"
+    static let CheckInFirst = "Please Check In First!"
 }
 
 struct LocalStrings {

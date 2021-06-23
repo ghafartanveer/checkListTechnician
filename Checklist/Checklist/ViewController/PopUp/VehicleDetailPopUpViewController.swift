@@ -8,7 +8,7 @@
 import UIKit
 
 protocol VehicleDetailPopUpViewControllerDelegate: NSObjectProtocol {
-    func callBackActionSave()
+    func callBackActionSave(txtVehicleNumber: String, txtCustomerName: String )
 }
 
 class VehicleDetailPopUpViewController: BaseViewController {
@@ -28,7 +28,7 @@ class VehicleDetailPopUpViewController: BaseViewController {
     //MARK: - IBACTION METHODS
     @IBAction func actionSave(_ sender: UIButton){
         if self.checkValidations(){
-            delegate?.callBackActionSave()
+            delegate?.callBackActionSave(txtVehicleNumber: txtVehicleNumber.text!, txtCustomerName: txtCustomerName.text!)
         }
     }
     
