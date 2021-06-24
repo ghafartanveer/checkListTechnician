@@ -9,14 +9,15 @@ import Foundation
 import SwiftyJSON
 
 // MARK: - COMPLETE Responce
-class HistoryTaskListViewModel {
+struct HistoryTaskListViewModel {
     var historyTaskList: [HistoryTaskViewModel]
        
     init() {
         self.historyTaskList = [HistoryTaskViewModel]()
     }
     
-    convenience init(list: JSON) {
+    //convenience
+    init(list: JSON) {
         self.init()
         if let jsonList = list.array{
             let list = jsonList.map({
@@ -28,7 +29,7 @@ class HistoryTaskListViewModel {
 
 //MARK: - TaskList
 
-class HistoryTaskViewModel {
+struct HistoryTaskViewModel {
     
     var id, userID, categoryID, activityID: Int?
     var categoryName: String?
@@ -80,7 +81,7 @@ class HistoryTaskViewModel {
 }
 //--------------------------------------------------
 // MARK: - Activity
-class Activity {
+struct Activity {
     var id, userID: Int?
     var customerName, registrationNumber, checkIn: String?
     var checkOut: String?
@@ -114,7 +115,7 @@ class Activity {
 
 //----------------------------------------------
 // MARK: - Subcategory
-class SubcategoryViewModel {
+struct SubcategoryViewModel {
     var id, taskID, subCatID: Int?
     var subCategoryName: String?
     var status: Int?
@@ -142,14 +143,15 @@ class SubcategoryViewModel {
 }
 
 //MARK: - subCategoryList
-class SubcategoryListViewModel {
+struct SubcategoryListViewModel {
     var subCategoryList = [SubcategoryViewModel]()
     
     init() {
         self.subCategoryList = [SubcategoryViewModel]()
     }
     
-    convenience init(list: JSON) {
+    //convenience
+    init(list: JSON) {
         self.init()
         if let jsonList = list.array{
             let list = jsonList.map({SubcategoryViewModel(obj: $0)})
@@ -161,7 +163,7 @@ class SubcategoryListViewModel {
 
 //----------------------------------------------------
 // MARK: - Technician
-class TechnicianViewModel {
+struct TechnicianViewModel {
     var id, storeID: Int?
     var firstName, lastName, email, phoneNumber: String?
     var image: String?
@@ -202,7 +204,7 @@ class TechnicianViewModel {
 //----------------------------------------
 
 // MARK: - Image
-class ImageViewVodel {
+struct ImageViewVodel {
     var id, categoryID: Int?
     var typeName: String?
     var image: String?
@@ -231,14 +233,15 @@ class ImageViewVodel {
 
 //MARK: - imageList Vie Model
 
-class ImageListViewModel {
+struct ImageListViewModel {
     var imagelist = [ImageViewVodel]()
     
     init() {
         self.imagelist = [ImageViewVodel]()
     }
     
-    convenience init(list: JSON) {
+    //convenience
+    init(list: JSON) {
         self.init()
         if let jsonList = list.array{
             let list = jsonList.map({ImageViewVodel(obj: $0)})

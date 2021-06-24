@@ -186,6 +186,7 @@ struct PopupMessages {
     static let cameraPermissionNeeded       = "Camera permission needed to scan QR Code. Goto settings to enable camera permission"
     static let SomethingWentWrong           = "Something went wrong, please check your internet connection or try again later!"
     static let CheckInFirst = "Please Check In First!"
+    static let AlreadyCheckedIn = "You are already Chcked In!"
 }
 
 struct LocalStrings {

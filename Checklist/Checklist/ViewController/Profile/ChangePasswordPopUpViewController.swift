@@ -26,8 +26,8 @@ class ChangePasswordPopUpViewController: BaseViewController {
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentPasswordFildContainerView.addshadow()
-        newPasswordContainerView.addshadow()
+        currentPasswordFildContainerView.dropShadow(radius: 5, opacity: 0.4)//.addshadow()
+        newPasswordContainerView.dropShadow(radius: 5, opacity: 0.4)//.addshadow()
         // Do any additional setup after loading the view.
     }
     

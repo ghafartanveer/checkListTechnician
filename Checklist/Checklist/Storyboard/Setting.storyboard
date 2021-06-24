@@ -688,12 +688,12 @@
                                                     <constraint firstItem="P1n-ng-GB5" firstAttribute="top" secondItem="PEh-se-yvt" secondAttribute="top" id="BBB-J5-NNo"/>
                                                     <constraint firstAttribute="bottom" secondItem="P1n-ng-GB5" secondAttribute="bottom" id="TMV-q9-4Ms"/>
                                                     <constraint firstItem="P1n-ng-GB5" firstAttribute="leading" secondItem="PEh-se-yvt" secondAttribute="leading" id="hu6-ca-s6d"/>
+                                                    <constraint firstAttribute="height" constant="764" id="kfs-XM-ba2"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="PEh-se-yvt" secondAttribute="bottom" id="4oq-uq-SLe"/>
-                                            <constraint firstItem="PEh-se-yvt" firstAttribute="centerY" secondItem="Dxl-Io-Gwt" secondAttribute="centerY" id="HEh-uO-ZwF"/>
                                             <constraint firstAttribute="trailing" secondItem="PEh-se-yvt" secondAttribute="trailing" id="Iu0-Uw-7Vz"/>
                                             <constraint firstItem="PEh-se-yvt" firstAttribute="centerX" secondItem="Dxl-Io-Gwt" secondAttribute="centerX" id="htv-JK-rYQ"/>
                                             <constraint firstItem="PEh-se-yvt" firstAttribute="leading" secondItem="Dxl-Io-Gwt" secondAttribute="leading" id="rCN-O7-ZqW"/>

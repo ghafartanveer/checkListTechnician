@@ -48,10 +48,47 @@ class ProfileSettingViewController: BaseViewController, TopBarDelegate {
     }
     
     @IBAction func actionSave(_ sender:UIButton){
-       
+        
+        let imageData = (imgProfile.image)!.jpegData(compressionQuality: 1.0)
+    
+        if self.checkValidations(){
+            let storId = String(Global.shared.user.storeID)
+            let userId = String(Global.shared.user.id)
+            //let pasword = Global.shared.user.pass
+            self.updateProfileServerCall(params: [DictKeys.email: self.emailTF.text!,
+                                         DictKeys.first_name: self.fNameTF.text!,
+                                         DictKeys.login_type: LoginType.Technician, DictKeys.last_name: self.lNameTF.text!, DictKeys.phone_number: self.phoneTF.text!, DictKeys.Store_Id : storId, DictKeys.User_Id : userId], imageDic: [DictKeys.image : imageData] )
+            
+        }
+        
     }
     
     //MARK: - FUNCTIONS
+    
+    func checkValidations() -> Bool{
+        var isValid: Bool = true
+        let validEmail = Validations.emailValidation(self.emailTF.text!)
+        let validFName = Validations.nameValidation(self.fNameTF.text!)
+        let validLName = Validations.nameValidation(self.lNameTF.text!)
+        let validPhone = Validations.phoneNumberValidation(self.phoneTF.text!)
+        
+        if !validEmail.isValid{
+            self.showAlertView(message: validEmail.message)
+            isValid = false
+        }else if !validFName.isValid{
+            self.showAlertView(message: validFName.message)
+            isValid = false
+        }else if !validLName.isValid{
+            self.showAlertView(message: validLName.message)
+            isValid = false
+        }else if !validPhone.isValid{
+            self.showAlertView(message: validPhone.message)
+            isValid = false
+        }
+        return isValid
+    }
+
+    
     func actionBack() {
         self.loadHomeController()
     }
@@ -105,4 +142,26 @@ extension ProfileSettingViewController :  UITextFieldDelegate {
             print("default not defined yet")
         }
     }
+}
+
+//MARK: - Server Calls
+extension ProfileSettingViewController {
+    
+    func updateProfileServerCall(params: ParamsAny, imageDic: [String:Data?]){
+        self.startActivity()
+        GCD.async(.Background) {
+            LoginService.shared().updateProfileApi(params: params) { (message, success, userInfo) in
+                GCD.async(.Main) { [self] in
+                    self.stopActivity()
+                    if success{
+                        self.showAlertView(message: message)
+                    }else{
+                        self.showAlertView(message: message)
+                    }
+                }
+                
+            }
+        }
+    }
+    
 }

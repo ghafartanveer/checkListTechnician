@@ -53,7 +53,7 @@ class HistoryDetailsViewController: BaseViewController, TopBarDelegate {
     }
     
     func layoutSetup() {
-        checkInDetailsContainerView.addshadow()
+        checkInDetailsContainerView.dropShadow(radius: 5, opacity: 0.4)//.addshadow()
     }
     
     func setCheckinDetails() {

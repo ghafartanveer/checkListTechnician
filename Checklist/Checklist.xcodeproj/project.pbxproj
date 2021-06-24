@@ -145,6 +145,7 @@
 		DE43BC022681C63B00C01AD4 /* HistoryTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43BC012681C63B00C01AD4 /* HistoryTaskViewModel.swift */; };
 		DE43BC072681F0E200C01AD4 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43BC062681F0E200C01AD4 /* HistoryService.swift */; };
 		DE43BC0D268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43BC0C268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift */; };
+		DE5651AB2684AC0B004ACAF9 /* CommonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5651AA2684AC0B004ACAF9 /* CommonService.swift */; };
 		DE69790F26807D8900875B09 /* HistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE69790E26807D8900875B09 /* HistoryDetailsViewController.swift */; };
 		DE6979142680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6979132680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift */; };
 		DE7492F02683462200AA7159 /* CheckInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7492EF2683462200AA7159 /* CheckInViewModel.swift */; };
@@ -328,6 +329,7 @@
 		DE43BC012681C63B00C01AD4 /* HistoryTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTaskViewModel.swift; sourceTree = "<group>"; };
 		DE43BC062681F0E200C01AD4 /* HistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
 		DE43BC0C268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelctionPopUpViewController.swift; sourceTree = "<group>"; };
+		DE5651AA2684AC0B004ACAF9 /* CommonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonService.swift; sourceTree = "<group>"; };
 		DE69790E26807D8900875B09 /* HistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsViewController.swift; sourceTree = "<group>"; };
 		DE6979132680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsTaskListTableViewCell.swift; sourceTree = "<group>"; };
 		DE7492EF2683462200AA7159 /* CheckInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewModel.swift; sourceTree = "<group>"; };
@@ -592,6 +594,7 @@
 				354E0C97265696F50079C7AF /* CategoryServices.swift */,
 				DE43BC062681F0E200C01AD4 /* HistoryService.swift */,
 				DE7492F426834BA300AA7159 /* CheckInOutServic.swift */,
+				DE5651AA2684AC0B004ACAF9 /* CommonService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1182,6 +1185,7 @@
 				352B88AE262D72D200E7B12E /* RegisterListViewModel.swift in Sources */,
 				352B899A262EEE9900E7B12E /* CheckListViewController.swift in Sources */,
 				352B8932262D745300E7B12E /* ACFloatingTextfield.swift in Sources */,
+				DE5651AB2684AC0B004ACAF9 /* CommonService.swift in Sources */,
 				352B891A262D745300E7B12E /* MKProgress.swift in Sources */,
 				352B88A5262D72D100E7B12E /* Validations.swift in Sources */,
 				352B883D262D728900E7B12E /* Checklist.xcdatamodeld in Sources */,

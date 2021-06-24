@@ -11,18 +11,24 @@ import UIKit
 class WorkListViewController: BaseViewController, TopBarDelegate {
     //MARK: - IBOUTLETS
     @IBOutlet weak var searchBarTF: UITextField!
-
     @IBOutlet weak var viewTabel: UITableView!
+    @IBOutlet weak var nextBtn: UIButton!
     
     //MARK: - OBJECT AND VERIABLES
     var categoryObject = CategoryListViewModel()
     var filteredList = [CategoryViewModel]()
+    
+    var selectedItems = [Int]()
     
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getCategoryListApi()
         searchBarTF.addTarget(self, action: #selector(searchFieldHandler(textField:)), for: .editingChanged)
+        //Long Press
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        longPressGesture.minimumPressDuration = 0.5
+        self.viewTabel.addGestureRecognizer(longPressGesture)
         //  FSCalendarScope.week
         // self.calender.to
         // Do any additional setup after loading the view.
@@ -30,6 +36,10 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewTabel.reloadData()
+        nextBtn.isHidden = true
+        selectedItems.removeAll()
+        
         if let container = self.mainContainer{
             container.delegate = self
             
@@ -56,18 +66,61 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
         }
     }
     
+    @objc func handleLongPress(longPressGesture: UILongPressGestureRecognizer) {
+        let p = longPressGesture.location(in: self.viewTabel)
+        let indexPath = self.viewTabel.indexPathForRow(at: p)
+        if indexPath == nil {
+            print("Long press on table view, not row.")
+        } else if longPressGesture.state == UIGestureRecognizer.State.began {
+            let cell = viewTabel.cellForRow(at: indexPath!) as! WorkListTableViewCell
+            viewTabel.beginUpdates()
+            if cell.isSelected {
+                cell.setSelected(false, animated: true)
+                cell.viewShadow.borderColor = .clear
+                print("Unselected row, at \(indexPath!.row)")
+                if selectedItems.contains(indexPath!.row) {  selectedItems = selectedItems.filter { $0 != indexPath!.row } }
+                
+                if !selectedItems.isEmpty {
+                    nextBtn.isHidden = false
+                } else {
+                    nextBtn.isHidden = true
+                }
+            } else {
+                cell.setSelected(true, animated: true)
+                cell.viewShadow.borderWidth = 5
+                cell.viewShadow.borderColor = .gray
+                print("Selected row, at \(indexPath!.row)")
+                if !(selectedItems.contains(indexPath!.row)) { selectedItems.append(indexPath!.row) }
+            }
+            if selectedItems.isEmpty {
+                nextBtn.isHidden = true
+            } else {
+                nextBtn.isHidden = false
+            }
+            viewTabel.endUpdates()
+        }
+    }
+    
     func actionBack() {
         self.navigationController?.popViewController(animated: true)
     }
-    func moveTocheckListVC(index: Int) {
+    func moveTocheckListVC() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.CheckListViewController) as! CheckListViewController
+        print("Seleted items are : ")
+        for item in selectedItems {
+            vc.taskSubCategoryList.append(self.categoryObject.categoryList[item])
+            print(item)
+        }
         
-        let taskSubCategory = self.categoryObject.categoryList[index]
-        vc.taskSubCategoryList.append(taskSubCategory)// = taskSubCategory
-        vc.taskSubCategoryList.append(self.categoryObject.categoryList[index+1]
-)
-        //vc.taskSubCategoryList1 = self.categoryObject.categoryList[index].taskSubCategory?.taskSubCategoryList
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    //MARK: - IBUTlETS
+    @IBAction func nextBtnAction(_ sender: Any) {
+        if Global.shared.checkInId > 0 {
+        moveTocheckListVC()
+        } else {
+            self.showAlertView(message: PopupMessages.CheckInFirst)
+        }
     }
     
     //MARK: - VehicleDetailPopUpViewController DELEGATE MEHTHOD
@@ -89,15 +142,22 @@ extension WorkListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.WorkListTableViewCell) as! WorkListTableViewCell
+        cell.isSelected = false
+        cell.viewShadow.borderColor = .clear
         cell.configureCategoryTask(info: self.categoryObject.categoryList[indexPath.row])
         cell.viewShadow.dropShadow(radius: 4, opacity: 0.3)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        moveTocheckListVC(index: indexPath.row)
-        
+        if Global.shared.checkInId > 0 {
+            if selectedItems.isEmpty {
+                selectedItems.append(indexPath.row)
+                moveTocheckListVC()
+            }
+        }else {
+            self.showAlertView(message: PopupMessages.CheckInFirst)
+        }
 //        if Global.shared.checkInId > 0 {
 //            moveTocheckListVC(index: indexPath.row)
 //        } else {

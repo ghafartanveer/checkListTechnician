@@ -222,12 +222,15 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MvH-yl-hL3">
                                                                         <rect key="frame" x="0.0" y="22" width="334" height="123"/>
                                                                         <subviews>
-                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ToP-1i-wqe">
+                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ToP-1i-wqe" customClass="KMPlaceholderTextView" customModule="Checklist" customModuleProvider="target">
                                                                                 <rect key="frame" x="5" y="3" width="324" height="117"/>
                                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                 <color key="textColor" systemColor="labelColor"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Enter subject here..."/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </textView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -262,8 +265,11 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
                                                                 <state key="normal" title="Submit">
-                                                                    <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="submitBtnAction:" destination="B7m-ER-A1I" eventType="touchUpInside" id="oJ6-W8-JoU"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -288,6 +294,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" constant="764" id="4TE-Tu-R5x"/>
                                                     <constraint firstAttribute="bottom" secondItem="BqS-za-Y8Z" secondAttribute="bottom" id="a78-Sw-pqC"/>
                                                     <constraint firstItem="BqS-za-Y8Z" firstAttribute="leading" secondItem="8lF-ty-4zm" secondAttribute="leading" id="cLe-At-S4J"/>
                                                     <constraint firstAttribute="trailing" secondItem="BqS-za-Y8Z" secondAttribute="trailing" id="kn9-jM-Qtf"/>
@@ -300,7 +307,6 @@
                                             <constraint firstAttribute="bottom" secondItem="8lF-ty-4zm" secondAttribute="bottom" id="5DI-m9-XMH"/>
                                             <constraint firstAttribute="trailing" secondItem="8lF-ty-4zm" secondAttribute="trailing" id="IEa-Vp-ObS"/>
                                             <constraint firstItem="8lF-ty-4zm" firstAttribute="centerX" secondItem="XjE-lq-ZuD" secondAttribute="centerX" id="KN6-i4-IO0"/>
-                                            <constraint firstItem="8lF-ty-4zm" firstAttribute="centerY" secondItem="XjE-lq-ZuD" secondAttribute="centerY" id="Oba-jf-K85"/>
                                             <constraint firstItem="8lF-ty-4zm" firstAttribute="top" secondItem="XjE-lq-ZuD" secondAttribute="top" id="gOP-rU-1J2"/>
                                         </constraints>
                                     </scrollView>
@@ -327,9 +333,12 @@
                     <connections>
                         <outlet property="emailFieldContainerView" destination="K8J-ks-coI" id="cdX-dS-H4Z"/>
                         <outlet property="emailLbl" destination="6EM-jU-cwv" id="5d6-Qc-w0A"/>
+                        <outlet property="emailTF" destination="E1C-Tx-HWz" id="ZI6-zG-WSU"/>
                         <outlet property="nameFieldContainerView" destination="fqw-kd-MaL" id="yC2-Hx-R3i"/>
+                        <outlet property="nameTF" destination="oLI-P3-u64" id="8Sj-JN-jyy"/>
                         <outlet property="phoneNumberLbl" destination="g7b-4g-DGw" id="MDJ-0B-XVY"/>
                         <outlet property="subjectTextVContinerView" destination="MvH-yl-hL3" id="jR7-1h-p74"/>
+                        <outlet property="subjectTxtV" destination="ToP-1i-wqe" id="78U-ZF-2Xl"/>
                         <outlet property="userDetailContainerView" destination="kSU-BV-er4" id="PRK-T8-6jX"/>
                     </connections>
                 </viewController>

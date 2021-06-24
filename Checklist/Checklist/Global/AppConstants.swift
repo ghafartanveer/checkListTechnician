@@ -52,7 +52,8 @@ struct DictKeys {
     static let date = "date"
     static let customer_name = "customer_name"
     static let registration_number = "registration_number"
-    
+    static let Id = "id"
+    static let Description = "description"
 }
 
 struct EndPoints {
@@ -75,6 +76,8 @@ struct EndPoints {
     static let History = "history"
     static let Search = "search"
     static let CheckIn = "technician_check_in"
+    static let CheckOut = "technician_check_out"
+    static let Help = "help_us"
 }
 
 //Default values for data types

@@ -17,6 +17,11 @@ class HelpViewController: BaseViewController, TopBarDelegate {
     @IBOutlet weak var phoneNumberLbl: UILabel!
     @IBOutlet weak var emailLbl: UILabel!
     
+    @IBOutlet weak var nameTF: UITextField!
+    @IBOutlet weak var emailTF: UITextField!
+    
+    @IBOutlet weak var subjectTxtV: UITextView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +38,29 @@ class HelpViewController: BaseViewController, TopBarDelegate {
         }
     }
     
+    //MARK: - IBOUTLETS
+    
+    @IBAction func submitBtnAction(_ sender: Any) {
+        if self.checkValidations(){
+            let userId = String(Global.shared.user.id)
+            self.helpServerCall(params: [DictKeys.User_Id: userId ,DictKeys.email: self.emailTF.text!,
+                                     DictKeys.name: self.nameTF.text!,
+                                     DictKeys.Description: subjectTxtV.text])
+        }
+    }
+    
+    //MARK: - FUNCTIONS
+    
     func actionBack() {
         self.loadHomeController()
     }
     
     func setLayout() {
-        userDetailContainerView.addshadow()
-        nameFieldContainerView.addshadow()
-        emailFieldContainerView.addshadow()
-        subjectTextVContinerView.addshadow()
+                
+        userDetailContainerView.dropShadow(radius: 5, opacity: 0.4)
+        nameFieldContainerView.dropShadow(radius: 5, opacity: 0.4)
+        emailFieldContainerView.dropShadow(radius: 5, opacity: 0.4)
+        subjectTextVContinerView.dropShadow(radius: 5, opacity: 0.4)
     }
     
     func setUserData() {
@@ -53,4 +72,42 @@ class HelpViewController: BaseViewController, TopBarDelegate {
         }
     }
     
+    
+    func checkValidations() -> Bool{
+        var isValid: Bool = true
+        let validEmail = Validations.emailValidation(self.emailTF.text!)
+        let validName = Validations.nameValidation(self.nameTF.text!)
+        
+        if !validEmail.isValid{
+            self.showAlertView(message: validEmail.message)
+            isValid = false
+            
+        }else if !validName.isValid{
+            self.showAlertView(message: validName.message)
+            isValid = false
+        }
+        return isValid
+    }
+    
+}
+
+//MARK: - Server Calls
+
+extension HelpViewController {
+    
+    func helpServerCall(params: ParamsString){
+        self.startActivity()
+        GCD.async(.Background) {
+            CommonService.shared().helpApi(params: params) { (message, success) in
+                GCD.async(.Main) { [self] in
+                    self.stopActivity()
+                    if success{
+                        self.showAlertView(message: message)
+                    }else{
+                        self.showAlertView(message: message)
+                    }
+                }
+            }
+        }
+    }
 }

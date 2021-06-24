@@ -8,7 +8,7 @@
 import Foundation
 import SwiftyJSON
 
-class CheckInViewModel {
+struct CheckInViewModel {
     
     var id: Int
     var userId : Int
