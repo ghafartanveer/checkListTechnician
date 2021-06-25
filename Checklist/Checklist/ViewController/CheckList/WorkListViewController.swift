@@ -116,11 +116,12 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
     }
     //MARK: - IBUTlETS
     @IBAction func nextBtnAction(_ sender: Any) {
-        if Global.shared.checkInId > 0 {
         moveTocheckListVC()
-        } else {
-            self.showAlertView(message: PopupMessages.CheckInFirst)
-        }
+//        if Global.shared.checkInId > 0 {
+//        moveTocheckListVC()
+//        } else {
+//            self.showAlertView(message: PopupMessages.CheckInFirst)
+//        }
     }
     
     //MARK: - VehicleDetailPopUpViewController DELEGATE MEHTHOD
@@ -150,6 +151,7 @@ extension WorkListViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if Global.shared.checkInId > 0 {
             if selectedItems.isEmpty {
                 selectedItems.append(indexPath.row)

@@ -54,6 +54,7 @@ struct DictKeys {
     static let registration_number = "registration_number"
     static let Id = "id"
     static let Description = "description"
+    static let ImageId = "image_id"
 }
 
 struct EndPoints {
@@ -78,6 +79,8 @@ struct EndPoints {
     static let CheckIn = "technician_check_in"
     static let CheckOut = "technician_check_out"
     static let Help = "help_us"
+    static let SubmitTasks = "submit_tasks"
+    static let UploaImage = "image_upload"
 }
 
 //Default values for data types

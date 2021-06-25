@@ -150,7 +150,7 @@ extension ProfileSettingViewController {
     func updateProfileServerCall(params: ParamsAny, imageDic: [String:Data?]){
         self.startActivity()
         GCD.async(.Background) {
-            LoginService.shared().updateProfileApi(params: params) { (message, success, userInfo) in
+            LoginService.shared().updateProfileApi(params: params,profileImg: imageDic) { (message, success, userInfo) in
                 GCD.async(.Main) { [self] in
                     self.stopActivity()
                     if success{
@@ -163,5 +163,5 @@ extension ProfileSettingViewController {
             }
         }
     }
-    
+   
 }

@@ -662,6 +662,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="aVG-rN-w46"/>
                     <connections>
+                        <outlet property="questionListTV" destination="ncB-bB-PZg" id="EcZ-k8-2IB"/>
                         <outlet property="saperationView" destination="gfv-ub-fUO" id="4Ip-hO-Bme"/>
                         <outlet property="seachBarContainerView" destination="z4X-7Q-UKE" id="Jwa-Va-rPX"/>
                         <outlet property="topBarHeight" destination="nzE-al-8dS" id="Ads-O9-ZxF"/>

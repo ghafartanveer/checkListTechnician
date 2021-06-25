@@ -211,6 +211,7 @@ struct ImageViewVodel {
     var createdAt, updatedAt: String?
     
     init() {
+    
         self.id = 0
         self.categoryID = 0
         self.typeName = ""

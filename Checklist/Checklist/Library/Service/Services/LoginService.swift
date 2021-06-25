@@ -62,9 +62,9 @@ class LoginService: BaseService {
     
    
     //MARK: - UpdateProfile Api
-    func updateProfileApi(params:ParamsAny?, completion: @escaping (_ message:String, _ success:Bool, _ userInfo: UserViewModel?)->Void) {
+    func updateProfileApi(params:ParamsAny?,profileImg:[String:Data?], completion: @escaping (_ message:String, _ success:Bool, _ userInfo: UserViewModel?)->Void) {
         let completeUrl = EndPoints.BASE_URL + EndPoints.Profile_Update
-        makePostAPICallWithMultipart(with: completeUrl, dict: nil, params: params!, headers: self.getHeaders()) { (message, success, json, responseType) in
+        makePostAPICallWithMultipart(with: completeUrl, dict: profileImg ?? nil, params: params!, headers: self.getHeaders()) { (message, success, json, responseType) in
             if success{
                 let userObj = UserViewModel(obj: json![KEY_RESPONSE_DATA])
                 self.saveUserInfo(userObj)

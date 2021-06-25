@@ -27,4 +27,30 @@ class CommonService: BaseService {
         }
     }
     
+    //MARK: - Submit task
+    func submitTaskApi(params:ParamsAny?, completion: @escaping (_ message:String, _ success:Bool)->Void) {
+        let completeUrl = EndPoints.BASE_URL + EndPoints.SubmitTasks
+        self.makePostAPICall(with: completeUrl, params: params, headers: self.getHeaders()) { (message, success, json, responseType) in
+            if success{
+                completion(message,success)
+            }else{
+                completion(message,success)
+            }
+            
+        }
+    }
+    
+    func uploadImagesApi(params:ParamsAny?,Img:[String:Data?], completion: @escaping (_ message:String, _ success:Bool)->Void) {
+        let completeUrl = EndPoints.BASE_URL + EndPoints.UploaImage
+        makePostAPICallWithMultipart(with: completeUrl, dict: Img ?? nil , params: params!, headers: self.getHeaders()) { (message, success, json, responseType) in
+            if success{
+                
+                //completion(message,success)
+            }else{
+                completion(message,success)
+            }
+            
+        }
+    }
+
 }

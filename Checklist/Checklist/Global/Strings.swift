@@ -88,6 +88,7 @@ struct AssetNames {
     static let Box_Red = "BoxRed"
     static let Delete_Icon = "deleteIcon"
     static let Edit_Icon = "editIcon"
+    static let UsrPlacHolderImage = "user_image"
     
 }
 
@@ -187,6 +188,7 @@ struct PopupMessages {
     static let SomethingWentWrong           = "Something went wrong, please check your internet connection or try again later!"
     static let CheckInFirst = "Please Check In First!"
     static let AlreadyCheckedIn = "You are already Chcked In!"
+    static let SelectAllOptions = "Please answer all questions!"
 }
 
 struct LocalStrings {
@@ -216,6 +218,12 @@ struct LocalStrings {
     static let EmptyMessage        = "Please Enter Message"
 }
 
+struct QuestionListOptions {
+    static let no = "0"
+    static let yes = "1"
+    static let notAvilAble = "2"
+    static let defaultValue = "4"
+}
 
 struct AppFonts {
     static func CenturyGolthicBoldWith(size : CGFloat) -> UIFont {

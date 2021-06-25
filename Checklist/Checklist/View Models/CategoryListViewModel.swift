@@ -12,6 +12,7 @@ import SwiftyJSON
 class CategoryListViewModel {
     var categoryList: [CategoryViewModel]
     
+    
     init() {
         self.categoryList = [CategoryViewModel]()
     }
@@ -34,4 +35,5 @@ class CategoryListViewModel {
 //        return object
 //    }
 }
+
 
