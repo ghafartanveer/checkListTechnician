@@ -19,8 +19,11 @@ class UploadFileViewController: BaseViewController, TopBarDelegate {
     @IBOutlet weak var imagrequiresTaskLbl: UILabel!
     
     //MARK: - OBJECT AND VERIABLES
-    var categoryId = 0
+    var selectedImgDetailsIndex = 0
+    
     var isImageRequired = false
+    
+    var taskSubCategoryList:[CategoryViewModel] = [] //selectedList
     
     let dropDown = DropDown()
     var imageList = [UIImage]()
@@ -29,6 +32,9 @@ class UploadFileViewController: BaseViewController, TopBarDelegate {
     
     var dropDownsOptionList: [String] = []
     var dropDownOptionIdList: [Int] = []
+    
+    var selectedImageList:[selectedImageViewModel] = []
+
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +52,7 @@ class UploadFileViewController: BaseViewController, TopBarDelegate {
         }
     }
     
+    
     //MARK: - IBACTION METHODS
     
     @IBAction func openDropDown(_ sender: Any) {
@@ -54,6 +61,8 @@ class UploadFileViewController: BaseViewController, TopBarDelegate {
     @IBAction func actionChoosePhoto(_ sender: UIButton){
         if isImageRequired {
             self.fetchProfileImage()
+        } else {
+            self.showAlertView(message: PopupMessages.ImagesNotRequired)
         }
         
     }
@@ -77,31 +86,43 @@ class UploadFileViewController: BaseViewController, TopBarDelegate {
     
     func setUpDropDown() {
         
-        for img in categoryListViewModel.categoryList {
-            print( img.id )
-            for imgTypeName in 0..<((img.images?.imagelist.count)!) {
-                print(imgTypeName)
+        for item in taskSubCategoryList {
+            if item.hasImages == 1 {
+                for imageCount in 0..<(item.images?.imagelist.count)! {
+                    print((item.images?.imagelist[imageCount].typeName) ?? "")
+                    print((item.images?.imagelist[imageCount].id) ?? 0)
+                    print((item.images?.imagelist[imageCount].categoryID) ?? 0)
+                    if ((item.images?.imagelist[imageCount].typeName) != "null") {
+                    dropDownsOptionList.append((item.images?.imagelist[imageCount].typeName) ?? "")
+                    dropDownOptionIdList.append((item.images?.imagelist[imageCount].id) ?? 0)
+                        
+                        selectedImageList.append(selectedImageViewModel(typeName: (item.images?.imagelist[imageCount].typeName) ?? "", imageId: (item.images?.imagelist[imageCount].id) ?? 0, categoryId: (item.images?.imagelist[imageCount].categoryID) ?? 0 ))
+                    }
+                }
             }
+            
         }
         
-        for taskWithImage in 0 ..< ((taskViewModel?.categories.count)!) {
-            
-            if taskViewModel?.categories[taskWithImage].hasImages == 1 {
-                dropDownsOptionList.append(taskViewModel?.categories[taskWithImage].name ?? "")
-                dropDownOptionIdList.append(taskViewModel?.categories[taskWithImage].id ?? 0)
-            }
-        }
+        
+//        for taskWithImage in 0 ..< ((taskViewModel?.categories.count)!) {
+//
+//            if taskViewModel?.categories[taskWithImage].hasImages == 1 {
+//                dropDownsOptionList.append(taskViewModel?.categories[taskWithImage].name ?? "")
+//                dropDownOptionIdList.append(taskViewModel?.categories[taskWithImage].id ?? 0)
+//            }
+//        }
         if dropDownsOptionList.count > 0 {
             isImageRequired = true
-            dropDownContainer.addshadow()
+            dropDownContainer.dropShadow()
             dropDown.anchorView = dropDownContainer
             dropDown.dataSource = dropDownsOptionList
             dropDownBtn.setTitle(dropDown.dataSource[0], for: .normal)
             dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
                 dropDownBtn.setTitle(item, for: .normal)
-                self.categoryId = index
-
-                print("Selected item: \(item) at index: \(index)")
+                print("cId : ",selectedImageList[index].categoryId, "iId : ", selectedImageList[index].imageId, "tName : ", selectedImageList[index].typeName )
+                self.selectedImgDetailsIndex = index
+               
+                
             }
         } else {
             isImageRequired = false
@@ -113,14 +134,15 @@ class UploadFileViewController: BaseViewController, TopBarDelegate {
     //MARK: - IMAGE PICKER CONTOLLER METHODS
     override func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        self.imageList.append(image)
         picker.dismiss(animated: true, completion: nil)
-        self.viewCollection.reloadData()
+//        self.imageList.append(image)
+//        picker.dismiss(animated: true, completion: nil)
+//        self.viewCollection.reloadData()
         
-        let imageData = (image).jpegData(compressionQuality: 1.0)
-        
+        let imageDetails = selectedImageList[selectedImgDetailsIndex]
+        let imageData = (image).jpegData(compressionQuality: 0.8)
         self.uploadTaskImage(params: [
-                                DictKeys.Category_Id : self.categoryId, DictKeys.ImageId : imageList.count],  imageDic: [DictKeys.image : imageData] )
+                                DictKeys.Category_Id : imageDetails.categoryId, DictKeys.ImageId : imageDetails.imageId],  imageDic: [DictKeys.image : imageData], image: image )
         
     }
 }
@@ -135,6 +157,7 @@ extension UploadFileViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.UploadFileCollectionViewCell, for: indexPath) as! UploadFileCollectionViewCell
         cell.delegate = self
+        
         cell.configureImage(image: self.imageList[indexPath.row], index: indexPath.row)
         return cell
     }
@@ -145,8 +168,10 @@ extension UploadFileViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func callBackActionDeleteImage(indexP: Int) {
-        self.imageList.remove(at: indexP)
-        self.viewCollection.reloadData()
+        let imageTodelete = selectedImageList[indexP]
+        deleteImageServerCall(index: indexP, params: [DictKeys.ImageId: imageTodelete.imageId, DictKeys.Category_Id:imageTodelete.categoryId]) //update
+        //self.imageList.remove(at: indexP)
+        //self.viewCollection.reloadData()
     }
     
     
@@ -172,14 +197,15 @@ extension UploadFileViewController {
         }
     }
     
-    func uploadTaskImage(params: ParamsAny, imageDic: [String:Data?]){
+    func uploadTaskImage(params: ParamsAny, imageDic: [String:Data?], image: UIImage){
         self.startActivity()
         GCD.async(.Background) {
             CommonService.shared().uploadImagesApi(params: params, Img: imageDic) { (_ message:String, _ success:Bool) in
                 GCD.async(.Main) { [self] in
                     self.stopActivity()
                     if success{
-                        
+                        self.imageList.append(image)
+                        self.viewCollection.reloadData()
                         //self.showAlertView(message: message)
                     }else{
                         self.showAlertView(message: message)
@@ -189,5 +215,32 @@ extension UploadFileViewController {
         }
         
     }
+    
+    func deleteImageServerCall(index:Int,params: ParamsAny){
+        self.startActivity()
+        GCD.async(.Background) {
+            CommonService.shared().deleteImageApi(params: params) { (message, success) in
+                GCD.async(.Main) { [self] in
+                    self.stopActivity()
+                    if success{
+                        self.imageList.remove(at: index)
+                        self.selectedImageList.remove(at: index)
+                        self.viewCollection.reloadData()
+                    }else{
+                        self.showAlertView(message: message)
+                    }
+                }
+            }
+        }
+    }
+
+    
+}
+
+
+struct selectedImageViewModel {
+    var typeName: String
+    var imageId: Int
+    var categoryId: Int
     
 }

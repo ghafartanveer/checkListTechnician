@@ -81,6 +81,7 @@ struct EndPoints {
     static let Help = "help_us"
     static let SubmitTasks = "submit_tasks"
     static let UploaImage = "image_upload"
+    static let DeleteImage = "delete_image"
 }
 
 //Default values for data types

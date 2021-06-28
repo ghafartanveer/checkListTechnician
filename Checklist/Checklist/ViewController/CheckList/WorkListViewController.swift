@@ -111,17 +111,16 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
             vc.taskSubCategoryList.append(self.categoryObject.categoryList[item])
             print(item)
         }
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     //MARK: - IBUTlETS
     @IBAction func nextBtnAction(_ sender: Any) {
+       // moveTocheckListVC()
+        if Global.shared.checkInId > 0 {
         moveTocheckListVC()
-//        if Global.shared.checkInId > 0 {
-//        moveTocheckListVC()
-//        } else {
-//            self.showAlertView(message: PopupMessages.CheckInFirst)
-//        }
+        } else {
+            self.showAlertView(message: PopupMessages.CheckInFirst)
+        }
     }
     
     //MARK: - VehicleDetailPopUpViewController DELEGATE MEHTHOD

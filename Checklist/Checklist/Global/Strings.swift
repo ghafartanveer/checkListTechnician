@@ -189,6 +189,7 @@ struct PopupMessages {
     static let CheckInFirst = "Please Check In First!"
     static let AlreadyCheckedIn = "You are already Chcked In!"
     static let SelectAllOptions = "Please answer all questions!"
+    static let ImagesNotRequired = "Images not required!"
 }
 
 struct LocalStrings {

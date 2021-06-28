@@ -18,6 +18,7 @@ class UploadFileCollectionViewCell: BaseCollectionViewCell {
     
     //MARK: - OBJECT AND VERAIBLES
     var index: Int = -1
+    var imageId = 0
     weak var delegate: UploadFileCollectionViewCellDelegate?
     
     //MARK: - FUNCTIONS

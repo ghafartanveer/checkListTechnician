@@ -24,8 +24,8 @@ class LoginViewController: BaseViewController {
         self.viewPassword.dropShadow(radius: 5, opacity: 0.4)
         
         #if DEBUG
-        self.txtEmail.text = "immuaaz78@gmail.com"
-        self.txtPassword.text = "123456"
+        //self.txtEmail.text = "immuaaz78@gmail.com"
+        //self.txtPassword.text = "123456"
         
         //self.txtEmail.text = "techmatloob@yopmail.com"
         //self.txtEmail.text = "testTechniciant@gmail.com"

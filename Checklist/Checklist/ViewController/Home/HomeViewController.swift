@@ -21,6 +21,7 @@ class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(UserDefaultsManager.shared.userInfo.token)
         if let container = self.mainContainer{
             container.setMenuButton(false, title: "")//TitleNames.Home)
             

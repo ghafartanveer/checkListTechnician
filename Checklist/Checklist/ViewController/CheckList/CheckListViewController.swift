@@ -10,17 +10,20 @@ import UIKit
 class CheckListViewController: BaseViewController, TopBarDelegate {
     //MARK: - Outlets
     @IBOutlet weak var questionListTV: UITableView!
-    
+    @IBOutlet weak var searchBarTF: UITextField!
+
     @IBOutlet weak var seachBarContainerView: UIView!
     @IBOutlet weak var topBarHeight: NSLayoutConstraint!
     @IBOutlet weak var saperationView: UIView!
     
     //MARK: - Variables/Objects
     var categoryListViewModel = CategoryListViewModel()
-    var taskSubCategoryList:[CategoryViewModel] = []
+    var taskSubCategoryList: [CategoryViewModel] = [] //.
+    var filteredDataList: [CategoryViewModel] = []
+    
     var checkinObj = CheckInViewModel()
     var taskObj: TaskViewModel? = nil
-    var categoryObj:Category? = nil
+    var categoryObj:Category? = nil //.
     var checkListQuestionObj:CheckListQuestion? = nil
     
     
@@ -32,8 +35,8 @@ class CheckListViewController: BaseViewController, TopBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         questionListTV.reloadData()
+        searchBarTF.addTarget(self, action: #selector(searchFieldHandler(textField:)), for: .editingChanged)
         
         if taskSubCategoryList.count == 1 {
             seachBarContainerView.isHidden = true
@@ -72,7 +75,25 @@ class CheckListViewController: BaseViewController, TopBarDelegate {
         }
        
     }
+    
     //MARK: - fiunctions
+    
+    @objc final private func searchFieldHandler(textField: UITextField) {
+        print("Text changed", textField.text)
+        
+        if(textField.text == ""){
+            self.categoryListViewModel.categoryList = self.filteredDataList
+            self.questionListTV.reloadData()
+        }
+        else{
+            let filterdItemsArray = self.filteredDataList.filter({ ($0.name.lowercased().contains(textField.text!.lowercased())) })
+            
+            self.categoryListViewModel.categoryList = self.filteredDataList
+            self.questionListTV.reloadData()
+            print(filterdItemsArray)
+        }
+    }
+    
     func addDefaultValues() {
 
         var checkListQuestionObjData : [CheckListQuestion] = []
@@ -103,6 +124,7 @@ class CheckListViewController: BaseViewController, TopBarDelegate {
     func navigteToUploadFileVC() {
         let storyboard = UIStoryboard(name: StoryboardNames.Setting, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: ControllerIdentifier.UploadFileViewController) as! UploadFileViewController
+        vc.taskSubCategoryList = taskSubCategoryList
         vc.categoryListViewModel = categoryListViewModel
         vc.taskViewModel = taskObj
         self.navigationController?.pushViewController(vc, animated: true)
@@ -139,7 +161,7 @@ extension CheckListViewController: UITableViewDelegate, UITableViewDataSource{
         let label = UILabel(frame: CGRect(x: 20, y: 7, width: headerView.frame.width, height: headerView.frame.height))
         //label.text = taskSubCategoryList[section].name
         let boldAttribute = [
-            NSAttributedString.Key.font: UIFont(name: "Poppins SemiBold", size: 18.0)!
+            NSAttributedString.Key.font: UIFont(name: "Poppins SemiBold", size: 18.0) ?? UIFont.systemFont(ofSize: 18)
         ]
         let boldTitleText = NSAttributedString(string: taskSubCategoryList[section].name, attributes: boldAttribute)
         label.attributedText = boldTitleText
