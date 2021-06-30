@@ -457,7 +457,7 @@ extension BaseViewController: ChangePasswordPopUpViewControllerDelegate {
         
     }
     
-    @objc func callBackActionSubmit() {
+    @objc func callBackActionSubmit(crntPswd cruntpsd:String, newPasword: String) {
         
     }
 }

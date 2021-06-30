@@ -147,11 +147,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, TaskCa
             print("Show check in")
         case 3:
             if Global.shared.checkInId > 0 {
-                let userId = String(UserDefaultsManager.shared.userInfo.id)
-                let checkInId = String(Global.shared.checkInId)
-                self.checkOutServerCall(params: [DictKeys.User_Id: userId,
-                                                DictKeys.Id:checkInId ,
-                ])
+                
+                self.showAlertView(message: PopupMessages.SureToCheckOut, title: ALERT_TITLE_APP_NAME, doneButtonTitle: LocalStrings.ok, doneButtonCompletion: { (UIAlertAction) in
+                    
+                    let userId = String(UserDefaultsManager.shared.userInfo.id)
+                    let checkInId = String(Global.shared.checkInId)
+                    self.checkOutServerCall(params: [ DictKeys.User_Id: userId, DictKeys.Id:checkInId ])
+                    
+                }, cancelButtonTitle: LocalStrings.Cancel) { (UIAlertAction) in
+                    
+                }
+                            
                 print("Check Out Api")
             } else {
                 self.showAlertView(message: PopupMessages.CheckInFirst)

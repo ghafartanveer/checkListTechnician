@@ -27,7 +27,6 @@ class UploadFileViewController: BaseViewController, TopBarDelegate {
     
     let dropDown = DropDown()
     var imageList = [UIImage]()
-    var categoryListViewModel = CategoryListViewModel()
     var taskViewModel: TaskViewModel? = nil
     
     var dropDownsOptionList: [String] = []

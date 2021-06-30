@@ -32,9 +32,9 @@ struct HomeMenu {
     
     static let MENU_LIST = [
         ["title":"All Check List","image":"Group18"],
-        ["title":"Hostory","image":"Group22"],
+        ["title":"History","image":"Group22"],
         ["title":"Check In","image":"Group16"],
-        ["title":"Chck Out","image":"ic_check_out"]]
+        ["title":"Check Out","image":"ic_check_out"]]
 }
 
 
@@ -187,7 +187,8 @@ struct PopupMessages {
     static let cameraPermissionNeeded       = "Camera permission needed to scan QR Code. Goto settings to enable camera permission"
     static let SomethingWentWrong           = "Something went wrong, please check your internet connection or try again later!"
     static let CheckInFirst = "Please Check In First!"
-    static let AlreadyCheckedIn = "You are already Chcked In!"
+    static let AlreadyCheckedIn = "You are already Checked In!"
+    static let SureToCheckOut = "Are you sure you want to checkout?"
     static let SelectAllOptions = "Please answer all questions!"
     static let ImagesNotRequired = "Images not required!"
 }

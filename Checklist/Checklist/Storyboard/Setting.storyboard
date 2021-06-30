@@ -240,7 +240,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfm-tN-Ndb">
-                                                                        <rect key="frame" x="35" y="424" width="112" height="14"/>
+                                                                        <rect key="frame" x="35" y="424" width="111.5" height="14"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="10"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -370,7 +370,7 @@
                                                                 <rect key="frame" x="20" y="140" width="374" height="604"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Profile Pic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nT0-7G-JNw">
-                                                                        <rect key="frame" x="135.5" y="69" width="103.5" height="17"/>
+                                                                        <rect key="frame" x="139" y="72" width="96.5" height="14"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                         <color key="textColor" systemColor="systemRedColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -378,8 +378,8 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zXa-pm-6Iu">
                                                                         <rect key="frame" x="40" y="116" width="137" height="80"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ka-9I-MIG">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="36.5" height="17"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ka-9I-MIG">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="58.5" height="17"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="17" id="RS7-6Q-PH5"/>
                                                                                 </constraints>
@@ -387,8 +387,8 @@
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rakaish" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zgi-cw-UDP">
-                                                                                <rect key="frame" x="20" y="27" width="64" height="51"/>
+                                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rakaish" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zgi-cw-UDP">
+                                                                                <rect key="frame" x="20" y="27" width="57" height="51"/>
                                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                                                 <textInputTraits key="textInputTraits"/>
                                                                                 <connections>
@@ -421,8 +421,8 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oy9-Je-xlX">
                                                                         <rect key="frame" x="197" y="116" width="137" height="80"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8B-jb-JbF">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="36.5" height="17"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8B-jb-JbF">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="58.5" height="17"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="17" id="i8a-tF-Wdg"/>
                                                                                 </constraints>
@@ -430,8 +430,8 @@
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rakaish" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gl2-Ie-Kvo">
-                                                                                <rect key="frame" x="20" y="27" width="64" height="51"/>
+                                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rakaish" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gl2-Ie-Kvo">
+                                                                                <rect key="frame" x="20" y="27" width="57" height="51"/>
                                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                                                 <textInputTraits key="textInputTraits"/>
                                                                                 <connections>
@@ -473,7 +473,7 @@
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ABC123@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J5e-vS-0hF">
+                                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ABC123@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J5e-vS-0hF">
                                                                                 <rect key="frame" x="20" y="17" width="274" height="61"/>
                                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                                                 <textInputTraits key="textInputTraits"/>
@@ -750,13 +750,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter email/phone no" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcH-Ky-suU">
-                                        <rect key="frame" x="119.5" y="50" width="175.5" height="22.5"/>
+                                        <rect key="frame" x="130.5" y="50" width="153" height="19"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="jbfajabfh@gmail.com" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L9D-VD-b6x">
-                                        <rect key="frame" x="25" y="133.5" width="364" height="50"/>
+                                        <rect key="frame" x="25" y="130" width="364" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="s6d-mA-Req"/>
                                         </constraints>
@@ -772,7 +772,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXA-bi-Cyx">
-                                        <rect key="frame" x="147" y="102.5" width="120" height="1"/>
+                                        <rect key="frame" x="147" y="99" width="120" height="1"/>
                                         <color key="backgroundColor" red="0.1529411765" green="0.1960784314" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="jNG-FR-m9t"/>
@@ -912,7 +912,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Vs-1c-SX9">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="28"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="20"/>
                                         <color key="textColor" red="0.98039215690000003" green="0.34509803919999998" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -997,19 +997,19 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Vehicle Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqh-kX-oJD">
-                                                                        <rect key="frame" x="105" y="40" width="204.5" height="28"/>
+                                                                        <rect key="frame" x="116" y="40" width="182.5" height="23.5"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="20"/>
                                                                         <color key="textColor" name="PinkThemeColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VEHICLE RGISTRATION NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ll2-4j-Bew">
-                                                                        <rect key="frame" x="40" y="108" width="225.5" height="21"/>
+                                                                        <rect key="frame" x="40" y="103.5" width="231.5" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter vehicle registration number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9KE-Wu-7Cq">
-                                                                        <rect key="frame" x="30" y="144" width="364" height="50"/>
+                                                                        <rect key="frame" x="30" y="136" width="364" height="50"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="50" id="OEF-u8-fqg"/>
                                                                         </constraints>
@@ -1017,13 +1017,13 @@
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CUSTOMER NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJB-FF-1cZ">
-                                                                        <rect key="frame" x="40" y="224" width="364" height="21"/>
+                                                                        <rect key="frame" x="40" y="216" width="364" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Customer Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DNV-Ko-3gI">
-                                                                        <rect key="frame" x="30" y="260" width="354" height="50"/>
+                                                                        <rect key="frame" x="30" y="248.5" width="354" height="50"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="iS0-CY-eJZ"/>
                                                                         </constraints>
@@ -1031,7 +1031,7 @@
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dO-xu-gOD">
-                                                                        <rect key="frame" x="40" y="350" width="334" height="50"/>
+                                                                        <rect key="frame" x="40" y="338.5" width="334" height="50"/>
                                                                         <color key="backgroundColor" name="PinkThemeColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="50" id="BsL-FI-ZA4"/>

@@ -26,12 +26,44 @@ class CheckListTableViewCell: BaseTableViewCell {
     //MARK: - OVERRIDE METHODS
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        //prepareForReuse()
         // Initialization code
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        btnNo.isSelected = false
+        btnYes.isSelected = false
+        btnNotAvailable.isSelected = false
+        delegate = nil
     }
     // MARK: - FUNCTIONS
     func cofigureCellData(info:TaskSubcatgoryViewModel, index: Int) {
+        self.dropShadow(radius: 3, opacity: 0.2)
+
         let indexStr = String(index+1)
         self.taskTitleLbl.text = indexStr + ") " + info.subcategoryName
+        let status = info.status
+        if status == QuestionListOptions.yes {
+            btnYes.isSelected = true
+            btnNo.isSelected = false
+            btnNotAvailable.isSelected = false
+        } else if status == QuestionListOptions.no {
+            
+            btnYes.isSelected = false
+            btnNo.isSelected = true
+            btnNotAvailable.isSelected = false
+        } else if status == QuestionListOptions.notAvilAble {
+            btnYes.isSelected = false
+            btnNo.isSelected = false
+            btnNotAvailable.isSelected = true
+        } else if status == QuestionListOptions.defaultValue {
+            btnYes.isSelected = false
+            btnNo.isSelected = false
+            btnNotAvailable.isSelected = false
+        }
+        
     }
     
     func setBtnState(yes: Bool = false, no: Bool = false, notAvailable: Bool = false, default: Bool = false) {

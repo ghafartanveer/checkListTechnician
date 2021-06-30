@@ -26,6 +26,7 @@ struct ImageListViewModel {
             self.imagelist.append(contentsOf: list)
         }
     }
+    
 }
 
 
@@ -49,9 +50,7 @@ struct ImageViewVodel {
     init(obj: JSON) {
         self.id = obj["id"].int ?? 0
         self.categoryID = obj["category_id"].int ?? 0
-        
         self.typeName = obj["type_name"].string ?? ""
-        
         self.image = obj["image"].string ?? ""
         self.createdAt = obj["created_at"].string ?? ""
         self.updatedAt = obj["updated_at"].string ?? ""

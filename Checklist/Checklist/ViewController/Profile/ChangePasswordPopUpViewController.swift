@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ChangePasswordPopUpViewControllerDelegate: NSObjectProtocol {
-    func callBackActionSubmit()
+    func callBackActionSubmit(crntPswd:String, newPasword: String)
 }
 
 class ChangePasswordPopUpViewController: BaseViewController {
@@ -35,11 +35,12 @@ class ChangePasswordPopUpViewController: BaseViewController {
     //MARK: - IBACTION METHODS
     @IBAction func actionSubmit(_ sender: UIButton){
         if checkValidations() {
-            delegate?.callBackActionSubmit()
+            delegate?.callBackActionSubmit(crntPswd: self.currentPasswordTF.text!, newPasword: self.newPasswordTF.text!)
         }
     }
     @IBAction func actionClose(_ sender: UIButton){
-        delegate?.callBackActionSubmit()
+        self.alertView?.close()
+        //delegate?.callBackActionSubmit()
     }
 
     func checkValidations() -> Bool{
@@ -48,7 +49,7 @@ class ChangePasswordPopUpViewController: BaseViewController {
         if self.currentPasswordTF.text!.isEmpty{
             self.showAlertView(message: PopupMessages.Enter_Current_Password)
             isValid = false
-        }else if self.newPasswordTF.text!.isEmpty{
+        } else if self.newPasswordTF.text!.isEmpty{
             self.showAlertView(message: PopupMessages.Enter_New_Password)
             isValid = false
         }

@@ -11,21 +11,24 @@ class CheckListViewController: BaseViewController, TopBarDelegate {
     //MARK: - Outlets
     @IBOutlet weak var questionListTV: UITableView!
     @IBOutlet weak var searchBarTF: UITextField!
-
+    
     @IBOutlet weak var seachBarContainerView: UIView!
     @IBOutlet weak var topBarHeight: NSLayoutConstraint!
     @IBOutlet weak var saperationView: UIView!
     
     //MARK: - Variables/Objects
-    var categoryListViewModel = CategoryListViewModel()
-    var taskSubCategoryList: [CategoryViewModel] = [] //.
+    var taskSubCategoryList: [CategoryViewModel] = []
     var filteredDataList: [CategoryViewModel] = []
     
-    var checkinObj = CheckInViewModel()
-    var taskObj: TaskViewModel? = nil
-    var categoryObj:Category? = nil //.
-    var checkListQuestionObj:CheckListQuestion? = nil
+    //var subList = TaskSubcategoryListViewModel()
+    //var sublistArray = [TaskSubcatgoryViewModel]()
     
+    //var dataSource : [[TaskSubcatgoryViewModel]] = [[]]
+    //var values : [[TaskSubcatgoryViewModel]] = [[]]
+    
+    
+    var taskObjViewModel: TaskViewModel? = nil
+    var categoryObj:Category? = nil
     
     //MARK: -  OverRide function
     override func viewDidLoad() {
@@ -36,6 +39,12 @@ class CheckListViewController: BaseViewController, TopBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         questionListTV.reloadData()
+
+        for task in taskSubCategoryList {
+            filteredDataList.append(task)
+        }
+        
+        addDefaultValues()
         searchBarTF.addTarget(self, action: #selector(searchFieldHandler(textField:)), for: .editingChanged)
         
         if taskSubCategoryList.count == 1 {
@@ -56,46 +65,72 @@ class CheckListViewController: BaseViewController, TopBarDelegate {
         
         addDefaultValues()
     }
+    
+    
     //MARK: - IBOutlets
     @IBAction func nextButton(_ sender: Any) {
-        var isAllSelected: Bool = true
-
-        for i in 0..<(taskObj?.categories.count ?? 0) {
-            let filteredDates = taskObj?.categories[i].checkListQuestions.filter { $0.status == QuestionListOptions.defaultValue
+        
+        for sectionNo in 0..<taskSubCategoryList.count {
+            for rowData in 0..<(taskSubCategoryList[sectionNo].taskSubCategory?.taskSubCategoryList.count ?? 0) {
+                
+                taskObjViewModel?.categories[sectionNo].checkListQuestions[rowData].status = taskSubCategoryList[sectionNo].taskSubCategory?.taskSubCategoryList[rowData].status ?? QuestionListOptions.defaultValue
+                
             }
-            if filteredDates?.count ?? 0 > 0 {
-                self.showAlertView(message: PopupMessages.SelectAllOptions)
-                isAllSelected = false
-                break
+        }
+        
+        var isAllSelected: Bool = true
+        
+        for sectionNo in 0..<taskSubCategoryList.count {
+            for rowNo in 0..<(taskSubCategoryList[sectionNo].taskSubCategory?.taskSubCategoryList.count ?? 0) {
+                if  taskSubCategoryList[sectionNo].taskSubCategory?.taskSubCategoryList[rowNo].status == QuestionListOptions.defaultValue {
+                    isAllSelected = false
+                    break
+                }
             }
         }
         
         if isAllSelected {
             navigteToUploadFileVC()
+        } else {
+            self.showAlertView(message: PopupMessages.SelectAllOptions)
         }
        
     }
     
-    //MARK: - fiunctions
+    //MARK: - functions
     
     @objc final private func searchFieldHandler(textField: UITextField) {
-        print("Text changed", textField.text)
+       // print("Text changed", textField.text)
         
         if(textField.text == ""){
-            self.categoryListViewModel.categoryList = self.filteredDataList
+                        taskSubCategoryList.removeAll()
+                        for task in filteredDataList {
+                            taskSubCategoryList.append(task)
+                        }
+            
+            //self.taskSubCategoryList = self.filteredDataList
             self.questionListTV.reloadData()
         }
         else{
-            let filterdItemsArray = self.filteredDataList.filter({ ($0.name.lowercased().contains(textField.text!.lowercased())) })
+            taskSubCategoryList.removeAll()
+            for task in filteredDataList {
+                taskSubCategoryList.append(task)
+                
+            }
             
-            self.categoryListViewModel.categoryList = self.filteredDataList
-            self.questionListTV.reloadData()
-            print(filterdItemsArray)
+            for task in 0..<taskSubCategoryList.count {
+                
+                let filterdItemsArray = taskSubCategoryList[task].taskSubCategory?.taskSubCategoryList.filter({ ($0.subcategoryName.lowercased().contains(textField.text!.lowercased())) })
+                
+                taskSubCategoryList[task].taskSubCategory?.taskSubCategoryList = filterdItemsArray!
+               
+                self.questionListTV.reloadData()
+            }
         }
     }
     
     func addDefaultValues() {
-
+        
         var checkListQuestionObjData : [CheckListQuestion] = []
         var categoryObjArr: [Category] = []
         for sec in 0..<taskSubCategoryList.count {
@@ -112,8 +147,8 @@ class CheckListViewController: BaseViewController, TopBarDelegate {
             categoryObjArr.append(categoryObj!)
             
         }
-        taskObj = TaskViewModel.init(activity_id: Global.shared.checkInId, description: "", categories: categoryObjArr)
-        print("Cat obkj: ",categoryObj! as Any)
+        taskObjViewModel = TaskViewModel.init(activity_id: Global.shared.checkInId, description: "", categories: categoryObjArr)
+       // print("Cat obj: ",categoryObj! as Any)
         
     }
     
@@ -125,20 +160,20 @@ class CheckListViewController: BaseViewController, TopBarDelegate {
         let storyboard = UIStoryboard(name: StoryboardNames.Setting, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: ControllerIdentifier.UploadFileViewController) as! UploadFileViewController
         vc.taskSubCategoryList = taskSubCategoryList
-        vc.categoryListViewModel = categoryListViewModel
-        vc.taskViewModel = taskObj
+        vc.taskViewModel = taskObjViewModel
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 //MARK: - EXTENISON TABEL VIEW METHODS
 
 extension CheckListViewController: UITableViewDelegate, UITableViewDataSource{
-    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //        taskSubCategoryList[section].name
-    //    }
+    //        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //            taskSubCategoryList[section].name
+    //        }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return taskSubCategoryList.count //taskSubCategoryList.taskSubCategory?.//taskSubCategoryList.count ?? 0
+        return taskSubCategoryList.count
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -159,7 +194,7 @@ extension CheckListViewController: UITableViewDelegate, UITableViewDataSource{
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50))
         headerView.backgroundColor = .clear
         let label = UILabel(frame: CGRect(x: 20, y: 7, width: headerView.frame.width, height: headerView.frame.height))
-        //label.text = taskSubCategoryList[section].name
+        label.text = taskSubCategoryList[section].name
         let boldAttribute = [
             NSAttributedString.Key.font: UIFont(name: "Poppins SemiBold", size: 18.0) ?? UIFont.systemFont(ofSize: 18)
         ]
@@ -182,29 +217,13 @@ extension CheckListViewController: UITableViewDelegate, UITableViewDataSource{
         cell.btnYes.tag = (indexPath.section*1000) + indexPath.row
         cell.btnNo.tag = (indexPath.section*1000) + indexPath.row
         cell.btnNotAvailable.tag = (indexPath.section*1000) + indexPath.row
-        
-        
-        let status = taskObj?.categories[indexPath.section].checkListQuestions[indexPath.row].status
-        switch status {
-        case QuestionListOptions.yes:
-            cell.setBtnState(yes: true, no: false, notAvailable: false, default: false)
-        case QuestionListOptions.no:
-            cell.setBtnState(yes: false, no: true, notAvailable: false, default: false)
-        case QuestionListOptions.notAvilAble:
-            cell.setBtnState(yes: false, no: false, notAvailable: true, default: false)
-        case QuestionListOptions.defaultValue:
-            cell.setBtnState(yes: false, no: false, notAvailable: false, default: true)
-        default:
-            print("Default condition not defined yet")
-        }
-        
-        
         cell.cofigureCellData(info: data!, index: indexPath.row)
-        cell.dropShadow(radius: 3, opacity: 0.2)
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -232,9 +251,8 @@ extension CheckListViewController: CheckListTableViewCellDelegate {
         
         let btnRow = btnTag % 1000
         let btnSection = btnTag / 1000
-        
-        taskObj?.categories[btnSection].checkListQuestions[btnRow].status = QuestionListOptions.yes
-        //print(taskObj as Any)
+       
+        taskSubCategoryList[btnSection].taskSubCategory?.taskSubCategoryList[btnRow].status = QuestionListOptions.yes
         //print("Section: ", btnSection, "Row : ",btnRow )
         questionListTV.reloadData()
         
@@ -245,11 +263,11 @@ extension CheckListViewController: CheckListTableViewCellDelegate {
         
         let btnRow = btnTag % 1000
         let btnSection = btnTag / 1000
-        taskObj?.categories[btnSection].checkListQuestions[btnRow].status = QuestionListOptions.no
-
-        //print("Section: ", btnSection, "Row : ",btnRow )
+        
+        taskSubCategoryList[btnSection].taskSubCategory?.taskSubCategoryList[btnRow].status = QuestionListOptions.no
+       // print("Section: ", btnSection, "Row : ",btnRow )
         questionListTV.reloadData()
-
+        
     }
     
     func notAvalable(btn: UIButton) {
@@ -257,22 +275,23 @@ extension CheckListViewController: CheckListTableViewCellDelegate {
         
         let btnRow = btnTag%1000
         let btnSection = btnTag/1000
-        taskObj?.categories[btnSection].checkListQuestions[btnRow].status = QuestionListOptions.notAvilAble
-
-        //print("Section: ", btnSection, "Row : ",btnRow )
+        
+        taskSubCategoryList[btnSection].taskSubCategory?.taskSubCategoryList[btnRow].status = QuestionListOptions.notAvilAble
+    
+       // print("Section: ", btnSection, "Row : ",btnRow )
         questionListTV.reloadData()
-
+        
     }
 }
 
 //======================================
-
+// to create Params for submit_Task Api
 // MARK: - TaskViewModel
 struct TaskViewModel {
     var activity_id: Int
     var description: String
     var categories: [Category]
-
+    
     func getParams() -> ParamsAny {
         
         var categoryParam = [ParamsAny]()
@@ -305,6 +324,4 @@ struct Category {
 struct CheckListQuestion {
     var id : Int
     var sub_category_name, status: String
-    
-    
 }

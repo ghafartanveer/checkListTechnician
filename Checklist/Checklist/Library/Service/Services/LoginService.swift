@@ -35,6 +35,13 @@ class LoginService: BaseService {
         }
     }
     
+    //MARK: - UPDATE PASSWORD API
+    func changePasswordApi(params: Parameters?,completion: @escaping (_ error: String, _ success: Bool)->Void){
+        let completeURL = EndPoints.BASE_URL + EndPoints.Change_Password
+        self.makePostAPICall(with: completeURL, params: params, headers: self.getHeaders()) { (message, success, json, responseType) in
+            completion(message,success)
+        }
+    }
     //MARK: - LOGOUT API
     func logoutUserApi(params: Parameters?,completion: @escaping (_ error: String, _ success: Bool)->Void){
         let completeURL = EndPoints.BASE_URL + EndPoints.Logout_User

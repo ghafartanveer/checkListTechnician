@@ -1446,7 +1446,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Rapidzz1.Checklist1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Rapidzz.Checklist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Checklist/Checklist-bridging-header.h";
@@ -1470,7 +1470,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Rapidzz1.Checklist1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Rapidzz.Checklist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Checklist/Checklist-bridging-header.h";

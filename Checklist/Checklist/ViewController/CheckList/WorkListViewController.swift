@@ -23,7 +23,7 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getCategoryListApi()
+        
         searchBarTF.addTarget(self, action: #selector(searchFieldHandler(textField:)), for: .editingChanged)
         //Long Press
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
@@ -36,14 +36,15 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewTabel.reloadData()
+        self.getCategoryListApi()
+        //viewTabel.reloadData()
         nextBtn.isHidden = true
         selectedItems.removeAll()
         
-        if let container = self.mainContainer{
+        if let container = self.mainContainer {
             container.delegate = self
             
-                container.setMenuButton(true, true, title: TitleNames.Work_List)
+            container.setMenuButton(true, true, title: TitleNames.Work_List)
             
         }
     }
@@ -115,9 +116,10 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
     }
     //MARK: - IBUTlETS
     @IBAction func nextBtnAction(_ sender: Any) {
-       // moveTocheckListVC()
+        // moveTocheckListVC()
+        
         if Global.shared.checkInId > 0 {
-        moveTocheckListVC()
+            moveTocheckListVC()
         } else {
             self.showAlertView(message: PopupMessages.CheckInFirst)
         }
@@ -144,6 +146,14 @@ extension WorkListViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.WorkListTableViewCell) as! WorkListTableViewCell
         cell.isSelected = false
         cell.viewShadow.borderColor = .clear
+        if selectedItems.contains(indexPath.row) {
+            cell.setSelected(true, animated: true)
+            cell.viewShadow.borderWidth = 5
+            cell.viewShadow.borderColor = .gray
+        } else {
+            cell.setSelected(false, animated: true)
+            cell.viewShadow.borderColor = .clear
+        }
         cell.configureCategoryTask(info: self.categoryObject.categoryList[indexPath.row])
         cell.viewShadow.dropShadow(radius: 4, opacity: 0.3)
         return cell
@@ -159,13 +169,13 @@ extension WorkListViewController: UITableViewDelegate, UITableViewDataSource{
         }else {
             self.showAlertView(message: PopupMessages.CheckInFirst)
         }
-//        if Global.shared.checkInId > 0 {
-//            moveTocheckListVC(index: indexPath.row)
-//        } else {
-//            self.showAlertView(message: PopupMessages.CheckInFirst)
-////            self.showVehicleDetailPopUP()
-////            self.alertView?.show()
-//        }
+        //        if Global.shared.checkInId > 0 {
+        //            moveTocheckListVC(index: indexPath.row)
+        //        } else {
+        //            self.showAlertView(message: PopupMessages.CheckInFirst)
+        ////            self.showVehicleDetailPopUP()
+        ////            self.alertView?.show()
+        //        }
         //}
     }
     
@@ -181,12 +191,18 @@ extension WorkListViewController{
         self.startActivity()
         GCD.async(.Background) {
             CategoryServices.shared().categoryListApi(params: [:]) { (message, success, catInfo) in
-                GCD.async(.Main) {
+                GCD.async(.Main) { [self] in
                     self.stopActivity()
                     if success{
                         if let category = catInfo{
                             self.categoryObject = category
-                            self.filteredList.append(contentsOf: self.categoryObject.categoryList)
+                            self.filteredList.append(contentsOf: categoryObject.categoryList)
+                            
+                            if self.categoryObject.categoryList.count == 0 {
+                                viewTabel.setNoDataMessage(LocalStrings.NoDataFound)
+                            } else {
+                                viewTabel.setNoDataMessage("")
+                            }
                             self.viewTabel.reloadData()
                         }
                         

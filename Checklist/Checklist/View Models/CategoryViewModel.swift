@@ -9,7 +9,7 @@ import Foundation
 import SwiftyJSON
 
 
-class CategoryViewModel {
+struct CategoryViewModel {
    
     var id: Int
     var name: String
@@ -47,14 +47,15 @@ class CategoryViewModel {
 
 
 //MARK: - subCategoryList
-class TaskSubcategoryListViewModel {
+struct TaskSubcategoryListViewModel {
     var taskSubCategoryList = [TaskSubcatgoryViewModel]()
     
     init() {
         self.taskSubCategoryList = [TaskSubcatgoryViewModel]()
     }
     
-    convenience init(list: JSON) {
+    //convenience
+    init(list: JSON) {
         self.init()
         if let jsonList = list.array{
             let list = jsonList.map({TaskSubcatgoryViewModel(obj: $0)})
@@ -75,7 +76,7 @@ class TaskSubcatgoryViewModel {
     var deletedAt : String
     var createdAt : String
     var updatedAt : String
-    
+    var status : String
     init() {
         self.id = 0
         self.categoryId = 0
@@ -86,6 +87,7 @@ class TaskSubcatgoryViewModel {
         self.deletedAt = ""
         self.createdAt = ""
         self.updatedAt = ""
+        self.status = QuestionListOptions.defaultValue
     }
     
     init(obj: JSON) {
@@ -98,5 +100,6 @@ class TaskSubcatgoryViewModel {
         self.deletedAt = obj["deleted_at"].string ?? ""
         self.createdAt = obj["created_at"].string ?? ""
         self.updatedAt = obj["updated_at"].string ?? ""
+        self.status = QuestionListOptions.defaultValue
     }
 }

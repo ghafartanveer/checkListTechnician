@@ -74,10 +74,7 @@ struct HistoryTaskViewModel {
         
         self.subcategories = SubcategoryListViewModel(list:obj["subcategories"])
         self.images = ImageListViewModel(list: obj["images"])
-        
     }
-    
-    
 }
 //--------------------------------------------------
 // MARK: - Activity

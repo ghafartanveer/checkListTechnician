@@ -93,7 +93,10 @@ class ProfileSettingViewController: BaseViewController, TopBarDelegate {
         self.loadHomeController()
     }
     
-    override func callBackActionSubmit() {
+    override func callBackActionSubmit(crntPswd : String , newPasword: String) {
+        let params: ParamsAny = [DictKeys.Current_Password: crntPswd, DictKeys.New_Password: newPasword ]
+        self.changePasswordApiCall(Params: params)
+        
         self.alertView?.close()
     }
     
@@ -164,4 +167,26 @@ extension ProfileSettingViewController {
         }
     }
    
+    func changePasswordApiCall(Params: ParamsAny){
+        self.startActivity()
+        GCD.async(.Background) {
+            LoginService.shared().changePasswordApi(params: Params) { (message, success) in
+                GCD.async(.Main) {
+                    self.stopActivity()
+                    
+                    if success{
+                        self.showAlertView(message: message, title: "", doneButtonTitle: "Ok") { (UIAlertAction) in
+                            self.alertView?.close()
+                        }
+                        
+                    }else{
+                        self.showAlertView(message: message)
+                    }
+                }
+            }
+        }
+    }
+
 }
+
+
