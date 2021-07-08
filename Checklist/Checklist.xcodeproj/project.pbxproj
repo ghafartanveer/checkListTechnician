@@ -146,6 +146,7 @@
 		DE43BC072681F0E200C01AD4 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43BC062681F0E200C01AD4 /* HistoryService.swift */; };
 		DE43BC0D268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43BC0C268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift */; };
 		DE5651AB2684AC0B004ACAF9 /* CommonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5651AA2684AC0B004ACAF9 /* CommonService.swift */; };
+		DE619ACD2697028200DB9601 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE619ACC2697028200DB9601 /* GoogleService-Info.plist */; };
 		DE69790F26807D8900875B09 /* HistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE69790E26807D8900875B09 /* HistoryDetailsViewController.swift */; };
 		DE6979142680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6979132680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift */; };
 		DE7492F02683462200AA7159 /* CheckInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7492EF2683462200AA7159 /* CheckInViewModel.swift */; };
@@ -331,11 +332,13 @@
 		DE43BC062681F0E200C01AD4 /* HistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
 		DE43BC0C268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelctionPopUpViewController.swift; sourceTree = "<group>"; };
 		DE5651AA2684AC0B004ACAF9 /* CommonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonService.swift; sourceTree = "<group>"; };
+		DE619ACC2697028200DB9601 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE69790E26807D8900875B09 /* HistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsViewController.swift; sourceTree = "<group>"; };
 		DE6979132680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsTaskListTableViewCell.swift; sourceTree = "<group>"; };
 		DE7492EF2683462200AA7159 /* CheckInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewModel.swift; sourceTree = "<group>"; };
 		DE7492F426834BA300AA7159 /* CheckInOutServic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInOutServic.swift; sourceTree = "<group>"; };
 		DE96A7D32689A00F00A2C1BA /* ImageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewModel.swift; sourceTree = "<group>"; };
+		DECDC2302695E89200C92775 /* Checklist.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Checklist.entitlements; sourceTree = "<group>"; };
 		DED14DF1267B5203000326A2 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		DEE961B1267CD69400FE6351 /* CheckListHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListHistoryViewController.swift; sourceTree = "<group>"; };
 		F4532F2DE96F667677DC1D46 /* Pods-Checklist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Checklist.debug.xcconfig"; path = "Target Support Files/Pods-Checklist/Pods-Checklist.debug.xcconfig"; sourceTree = "<group>"; };
@@ -392,6 +395,7 @@
 		352B8831262D728900E7B12E /* Checklist */ = {
 			isa = PBXGroup;
 			children = (
+				DECDC2302695E89200C92775 /* Checklist.entitlements */,
 				352B8832262D728900E7B12E /* AppDelegate.swift */,
 				352B8834262D728900E7B12E /* SceneDelegate.swift */,
 				352B8871262D72D100E7B12E /* Global */,
@@ -405,6 +409,7 @@
 				352B883E262D728A00E7B12E /* Assets.xcassets */,
 				352B8840262D728A00E7B12E /* LaunchScreen.storyboard */,
 				352B8843262D728A00E7B12E /* Info.plist */,
+				DE619ACC2697028200DB9601 /* GoogleService-Info.plist */,
 				352B883B262D728900E7B12E /* Checklist.xcdatamodeld */,
 				352B88C7262D739800E7B12E /* Checklist-bridging-header.h */,
 			);
@@ -1062,6 +1067,7 @@
 				355FE2C72631723F00A2B770 /* Setting.storyboard in Resources */,
 				352B8930262D745300E7B12E /* GOTHIC_0.TTF in Resources */,
 				352B8921262D745300E7B12E /* README.md in Resources */,
+				DE619ACD2697028200DB9601 /* GoogleService-Info.plist in Resources */,
 				352B89CF26315DCD00E7B12E /* Poppins-Light.ttf in Resources */,
 				352B8928262D745300E7B12E /* sf-compact-display-medium-5864711817c30.otf in Resources */,
 				352B89D726315DCD00E7B12E /* Poppins-LightItalic.ttf in Resources */,
@@ -1437,16 +1443,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Checklist/Checklist.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CYA5XHBXQV;
+				DEVELOPMENT_TEAM = 5MVY25HYQD;
 				INFOPLIST_FILE = Checklist/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Rapidzz.Checklist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Rapidzz.CheckList-Technician";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Checklist/Checklist-bridging-header.h";
@@ -1461,16 +1468,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Checklist/Checklist.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CYA5XHBXQV;
+				DEVELOPMENT_TEAM = 5MVY25HYQD;
 				INFOPLIST_FILE = Checklist/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Rapidzz.Checklist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Rapidzz.CheckList-Technician";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Checklist/Checklist-bridging-header.h";

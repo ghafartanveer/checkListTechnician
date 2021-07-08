@@ -55,6 +55,8 @@ struct DictKeys {
     static let Id = "id"
     static let Description = "description"
     static let ImageId = "image_id"
+    static let fcm_token = "fcm_token"
+
 }
 
 struct EndPoints {

@@ -14,5 +14,8 @@ target 'Checklist' do
   pod 'Alamofire', '~> 4.9.0'
   pod 'FSCalendar'
   pod 'DropDown'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Messaging'
   
 end

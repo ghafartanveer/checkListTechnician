@@ -38,7 +38,7 @@ class LoginViewController: BaseViewController {
         if self.checkValidations(){
             self.doLoginApi(params: [DictKeys.email: self.txtEmail.text!,
                                      DictKeys.password: self.txtPassword.text!,
-                                     DictKeys.login_type: LoginType.Technician])
+                                     DictKeys.login_type: LoginType.Technician, DictKeys.fcm_token: Global.shared.fcmToken])
         }
     }
     

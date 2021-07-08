@@ -9,9 +9,13 @@ import UIKit
 import CoreData
 import DropDown
 import IQKeyboardManagerSwift
+import Firebase
+import SwiftyJSON
+import FirebaseMessaging
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,  MessagingDelegate {
+    var gcmMessageIDKey = "gcm message 1234"
 
     var window: UIWindow?
     
@@ -19,6 +23,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupInitialController()
         DropDown.startListeningToKeyboard()
         IQKeyboardManager.shared.enable = true
+        
+        
+        FirebaseApp.configure()
+        // Messaging.messaging().isAutoInitEnabled = true
+        //ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        self.getFireBaseToken()
+        Messaging.messaging().delegate = self
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        application.registerForRemoteNotifications()
+        
         return true
     }
     
@@ -93,6 +118,91 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
+    //MARK: - FIREBASE PUSH NOTIFICATION METHODS
+    private func getFireBaseToken(){
+        Messaging.messaging().token { token, error in
+            if let error = error {
+                print("Error fetching FCM registration token: \(error)")
+            } else if let token = token {
+                Global.shared.fcmToken = token
+                print("**FCM registration token: \(token)")
+            }
+        }
+    }
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("Firebase registration token: \(String(describing: fcmToken))")
+        let dataDict:[String: String] = ["token": fcmToken ?? ""]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        // TODO: If necessary send token to application server.
+    }
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        // Print full message.
+        print(userInfo)
+    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        // Print full message.
+        print(userInfo)
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
 }
 
+
+
+// MARK: - EXTENSION PUSH NOTIFICATION DELEGATE METHODS
+extension AppDelegate : UNUserNotificationCenterDelegate {
+    @available(iOS 10, *)
+    // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        // Print full message.
+        print(userInfo)
+        // Change this to your preferred presentation option
+        completionHandler([[.alert, .sound]])
+    }
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let notificationData = response.notification.request.content.userInfo
+        let json = JSON(notificationData)
+        print(json)
+        // let object = FCMNotificationViewModel(notification: json)
+        //        if UserDefaultsManager.shared.isUserLoggedIn{
+        //            Global.shared.user = UserDefaultsManager.shared.userInfo
+        //            Global.shared.notificationObject = object
+        //            Global.shared.isFromNotification = true
+        //            let storyboard = UIStoryboard(name: StoryboardNames.Main, bundle: nil)
+        //            let navVC = storyboard.instantiateViewController(withIdentifier: ControllerIdentifier.KYDrawerVC) as! BaseNavigationController
+        //            if #available(iOS 13.0, *){
+        //                let sceneDelegate = UIApplication.shared.connectedScenes
+        //                    .first!.delegate as! SceneDelegate
+        //                sceneDelegate.window!.rootViewController = navVC
+        //            }else {
+        //                self.window?.rootViewController = navVC
+        //            }
+        
+        // }
+        // Print message ID.
+        //    if let messageID = userInfo[gcmMessageIDKey] {
+        //      print("Message ID: \(messageID)")
+        //    }
+        completionHandler()
+    }
+}
