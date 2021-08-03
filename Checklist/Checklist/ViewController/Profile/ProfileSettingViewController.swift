@@ -11,6 +11,7 @@ class ProfileSettingViewController: BaseViewController, TopBarDelegate {
     
     @IBOutlet weak var imgProfile: UIImageView!
     
+    @IBOutlet weak var imageContainerV: UIView!
     @IBOutlet weak var fNameTF: UITextField!
     @IBOutlet weak var lNameTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
@@ -21,12 +22,13 @@ class ProfileSettingViewController: BaseViewController, TopBarDelegate {
     @IBOutlet weak var emailUnderLineView: UIView!
     @IBOutlet weak var phoneUnderLineView: UIView!
     
+    @IBOutlet weak var ContainerView: UIView!
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUsrData()
-        
+        ContainerView.dropShadow()
         // Do any additional setup after loading the view.
     }
     
@@ -36,6 +38,10 @@ class ProfileSettingViewController: BaseViewController, TopBarDelegate {
             container.delegate = self
             container.setMenuButton(true, title: TitleNames.Setting)
         }
+        imageContainerV.layer.cornerRadius = 60
+        imageContainerV.clipsToBounds = true
+        //imageContainerV.dropShadow()
+
     }
     //MARK: - IBACTION METHODS
     @IBAction func actionChangePassword(_ sender: UIButton){
@@ -49,7 +55,7 @@ class ProfileSettingViewController: BaseViewController, TopBarDelegate {
     
     @IBAction func actionSave(_ sender:UIButton){
         
-        let imageData = (imgProfile.image)!.jpegData(compressionQuality: 1.0)
+        let imageData = ((imgProfile.image) ?? #imageLiteral(resourceName: "user_image") ) .jpegData(compressionQuality: 1.0)
     
         if self.checkValidations(){
             let storId = String(Global.shared.user.storeID)

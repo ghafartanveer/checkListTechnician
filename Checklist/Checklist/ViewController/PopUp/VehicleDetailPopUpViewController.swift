@@ -16,6 +16,9 @@ class VehicleDetailPopUpViewController: BaseViewController {
     @IBOutlet weak var txtVehicleNumber: UITextField!
     @IBOutlet weak var txtCustomerName: UITextField!
     
+    @IBOutlet weak var numberTFCOntainer: UIView!
+    
+    @IBOutlet weak var nameTFContainer: UIView!
     
     //MARK: - OBJECT AND VERIBALES
     weak var delegate: VehicleDetailPopUpViewControllerDelegate?
@@ -23,6 +26,8 @@ class VehicleDetailPopUpViewController: BaseViewController {
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
+        numberTFCOntainer.dropShadow()
+        nameTFContainer.dropShadow()
     }
     
     //MARK: - IBACTION METHODS

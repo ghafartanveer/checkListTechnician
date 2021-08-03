@@ -65,4 +65,19 @@ class CommonService: BaseService {
             
         }
     }
+    
+    //MARK:- image LIST API
+    func imageListApi(params: ParamsAny?,completion: @escaping (_ error: String, _ success: Bool, _ object: ImageListViewModel?)->Void){
+        
+        let completeURL = EndPoints.BASE_URL + EndPoints.getImages
+        self.makePostAPICall(with: completeURL, params: params, headers: self.getHeaders()) { (message, success, json, responseType) in
+            if success{
+                let info = ImageListViewModel(list: json![KEY_RESPONSE_DATA])
+                completion(message,success, info)
+            }else{
+                completion(message,success, nil)
+            }
+            
+        }
+    }
 }

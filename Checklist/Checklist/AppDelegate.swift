@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,  MessagingDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.setupInitialController()
+        //self.setupInitialController()
         DropDown.startListeningToKeyboard()
         IQKeyboardManager.shared.enable = true
         
@@ -44,6 +44,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate,  MessagingDelegate {
         }
         application.registerForRemoteNotifications()
         
+        if let notificationData = launchOptions?[.remoteNotification] {
+            
+            let json = JSON(notificationData)
+            print(json)
+            let object = NotificatioViewModel(info: json)
+            if UserDefaultsManager.shared.isUserLoggedIn{
+                Global.shared.user = UserDefaultsManager.shared.userInfo
+                //Global.shared.notificationObject = object
+                Global.shared.isFromNotification = true
+                let data = json["data"]
+                let strData = data.description
+                let notificationDic = Utilities.convertToDictionary(text: strData)
+                let id = notificationDic?["notification_id"] as? Int ?? 0
+                
+                Global.shared.notificationId = id
+                gotoMainController()
+            }
+            
+            //setRoot(isfromNotifi: true , data: notificationData as? [AnyHashable : Any])
+            
+            
+        }
+        else{
+            setupInitialController()
+        }
+
         return true
     }
     
@@ -183,26 +209,36 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let notificationData = response.notification.request.content.userInfo
         let json = JSON(notificationData)
         print(json)
-        // let object = FCMNotificationViewModel(notification: json)
-        //        if UserDefaultsManager.shared.isUserLoggedIn{
-        //            Global.shared.user = UserDefaultsManager.shared.userInfo
-        //            Global.shared.notificationObject = object
-        //            Global.shared.isFromNotification = true
-        //            let storyboard = UIStoryboard(name: StoryboardNames.Main, bundle: nil)
-        //            let navVC = storyboard.instantiateViewController(withIdentifier: ControllerIdentifier.KYDrawerVC) as! BaseNavigationController
-        //            if #available(iOS 13.0, *){
-        //                let sceneDelegate = UIApplication.shared.connectedScenes
-        //                    .first!.delegate as! SceneDelegate
-        //                sceneDelegate.window!.rootViewController = navVC
-        //            }else {
-        //                self.window?.rootViewController = navVC
-        //            }
-        
-        // }
+        let object = NotificatioViewModel(info: json)
+                if UserDefaultsManager.shared.isUserLoggedIn{
+                    Global.shared.user = UserDefaultsManager.shared.userInfo
+                    //Global.shared.notificationObject = object
+                    Global.shared.isFromNotification = true
+                    let data = json["data"]
+                    let strData = data.description
+                    let notificationDic = Utilities.convertToDictionary(text: strData)
+                    let id = notificationDic?["notification_id"] as? Int ?? 0
+                    
+                    Global.shared.notificationId = id
+                    gotoMainController()
+         }
         // Print message ID.
         //    if let messageID = userInfo[gcmMessageIDKey] {
         //      print("Message ID: \(messageID)")
         //    }
         completionHandler()
+    }
+    
+    func gotoMainController() {
+        let storyboard = UIStoryboard(name: StoryboardNames.Main, bundle: nil)
+        let navVC = storyboard.instantiateViewController(withIdentifier: ControllerIdentifier.SWRevealVC) as! BaseNavigationController
+        if #available(iOS 13.0, *){
+            let sceneDelegate = UIApplication.shared.connectedScenes
+                .first!.delegate as! SceneDelegate
+            sceneDelegate.window!.rootViewController = navVC
+        }else {
+            self.window?.rootViewController = navVC
+        }
+
     }
 }

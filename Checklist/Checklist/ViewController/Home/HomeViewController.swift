@@ -15,13 +15,18 @@ class HomeViewController: BaseViewController {
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAuthObserver()
         
         // self.btnPlusShadow.dropShadow(radius: 3, opacity: 0.2)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(UserDefaultsManager.shared.userInfo.token)
+        Global.shared.checkInId = UserDefaultsManager.shared.userCheckedInID
+        
+        Global.shared.checkInTaskSubmitions = UserDefaultsManager.shared.checkInSubmittedTaskIds
+        
+        tabelView.reloadData()
         if let container = self.mainContainer{
             container.setMenuButton(false, title: "")//TitleNames.Home)
             
@@ -144,6 +149,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, TaskCa
             showVehicleDetailPopUP()
             self.alertView?.show()
             }
+            
             print("Show check in")
         case 3:
             if Global.shared.checkInId > 0 {
@@ -194,6 +200,9 @@ extension HomeViewController {
                             if checkinInDetail.id > 0 {
                                 self.showAlertView(message: message)
                                 Global.shared.checkInId = checkinInDetail.id
+                                UserDefaultsManager.shared.userCheckedInID = checkinInDetail.id
+                                Global.shared.checkInTaskSubmitions.removeAll()
+                                UserDefaultsManager.shared.checkInSubmittedTaskIds = Global.shared.checkInTaskSubmitions
                                 tabelView.reloadData()
                             }
                             // use data here
@@ -214,8 +223,18 @@ extension HomeViewController {
                 GCD.async(.Main) { [self] in
                     self.stopActivity()
                     if success{
+                        if message == "Unauthenticated." {
+                            UserDefaultsManager.shared.userCheckedInID = 0
+                            Global.shared.checkInId = 0
+
+                            self.showAlertView(message: PopupMessages.Session_Expired)
+
+                        }
                         self.showAlertView(message: message)
                         Global.shared.checkInId = 0
+                        UserDefaultsManager.shared.userCheckedInID = 0
+                        Global.shared.checkInTaskSubmitions.removeAll()
+                        UserDefaultsManager.shared.checkInSubmittedTaskIds = Global.shared.checkInTaskSubmitions
                         tabelView.reloadData()
                         
                     }else{
@@ -226,3 +245,6 @@ extension HomeViewController {
         }
     }
 }
+
+
+

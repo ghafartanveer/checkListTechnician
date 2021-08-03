@@ -56,6 +56,7 @@ struct DictKeys {
     static let Description = "description"
     static let ImageId = "image_id"
     static let fcm_token = "fcm_token"
+    static let activity_id = "activity_id"
 
 }
 
@@ -84,6 +85,7 @@ struct EndPoints {
     static let SubmitTasks = "submit_tasks"
     static let UploaImage = "image_upload"
     static let DeleteImage = "delete_image"
+    static let getImages = "get_images"
 }
 
 //Default values for data types

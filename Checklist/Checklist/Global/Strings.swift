@@ -54,12 +54,14 @@ struct StoryboardNames {
 }
 
 struct TitleNames {
-    static var Work_List = "Work List"
+    static var Work_List = "All Check Lists"
     static var Check_List = "Check List"
+    static let checklistTaskList = "Check List Tasks List"
     static var Upload_File = "Upload File"
     static let Home = "Home"
     static let Setting = "Setting"
     static let History = "History"
+    static let historyDetails = "History Detail"
     static let Pending_Task = "Pending Task"
     static let Completed_Task = "Completed Task"
     static let About_Us = "About Us"
@@ -123,6 +125,10 @@ struct ControllerIdentifier {
     static let helpVC = "helpVC"
     static let HistoryDetailsViewController = "HistoryDetailsViewController"
     static let FilterSelctionPopUpViewController = "FilterSelctionPopUpViewController"
+    static let checkListNavigatioVC = "checkListNavigatioVC"
+    static let historyNavigatioVC = "historyNavigatioVC"
+    
+    
 }
 
 struct ValidationMessages {
@@ -187,10 +193,16 @@ struct PopupMessages {
     static let cameraPermissionNeeded       = "Camera permission needed to scan QR Code. Goto settings to enable camera permission"
     static let SomethingWentWrong           = "Something went wrong, please check your internet connection or try again later!"
     static let CheckInFirst = "Please Check In First!"
+    static let checkOutFirst = "Please check out first!"
     static let AlreadyCheckedIn = "You are already Checked In!"
     static let SureToCheckOut = "Are you sure you want to checkout?"
-    static let SelectAllOptions = "Please answer all questions!"
+    static let SelectAllOptions = "Please Mark all the task until all done!"
     static let ImagesNotRequired = "Images not required!"
+    static let taskIsSubmittedWithSameCheckIn = "Already submitted!!"
+    static let taskAreNotAddedYet = "Task are not added yet!"
+    static let imageDescRequired = "Image Description required!"
+    static let Session_Expired    = "Session expired, please login again"
+    static let SureToDeleteImg = "Are you sure you want to delete task image?"
 }
 
 struct LocalStrings {

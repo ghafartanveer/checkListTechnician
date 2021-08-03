@@ -15,21 +15,29 @@ class UpdatePasswordViewController: BaseViewController {
     
     //MARK: - OBJECT AND VERIBAELS
     
-    
+    var email = ""
     
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        txtEmail.text = email
     }
     
     //MARK: - IBACTION METHODS
+    
+    @IBAction func backBtn(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func actionSave(_ sender: UIButton){
+        
+        if checkValidations() {
         let params: ParamsAny = [DictKeys.email: self.txtEmail.text!,
                                  DictKeys.Pin_Code: self.txtPinCode.text!,
                                  DictKeys.New_Password: self.txtNewPassword.text!,
                                  DictKeys.login_type: LoginType.Technician]
         self.updatePasswordApiCall(Params: params)
+        }
     }
     
     

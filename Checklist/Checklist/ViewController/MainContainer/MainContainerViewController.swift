@@ -32,14 +32,22 @@ class MainContainerViewController: BaseViewController, SWRevealViewControllerDel
             revealViewController()?.delegate = self
             self.btnMenu.addTarget(revealViewController(), action: #selector(SWRevealViewController.revealToggle(_ :)), for: .touchUpInside)
         }
-         self.showHomeController()
+        
+        if(Global.shared.isFromNotification){
+            let notifcationVM = NotificatioViewModel()
+            showCheckListController()
+//            if Global.shared.notificationId == 2 {
+//                showCheckListController()
+//            } else {
+//                 // task submitted
+//                showHistoryController()
+//            }
+        }
+        else{
+            self.showHomeController()
+        }
+        
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        if let container = self.mainContainer{
-//            container.setTitle(title: "Settings")
-//        }
-//    }
     
     //MARK: - IBACTION METHODS
     @IBAction func actionSideMenu(_ sender: UIButton) {
@@ -90,6 +98,36 @@ class MainContainerViewController: BaseViewController, SWRevealViewControllerDel
         let storyBoard = UIStoryboard(name: StoryboardNames.Home, bundle: nil)
         var controller = BaseNavigationController()
         controller = storyBoard.instantiateViewController(withIdentifier: ControllerIdentifier.HomeVC) as! BaseNavigationController
+        if let oldRef = self.baseNavigationController {
+            oldRef.viewDidDisappear(true)
+            oldRef.view.removeFromSuperview()
+        }
+        self.baseNavigationController = controller
+        addChild(controller)
+        controller.view.frame = self.viewContainer.bounds
+        self.viewContainer.addSubview(controller.view)
+        controller.didMove(toParent: self)
+    }
+    
+    func showCheckListController()  {
+        let storyBoard = UIStoryboard(name: StoryboardNames.Home, bundle: nil)
+        var controller = BaseNavigationController()
+        controller = storyBoard.instantiateViewController(withIdentifier: ControllerIdentifier.checkListNavigatioVC) as! BaseNavigationController
+        if let oldRef = self.baseNavigationController {
+            oldRef.viewDidDisappear(true)
+            oldRef.view.removeFromSuperview()
+        }
+        self.baseNavigationController = controller
+        addChild(controller)
+        controller.view.frame = self.viewContainer.bounds
+        self.viewContainer.addSubview(controller.view)
+        controller.didMove(toParent: self)
+    }
+    
+    func showHistoryController()  {
+        let storyBoard = UIStoryboard(name: StoryboardNames.Home, bundle: nil)
+        var controller = BaseNavigationController()
+        controller = storyBoard.instantiateViewController(withIdentifier: ControllerIdentifier.historyNavigatioVC) as! BaseNavigationController
         if let oldRef = self.baseNavigationController {
             oldRef.viewDidDisappear(true)
             oldRef.view.removeFromSuperview()

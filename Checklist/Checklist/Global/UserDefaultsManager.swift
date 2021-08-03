@@ -14,6 +14,8 @@ fileprivate struct UserDefaultsKeys {
     static let configurationUrl = "configurationUrl"
     static let verificationID = "authVerificationID"
     static let token = "token"
+    static let userCheckedInID = "isUserCheckedInID"
+    static let checkInSubmittedTaskIds = "checkInSubmittedTaskIds"
 }
 
 class UserDefaultsManager {
@@ -42,7 +44,24 @@ class UserDefaultsManager {
         }
     }
     
+    var userCheckedInID:Int {
+        set {
+            manager.set(newValue, forKey:UserDefaultsKeys.userCheckedInID)
+            manager.synchronize()
+        }
+        get {
+            return manager.integer(forKey: UserDefaultsKeys.userCheckedInID)
+        }
+    }
     
+    var checkInSubmittedTaskIds:[Int] {
+        set {
+            manager.set(newValue,forKey: UserDefaultsKeys.checkInSubmittedTaskIds)
+        }
+        get {
+            return manager.object(forKey: UserDefaultsKeys.checkInSubmittedTaskIds) as? [Int] ?? []
+        }
+    }
     
     var configurationUrl: String? {
         set{

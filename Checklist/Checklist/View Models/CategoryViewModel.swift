@@ -19,6 +19,7 @@ struct CategoryViewModel {
     var updatedAt: String
     var taskSubCategory: TaskSubcategoryListViewModel?
     var images : ImageListViewModel?
+    var isOpenOnce : Bool
     init() {
         self.id = 0
         self.name = ""
@@ -28,6 +29,7 @@ struct CategoryViewModel {
         self.updatedAt = ""
         self.taskSubCategory = TaskSubcategoryListViewModel()
         self.images = ImageListViewModel()
+        self.isOpenOnce = false
     }
     
     
@@ -38,6 +40,7 @@ struct CategoryViewModel {
         self.deletedAt = obj["deleted_at"].string ?? ""
         self.createdAt = obj["created_at"].string ?? ""
         self.updatedAt = obj["updated_at"].string ?? ""
+        self.isOpenOnce = false
         
         self.taskSubCategory = TaskSubcategoryListViewModel(list:obj["subcategories"])
         self.images = ImageListViewModel(list: obj["images"])

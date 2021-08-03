@@ -19,6 +19,4 @@ class WorkListTableViewCell: BaseTableViewCell {
     func configureCategoryTask(info: CategoryViewModel){
         self.lblTitle.text = info.name
     }
-   
-
 }

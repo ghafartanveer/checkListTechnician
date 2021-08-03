@@ -20,12 +20,9 @@ class CheckListViewController: BaseViewController, TopBarDelegate {
     var taskSubCategoryList: [CategoryViewModel] = []
     var filteredDataList: [CategoryViewModel] = []
     
-    //var subList = TaskSubcategoryListViewModel()
-    //var sublistArray = [TaskSubcatgoryViewModel]()
+    var taskToBeSubmitedIDs = [Int]()
     
-    //var dataSource : [[TaskSubcatgoryViewModel]] = [[]]
-    //var values : [[TaskSubcatgoryViewModel]] = [[]]
-    
+    var isNoDataToShow = true
     
     var taskObjViewModel: TaskViewModel? = nil
     var categoryObj:Category? = nil
@@ -40,6 +37,9 @@ class CheckListViewController: BaseViewController, TopBarDelegate {
         super.viewWillAppear(animated)
         questionListTV.reloadData()
 
+        for id in taskToBeSubmitedIDs {
+            print(id)
+        }
         for task in taskSubCategoryList {
             filteredDataList.append(task)
         }
@@ -59,11 +59,27 @@ class CheckListViewController: BaseViewController, TopBarDelegate {
         
         if let container = self.mainContainer{
             container.delegate = self
-            container.setMenuButton(true, true, title: TitleNames.Check_List)
+            container.setMenuButton(true, true, title: TitleNames.checklistTaskList)
+            
+        }
+        
+        for sectionNo in 0..<taskSubCategoryList.count {
+            for rowData in 0..<(taskSubCategoryList[sectionNo].taskSubCategory?.taskSubCategoryList.count ?? 0) {
+                if rowData > 0 {
+                    isNoDataToShow = false
+                    break
+                }
+            }
+        }
+        if isNoDataToShow {
+            questionListTV.setNoDataMessage(LocalStrings.NoDataFound)
+        } else {
+            questionListTV.removeBackground()
             
         }
         
         addDefaultValues()
+            
     }
     
     
@@ -205,6 +221,9 @@ extension CheckListViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (taskSubCategoryList[section].taskSubCategory?.taskSubCategoryList.count ?? 0) > 0 {
+            self.isNoDataToShow = false
+        }
         return taskSubCategoryList[section].taskSubCategory?.taskSubCategoryList.count ?? 0 //taskSubCategoryList.taskSubCategory?.taskSubCategoryList.count ?? 0
     }
     

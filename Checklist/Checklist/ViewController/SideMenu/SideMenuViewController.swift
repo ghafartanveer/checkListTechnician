@@ -22,9 +22,21 @@ class SideMenuViewController: BaseViewController {
     }
     //MARK: - IBACTION METHODS
     @IBAction func actionLogOut(_ sender: UIButton){
+        
+        if Global.shared.checkInId > 0 {
+            self.showAlertView(message: PopupMessages.checkOutFirst, title: ALERT_TITLE_APP_NAME, doneButtonTitle: LocalStrings.ok, doneButtonCompletion: { (UIAlertAction) in
+                self.revealViewController()?.revealToggle(nil)
+            }, cancelButtonTitle: LocalStrings.Cancel) { (UIAlertAction) in
+                
+            }
+        } else {
+        
         self.showAlertView(message: PopupMessages.sureToLogout, title: ALERT_TITLE_APP_NAME, doneButtonTitle: LocalStrings.ok, doneButtonCompletion: { (UIAlertAction) in
+            
             self.logoutApiCall()
         }, cancelButtonTitle: LocalStrings.Cancel) { (UIAlertAction) in
+            
+        }
             
         }
     }

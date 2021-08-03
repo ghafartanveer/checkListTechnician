@@ -15,6 +15,7 @@ class TaskHistoryTableViewCell: BaseTableViewCell {
 
     @IBOutlet weak var customeNameLbl: UILabel!
     @IBOutlet weak var regNoLbl: UILabel!
+    @IBOutlet weak var checkListNameLbl: UILabel!
     
     @IBOutlet weak var containerView: UIView!
     
@@ -35,6 +36,7 @@ class TaskHistoryTableViewCell: BaseTableViewCell {
     func configureHistoryList(info: HistoryTaskViewModel) {
         self.customeNameLbl.text = info.activity?.customerName
         self.regNoLbl.text = info.activity?.registrationNumber
+        self.checkListNameLbl.text = info.categoryName
     }
     
     @IBAction func seeDetails(_ sender: Any) {

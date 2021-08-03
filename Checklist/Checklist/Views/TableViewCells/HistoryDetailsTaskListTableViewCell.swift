@@ -24,8 +24,8 @@ class HistoryDetailsTaskListTableViewCell: BaseTableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(info: SubcategoryViewModel) {
-        titleLbl.text = info.subCategoryName
+    func configureCell(info: SubcategoryViewModel, index: Int) {
+        titleLbl.text = String(index) + ". " + (info.subCategoryName ?? "")
     }
 
 }

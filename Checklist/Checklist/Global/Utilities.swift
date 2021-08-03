@@ -387,6 +387,29 @@ class Utilities {
         
         return strdate
     }
+    
+    static func getDatefromDateStringFormated(strDate:String, outFormate: String ) -> String{
+        
+        if(strDate.trimmingCharacters(in: .whitespaces).isEmpty){
+            return ""
+        }
+        let formatter = DateFormatter()
+        
+        var replaced = strDate.replacingOccurrences(of: " pm", with: "", options: [.caseInsensitive])
+        
+        replaced = replaced.replacingOccurrences(of: " am", with: "", options: [.caseInsensitive])
+        
+        //29-07-2021
+        formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        let date = formatter.date(from: replaced) ?? Date()
+        
+        formatter.dateFormat = outFormate//"dd-MM-yy"
+        let strdate = formatter.string(from: date)
+        // let newDate = formatter.date(from: timeStemp)
+        print(strdate)
+        
+        return strdate
+    }
     static func getTimeFromDateString(strDate:String) -> String{
         
         if(strDate.trimmingCharacters(in: .whitespaces).isEmpty){
@@ -433,6 +456,17 @@ class Utilities {
         let components = date.get(.day, .hour, .minute, .second)
         let number = Int.random(in: 0..<1000)
        return "\(components.day ?? 0)\(components.hour ?? 0)\(components.minute ?? 0)\(components.second ?? 0)\(number)"
+    }
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
 }
 

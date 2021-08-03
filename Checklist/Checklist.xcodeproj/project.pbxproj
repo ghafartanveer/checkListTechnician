@@ -153,7 +153,9 @@
 		DE7492F526834BA300AA7159 /* CheckInOutServic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7492F426834BA300AA7159 /* CheckInOutServic.swift */; };
 		DE96A7D42689A00F00A2C1BA /* ImageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96A7D32689A00F00A2C1BA /* ImageListViewModel.swift */; };
 		DED14DF2267B5203000326A2 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED14DF1267B5203000326A2 /* HelpViewController.swift */; };
+		DEE4AB6E26B1AEBA005C8F20 /* NotificatioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE4AB6D26B1AEBA005C8F20 /* NotificatioViewModel.swift */; };
 		DEE961B2267CD69400FE6351 /* CheckListHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE961B1267CD69400FE6351 /* CheckListHistoryViewController.swift */; };
+		DEF6A85B26B2BC3E00BB0F52 /* PhotoGalleryAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF6A85A26B2BC3E00BB0F52 /* PhotoGalleryAlbum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -340,7 +342,9 @@
 		DE96A7D32689A00F00A2C1BA /* ImageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewModel.swift; sourceTree = "<group>"; };
 		DECDC2302695E89200C92775 /* Checklist.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Checklist.entitlements; sourceTree = "<group>"; };
 		DED14DF1267B5203000326A2 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		DEE4AB6D26B1AEBA005C8F20 /* NotificatioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificatioViewModel.swift; sourceTree = "<group>"; };
 		DEE961B1267CD69400FE6351 /* CheckListHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListHistoryViewController.swift; sourceTree = "<group>"; };
+		DEF6A85A26B2BC3E00BB0F52 /* PhotoGalleryAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryAlbum.swift; sourceTree = "<group>"; };
 		F4532F2DE96F667677DC1D46 /* Pods-Checklist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Checklist.debug.xcconfig"; path = "Target Support Files/Pods-Checklist/Pods-Checklist.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -494,6 +498,7 @@
 				DE43BC012681C63B00C01AD4 /* HistoryTaskViewModel.swift */,
 				DE7492EF2683462200AA7159 /* CheckInViewModel.swift */,
 				DE96A7D32689A00F00A2C1BA /* ImageListViewModel.swift */,
+				DEE4AB6D26B1AEBA005C8F20 /* NotificatioViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -610,6 +615,7 @@
 		352B88CB262D745300E7B12E /* Third Party Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				DEF6A85926B2BC0000BB0F52 /* GalleryAccess */,
 				352B88CC262D745300E7B12E /* TPKeyboardAvoiding */,
 				352B88D5262D745300E7B12E /* YPDrawSignatureView */,
 				352B88D7262D745300E7B12E /* IQDropdownTextfield */,
@@ -952,6 +958,14 @@
 			path = Help;
 			sourceTree = "<group>";
 		};
+		DEF6A85926B2BC0000BB0F52 /* GalleryAccess */ = {
+			isa = PBXGroup;
+			children = (
+				DEF6A85A26B2BC3E00BB0F52 /* PhotoGalleryAlbum.swift */,
+			);
+			path = GalleryAccess;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1198,6 +1212,7 @@
 				352B891A262D745300E7B12E /* MKProgress.swift in Sources */,
 				352B88A5262D72D100E7B12E /* Validations.swift in Sources */,
 				352B883D262D728900E7B12E /* Checklist.xcdatamodeld in Sources */,
+				DEE4AB6E26B1AEBA005C8F20 /* NotificatioViewModel.swift in Sources */,
 				355FE2E52631893600A2B770 /* CalenderViewController.swift in Sources */,
 				352B88B1262D72D200E7B12E /* ResponseHandler.swift in Sources */,
 				352B88B6262D72D200E7B12E /* BaseService.swift in Sources */,
@@ -1232,6 +1247,7 @@
 				DE21FC73267B23A700F09090 /* AboutUsViewController.swift in Sources */,
 				352B8927262D745300E7B12E /* BReachability.swift in Sources */,
 				355FE2EA2631939500A2B770 /* ProfileSettingViewController.swift in Sources */,
+				DEF6A85B26B2BC3E00BB0F52 /* PhotoGalleryAlbum.swift in Sources */,
 				DE43BC0D268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift in Sources */,
 				352B88A9262D72D100E7B12E /* UITableView+Extension.swift in Sources */,
 				355FE2D12631796F00A2B770 /* UploadFileCollectionViewCell.swift in Sources */,

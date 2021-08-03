@@ -21,7 +21,9 @@ class Global {
     var currentNavigationController = ""
     var currentStoryBoard = ""
     var checkInId = 0
-       
-    
+    var checkInTaskSubmitions = [Int]()
+    var catWithImagesId = 0
+    var isFromNotification = false
+    var notificationId = 0
   }
 

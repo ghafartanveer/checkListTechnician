@@ -39,7 +39,7 @@ class HistoryDetailsViewController: BaseViewController, TopBarDelegate {
         if let container = self.mainContainer{
             container.delegate = self
            
-            container.setMenuButton(true, true, title: TitleNames.History)
+            container.setMenuButton(true, true, title: TitleNames.historyDetails)
             //container.viewTopColour.backgroundColor = .white
         }
         layoutSetup()
@@ -61,12 +61,14 @@ class HistoryDetailsViewController: BaseViewController, TopBarDelegate {
         regNoLbl.text = historyDetailObject.activity?.registrationNumber
        
         let checkInDateTime = historyDetailObject.activity?.checkIn
-        checkInDateLbl.text = Utilities.getDatefromDateString(strDate: checkInDateTime ?? "")
-        checkInTimeLbl.text = Utilities.getTimeFromDateString(strDate: checkInDateTime ?? "")
-        
         let checkOutDateTime = historyDetailObject.activity?.checkOut
-        checkOutDateLbl.text = Utilities.getDatefromDateString(strDate: checkOutDateTime ?? "")
-        checkOutTimeLbl.text = Utilities.getTimeFromDateString(strDate: checkOutDateTime ?? "")
+
+        
+        checkInDateLbl.text = Utilities.getDatefromDateStringFormated(strDate: checkInDateTime ?? "", outFormate: "dd-MM-yyyy")
+        checkInTimeLbl.text = Utilities.getDatefromDateStringFormated(strDate: checkInDateTime ?? "", outFormate: "HH:mm:ss")
+        
+        checkOutDateLbl.text = Utilities.getDatefromDateStringFormated(strDate: checkOutDateTime ?? "", outFormate: "dd-MM-yyyy")
+        checkOutTimeLbl.text = Utilities.getDatefromDateStringFormated(strDate: checkOutDateTime ?? "", outFormate: "HH:mm:ss")
         
         categoryNameLbl.text = historyDetailObject.categoryName
     }
@@ -87,7 +89,7 @@ extension HistoryDetailsViewController: UITableViewDelegate, UITableViewDataSour
         
         let dataAtIndex = historyDetailObject.subcategories?.subCategoryList[indexPath.row]
         
-        cell.configureCell(info: dataAtIndex ?? SubcategoryViewModel())
+        cell.configureCell(info: dataAtIndex ?? SubcategoryViewModel(), index: (indexPath.row + 1))
         cell.shaowContainerView.dropShadow()
         
         return cell

@@ -8,7 +8,6 @@
 import Foundation
 import SwiftyJSON
 
-
 //MARK: - imageList Vie Model
 
 struct ImageListViewModel {
@@ -32,19 +31,23 @@ struct ImageListViewModel {
 
 // MARK: - Image
 struct ImageViewVodel {
-    var id, categoryID: Int?
+    var id, categoryID, activityId: Int?
     var typeName: String?
     var image: String?
     var createdAt, updatedAt: String?
+    var description: String?
     
+    var imageToUpload = UIImage()
     init() {
         
         self.id = 0
         self.categoryID = 0
+        self.activityId = 0
         self.typeName = ""
         self.image = ""
         self.createdAt = ""
         self.updatedAt = ""
+        self.description = ""
     }
     
     init(obj: JSON) {
@@ -54,6 +57,10 @@ struct ImageViewVodel {
         self.image = obj["image"].string ?? ""
         self.createdAt = obj["created_at"].string ?? ""
         self.updatedAt = obj["updated_at"].string ?? ""
+        self.activityId = obj["activity_id"].int ?? 0
+        self.description = obj["description"].string ?? ""
+        
     }
 }
+
 

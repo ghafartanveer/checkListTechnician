@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>CheckList-Technician</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -50,6 +52,10 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Checklist needs camera access permitions!</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Please allow access Checklist to save photo in your photo library</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please allow access Checklist to save photo in your photo library</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -94,5 +100,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>

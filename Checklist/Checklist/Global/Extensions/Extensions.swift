@@ -83,12 +83,52 @@ extension UIColor {
     }
 }
 
+extension UIView {
+    func blink(duration: TimeInterval = 1.4, repetitions: Int = 3) {
+        var remainingReps = repetitions
+        UIView.animate(withDuration: duration, animations: {
+            self.backgroundColor = .lightGray//Colors.primaryAlpha
+        }) { (error) in
+            UIView.animate(withDuration: duration, animations: {
+                if #available(iOS 13.0, *) {
+                    self.backgroundColor = .systemBackground
+                } else {
+                    self.backgroundColor = .white
+                }
+            }) { (error) in
+                remainingReps -= 1
+                if remainingReps > 0 {
+                    self.blink(duration: duration, repetitions: remainingReps)
+                }
+            }
+        }
+    }
+}
+
 extension UIApplication {
     var statusBarView: UIView? {
         if responds(to: Selector(("statusBar"))) {
             return value(forKey: "statusBar") as? UIView
         }
         return nil
+    }
+    
+    func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let swController = controller as? SWRevealViewController {
+            return topViewController(controller: swController.frontViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
     }
 }
 @IBDesignable

@@ -33,7 +33,7 @@ class ForgetPasswordViewController: BaseViewController {
     @IBAction func actionSendInstructions(_ sender: UIButton){
         let emailValidation = Validations.emailValidation(self.txtEmail.text!)
         if emailValidation.isValid{
-            self.forgotPasswordApiCall(Params: [DictKeys.email: self.txtEmail.text!])
+            self.forgotPasswordApiCall(Params: [DictKeys.email: self.txtEmail.text!, DictKeys.login_type: LoginType.Technician])
         }else{
             self.showAlertView(message: emailValidation.message)
         }
@@ -41,6 +41,7 @@ class ForgetPasswordViewController: BaseViewController {
     //MARK: - FUNCTIONS
     func moveToUpdatePasswordVC(){
         let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.UpdatePasswordViewController) as! UpdatePasswordViewController
+        vc.email = self.txtEmail.text!
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -24,15 +24,33 @@ class LoginViewController: BaseViewController {
         self.viewPassword.dropShadow(radius: 5, opacity: 0.4)
         
         #if DEBUG
-        //self.txtEmail.text = "immuaaz78@gmail.com"
-        //self.txtPassword.text = "123456"
+//        self.txtEmail.text = "muaaztech@yopmail.com"
+//        self.txtPassword.text = "1234567"
+        
+        self.txtEmail.text = "muaaztechios@yopmail.com"
+        self.txtPassword.text = "1234567"
+        
+//        self.txtEmail.text = "muaaztechmsn@yopmail.com"
+//        self.txtPassword.text = "1234567"
+
         
         //self.txtEmail.text = "techmatloob@yopmail.com"
         //self.txtEmail.text = "testTechniciant@gmail.com"
         //self.txtPassword.text = "12345678"
+        
+        
         #endif
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        Global.shared.checkInId = 0
+        UserDefaultsManager.shared.userCheckedInID = 0
+        
+        Global.shared.checkInTaskSubmitions.removeAll()
+        UserDefaultsManager.shared.checkInSubmittedTaskIds =         Global.shared.checkInTaskSubmitions
+    }
     //MARK: - IBACTION METHODS
     @IBAction func actionLogin(_ sender: UIButton){
         if self.checkValidations(){

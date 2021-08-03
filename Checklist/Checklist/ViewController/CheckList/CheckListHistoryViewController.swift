@@ -106,7 +106,15 @@ class CheckListHistoryViewController: BaseViewController, TopBarDelegate {
     }
     
     func actionBack() {
-        self.navigationController?.popViewController(animated: true)
+        if Global.shared.isFromNotification{
+            if let contianer = self.mainContainer{
+                Global.shared.isFromNotification = false
+                Global.shared.notificationId = 0
+                contianer.showHomeController()
+            }
+        }else{
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
@@ -160,6 +168,7 @@ extension CheckListHistoryViewController{
                         if let history = historyInfo{
                             
                             self.historyObject = history
+                            self.historyObject.historyTaskList.reverse()
                             self.filteredObject.append(contentsOf: self.historyObject.historyTaskList)
                             if historyObject.historyTaskList.count == 0 {
                                 historyTableView.setNoDataMessage(LocalStrings.NoDataFound)

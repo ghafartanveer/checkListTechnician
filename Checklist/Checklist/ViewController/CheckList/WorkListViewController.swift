@@ -19,7 +19,7 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
     var filteredList = [CategoryViewModel]()
     
     var selectedItems = [Int]()
-    
+    var notificationVM = NotificatioViewModel()
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,8 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
         //  FSCalendarScope.week
         // self.calender.to
         // Do any additional setup after loading the view.
+        viewTabel.estimatedRowHeight = 90
+        viewTabel.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,11 +89,20 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
                     nextBtn.isHidden = true
                 }
             } else {
+                
+                if Global.shared.checkInTaskSubmitions.contains(categoryObject.categoryList[indexPath!.row].id) {
+                    
+                    self.showAlertView(message: PopupMessages.taskIsSubmittedWithSameCheckIn)
+                    
+                }else if self.categoryObject.categoryList[indexPath!.row].taskSubCategory?.taskSubCategoryList.count == 0 {
+                    self.showAlertView(message: PopupMessages.taskAreNotAddedYet)
+                }  else {
                 cell.setSelected(true, animated: true)
                 cell.viewShadow.borderWidth = 5
                 cell.viewShadow.borderColor = .gray
                 print("Selected row, at \(indexPath!.row)")
                 if !(selectedItems.contains(indexPath!.row)) { selectedItems.append(indexPath!.row) }
+                }
             }
             if selectedItems.isEmpty {
                 nextBtn.isHidden = true
@@ -103,13 +114,24 @@ class WorkListViewController: BaseViewController, TopBarDelegate {
     }
     
     func actionBack() {
-        self.navigationController?.popViewController(animated: true)
+        if Global.shared.isFromNotification{
+            if let contianer = self.mainContainer{
+                Global.shared.isFromNotification = false
+                Global.shared.notificationId = 0
+                contianer.showHomeController()
+            }
+        }else{
+            self.navigationController?.popViewController(animated: true)
+        }
+        
     }
     func moveTocheckListVC() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: ControllerIdentifier.CheckListViewController) as! CheckListViewController
         print("Seleted items are : ")
         for item in selectedItems {
             vc.taskSubCategoryList.append(self.categoryObject.categoryList[item])
+            vc.taskToBeSubmitedIDs.append(self.categoryObject.categoryList[item].id)
+
             print(item)
         }
         self.navigationController?.pushViewController(vc, animated: true)
@@ -160,12 +182,23 @@ extension WorkListViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    
+        self.categoryObject.categoryList[indexPath.row].isOpenOnce = true
         if Global.shared.checkInId > 0 {
+            
+            if Global.shared.checkInTaskSubmitions.contains(categoryObject.categoryList[indexPath.row].id) {
+                
+                self.showAlertView(message: PopupMessages.taskIsSubmittedWithSameCheckIn)
+                
+            } else if self.categoryObject.categoryList[indexPath.row].taskSubCategory?.taskSubCategoryList.count == 0 {
+                tableView.deselectRow(at: [0,indexPath.row], animated: false)
+                self.showAlertView(message: PopupMessages.taskAreNotAddedYet)
+            } else {
             if selectedItems.isEmpty {
                 selectedItems.append(indexPath.row)
                 moveTocheckListVC()
             }
+        }
         }else {
             self.showAlertView(message: PopupMessages.CheckInFirst)
         }
@@ -180,10 +213,30 @@ extension WorkListViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return UITableView.automaticDimension
     }
     
-    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//
+//        if self.categoryObject.categoryList[indexPath.row].id == notificationVM.categoryId && Global.shared.isFromNotification && self.categoryObject.categoryList[indexPath.row].isOpenOnce{
+//
+//            cell.layer.transform = CATransform3DMakeScale(1,1,1)
+//
+//            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) {_ in
+//                UIView.animate(withDuration: 1.5, animations: {
+//                    cell.layer.transform = CATransform3DMakeScale(0.5,0.5,1)
+//                                UIView.animate(withDuration: 1, animations: {
+//                                    cell.layer.transform = CATransform3DMakeScale(1,1,1)
+//                                        })
+//                })
+//            }
+//
+//
+//
+//
+//        }
+//
+//    }
 }
 //MARK: - EXTENSION API CALLS
 extension WorkListViewController{

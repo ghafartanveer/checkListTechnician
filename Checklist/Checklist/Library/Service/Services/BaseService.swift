@@ -39,6 +39,9 @@ class BaseService {
         dataRequest?
             .validate(statusCode: 200...501)
             .responseJSON(completionHandler: { response in
+                if response.response?.statusCode == 401{
+                    NotificationCenter.default.post(name: NotificationName.UnAuthorizedAccess, object: nil)
+                }else{
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
@@ -58,6 +61,8 @@ class BaseService {
                     print(errorMessage)
                     completion(PopupMessages.SomethingWentWrong, false,nil, .Failure)
                 }
+                    
+                }
             })
     }
     
@@ -72,6 +77,9 @@ class BaseService {
         dataRequest?
             .validate(statusCode: 200...500)
             .responseJSON(completionHandler: { response in
+                if response.response?.statusCode == 401{
+                    NotificationCenter.default.post(name: NotificationName.UnAuthorizedAccess, object: nil)
+                }else{
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
@@ -88,8 +96,9 @@ class BaseService {
                     print(errorMessage)
                     completion(PopupMessages.SomethingWentWrong, false, nil, .Failure)
                 }
+                }
             })
-        
+            
     }
     
     //MARK:- Multipart Post API Call
