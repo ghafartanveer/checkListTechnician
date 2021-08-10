@@ -11,7 +11,7 @@ import SDWebImage
 import MBProgressHUD
 import StoreKit
 import AVFoundation
-
+import CropViewController
 
 extension UIView {
     var parentViewController: UIViewController? {
@@ -73,7 +73,7 @@ extension UIViewController{
 }
 
 
-public class BaseViewController : UIViewController, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,KYDrawerControllerDelegate {
+public class BaseViewController : UIViewController, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,KYDrawerControllerDelegate, CropViewControllerDelegate, UITextViewDelegate {
     
     
     
@@ -144,10 +144,9 @@ public class BaseViewController : UIViewController, UIGestureRecognizerDelegate,
         let actionSheet = UIAlertController.init(title: "Select Image", message: message, preferredStyle: UIAlertController.Style.actionSheet)
         actionSheet.addAction(UIAlertAction.init(title: "Camera", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
             if(UIImagePickerController.isSourceTypeAvailable(.camera)){
-                self.profileImagePicker.allowsEditing = true
+               // self.profileImagePicker.allowsEditing = true
                 self.profileImagePicker.sourceType = .camera
                 self.isImgeSourceCamra = true
-                
                 self.present(self.profileImagePicker, animated: true, completion:  nil)
             }else{
                 print("Camera is not available")
@@ -157,7 +156,7 @@ public class BaseViewController : UIViewController, UIGestureRecognizerDelegate,
         actionSheet.addAction(UIAlertAction.init(title: "Photo Gallary", style: UIAlertAction.Style.default, handler: { (UIAlertAction) in
             self.profileImagePicker.sourceType = .photoLibrary
             self.isImgeSourceCamra = false
-            self.profileImagePicker.allowsEditing = true
+            //self.profileImagePicker.allowsEditing = true
 
             self.present(self.profileImagePicker, animated: true, completion: nil)
         }))
@@ -167,11 +166,30 @@ public class BaseViewController : UIViewController, UIGestureRecognizerDelegate,
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        picker.dismiss(animated: true, completion: nil)
+        presentCropViewController(imgToCrop: image)
         print("image selected succesfully")
     }
     
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.profileImagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    public func presentCropViewController(imgToCrop: UIImage) {
+        let image: UIImage = imgToCrop //Load an image
+        
+        let cropViewController = CropViewController(image: image)
+        cropViewController.delegate = self
+        present(cropViewController, animated: true, completion: nil)
+    }
+    
+    public func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        cropViewController.dismiss(animated: true, completion: nil)
+        
+        print("Croped image here")
+        // 'image' is the newly cropped version of the original image
     }
     
     func showAlertVIew(message:String, title:String) {

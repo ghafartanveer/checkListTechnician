@@ -141,8 +141,8 @@
                                                                                                                 <constraint firstAttribute="width" constant="30" id="gth-pV-hCc"/>
                                                                                                                 <constraint firstAttribute="height" constant="30" id="zxF-Fe-sL2"/>
                                                                                                             </constraints>
-                                                                                                            <color key="tintColor" red="0.63923221829999999" green="0.094125308099999999" blue="0.098069168629999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                                            <state key="normal" image="cancel"/>
+                                                                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                            <state key="normal" image="white-cancel"/>
                                                                                                             <connections>
                                                                                                                 <action selector="actionDeleteImage:" destination="l5l-Gt-ldh" eventType="touchUpInside" id="cBs-gN-ikg"/>
                                                                                                             </connections>
@@ -749,7 +749,7 @@
                                                                 <rect key="frame" x="147" y="76" width="120" height="120"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_image" translatesAutoresizingMaskIntoConstraints="NO" id="fwu-Hv-cew">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                                        <rect key="frame" x="0.0" y="-7" width="120" height="122"/>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1W-h5-gzf">
                                                                         <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
@@ -1394,8 +1394,9 @@
         <image name="breakFast" width="302" height="185"/>
         <image name="cancel" width="25" height="25"/>
         <image name="sort_down" width="36" height="36"/>
-        <image name="upload-icon" width="20" height="19"/>
-        <image name="user_image" width="40" height="40"/>
+        <image name="upload-icon" width="161" height="152"/>
+        <image name="user_image" width="39" height="39"/>
+        <image name="white-cancel" width="37.5" height="37.5"/>
         <namedColor name="PinkThemeColor">
             <color red="0.98039215686274506" green="0.34509803921568627" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

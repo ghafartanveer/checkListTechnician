@@ -43,7 +43,14 @@ class UserViewModel: NSObject, NSCoding {
     convenience init(obj: JSON){
         self.init()
         self.id = obj["id"].int ?? 0
-        self.storeID = obj["store_id"].int ?? 0
+        
+        //self.storeID = obj["store_id"].int ?? 0
+        if let id = obj["store_id"].int{
+            storeID = id
+        }
+        if let id = obj["store_id"].string{
+            storeID = Int(id) ?? 0
+        }
         self.isBlock = obj["is_block"].int ?? 0
         self.firstName = obj["first_name"].string ?? ""
         self.lastName = obj["last_name"].string ?? ""

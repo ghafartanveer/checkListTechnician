@@ -279,6 +279,41 @@ class Utilities {
         return timeStemp
     }
     
+    static func getDateLastmonthForFilter() -> String {
+        
+        guard let lastmonth = Calendar.current.date(byAdding: .month, value: -1, to: Date()) else { return "" }
+        
+        let startOfMonth =  Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: lastmonth)))!
+        
+        
+        let endOfmonth = Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth)!
+        
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "YYYY-MM-dd"
+        let startMonthStr = formatter.string(from: startOfMonth)
+        let endMonthStr = formatter.string(from: endOfmonth)
+        
+        let dateStr = startMonthStr+","+endMonthStr
+        return dateStr
+    }
+    
+    //eekFilter
+    static func getLastWeekDates() -> String {
+        let gregorian = Calendar(identifier: .gregorian)
+        let sunday = gregorian.date(from:
+                                        gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
+        let LastMonday = gregorian.date(byAdding: .day, value: -7, to: sunday ?? Date())!
+        //let secndlastMondy = gregorian.date(byAdding: .day, value: -6, to: LastMonday)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY-MM-dd"
+        let lastMondStr = formatter.string(from: sunday ?? Date())
+        let thisSunStr = formatter.string(from: LastMonday)
+        
+        //print(lastMondStr+","+thisSunStr)
+        return thisSunStr+","+lastMondStr
+    }
+    
     static func getNextDateStringForDay(date:Date,value:Int? = 1) -> String{
         let today = date
         let tomorrow = Calendar.current.date(byAdding: .day, value: value!, to: today)

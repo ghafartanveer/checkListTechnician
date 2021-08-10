@@ -45,29 +45,60 @@ class CheckListHistoryViewController: BaseViewController, TopBarDelegate {
       
     }
     
+//    override func callBackYesterdayPressed() {
+//
+//        let yesterDay = Utilities.getNextDateString(date: Date(), value: -1)
+//
+//        SearchHistoryListApi(params: ["date":yesterDay])
+//        self.alertView?.close()
+//    }
+//
+//    override func callBackLastWeekPressed() {
+//
+//        let today = Utilities.getNextDateString(date: Date(), value: 0)
+//        let lastWeek = Utilities.getNextDateString(date: Date(), value: -7)
+//
+//        SearchHistoryListApi(params: ["date":today+","+lastWeek])
+//        self.alertView?.close()
+//    }
+//
+//    override func callBackLastMonthPressed() {
+//
+//        let today = Utilities.getNextDateString(date: Date(), value: 0)
+//        let lastMonth = Utilities.getNextDateString(date: Date(), value: -30)
+//
+//        SearchHistoryListApi(params: ["date":today+","+lastMonth])
+//        self.alertView?.close()
+//    }
+    
     override func callBackYesterdayPressed() {
-        
+        //:"2021-07-19,2021-07-26
+        let today = Utilities.getNextDateString(date: Date(), value: 0)
         let yesterDay = Utilities.getNextDateString(date: Date(), value: -1)
         
-        SearchHistoryListApi(params: ["date":yesterDay])
+        SearchHistoryListApi(params: ["date":yesterDay + "," + today])
         self.alertView?.close()
     }
     
     override func callBackLastWeekPressed() {
         
-        let today = Utilities.getNextDateString(date: Date(), value: 0)
-        let lastWeek = Utilities.getNextDateString(date: Date(), value: -7)
-
-        SearchHistoryListApi(params: ["date":today+","+lastWeek])
+//        let today = Utilities.getNextDateString(date: Date(), value: 0)
+//        let lastWeek = Utilities.getNextDateString(date: Date(), value: -7)
+        let weakFiterdays = Utilities.getLastWeekDates()
+        SearchHistoryListApi(params: ["date": weakFiterdays])//lastWeek + "," + today])
         self.alertView?.close()
     }
     
     override func callBackLastMonthPressed() {
         
         let today = Utilities.getNextDateString(date: Date(), value: 0)
-        let lastMonth = Utilities.getNextDateString(date: Date(), value: -30)
+        //let thisMonth = Utilities.ge
         
-        SearchHistoryListApi(params: ["date":today+","+lastMonth])
+        let lastMonth = Utilities.getDateLastmonthForFilter()//Utilities.getNextDateString(date: Date(), value: -30)
+        
+        
+        
+        SearchHistoryListApi(params: ["date":lastMonth])//lastMonth+","+today])
         self.alertView?.close()
     }
     
@@ -175,6 +206,7 @@ extension CheckListHistoryViewController{
                                 self.historyTableView.reloadData()
 
                             } else {
+                                self.yourHandler(textField: searchBarTF)
                                 historyTableView.setNoDataMessage("")
                             self.historyTableView.reloadData()
                             }
@@ -198,7 +230,11 @@ extension CheckListHistoryViewController{
                     self.stopActivity()
                     if success{
                         if let history = historyInfo{
+
                             self.historyObject = history
+                            self.historyObject.historyTaskList.reverse()
+
+                            self.filteredObject.removeAll()
                             self.filteredObject.append(contentsOf: self.historyObject.historyTaskList)
                             if historyObject.historyTaskList.count == 0 {
                                 historyTableView.setNoDataMessage(LocalStrings.NoDataFound)
@@ -206,6 +242,7 @@ extension CheckListHistoryViewController{
 
                             } else {
                                 historyTableView.setNoDataMessage("")
+                                self.yourHandler(textField: searchBarTF)
                                 self.historyTableView.reloadData()
                             }
                         }

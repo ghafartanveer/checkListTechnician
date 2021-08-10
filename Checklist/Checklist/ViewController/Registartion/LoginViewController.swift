@@ -30,6 +30,9 @@ class LoginViewController: BaseViewController {
         self.txtEmail.text = "muaaztechios@yopmail.com"
         self.txtPassword.text = "1234567"
         
+        self.txtEmail.text = "david@yopmail.com"
+        self.txtPassword.text = "123456"
+        
 //        self.txtEmail.text = "muaaztechmsn@yopmail.com"
 //        self.txtPassword.text = "1234567"
 

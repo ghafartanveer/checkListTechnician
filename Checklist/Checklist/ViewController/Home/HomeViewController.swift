@@ -34,7 +34,15 @@ class HomeViewController: BaseViewController {
             container.btnRightMenu.clipsToBounds = true
             
             if let userData = UserDefaultsManager.shared.userInfo {
-                setBtnImageWithUrl(btn: container.btnRightMenu, urlStr: userData.image)
+                if !(userData.image.isEmpty) {
+                    setBtnImageWithUrl(btn: container.btnRightMenu, urlStr: userData.image)
+                    container.btnRightMenu.backgroundColor = .clear
+
+                }else {
+                //setBtnImageWithUrl(btn: container.btnRightMenu, urlStr: userData.image)
+                container.btnRightMenu.backgroundColor = .gray
+                container.btnRightMenu.setImage(UIImage(named: "user_image"), for: .normal)
+                }
             }
         }
     }

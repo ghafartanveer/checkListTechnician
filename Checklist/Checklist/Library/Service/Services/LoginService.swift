@@ -73,7 +73,9 @@ class LoginService: BaseService {
         let completeUrl = EndPoints.BASE_URL + EndPoints.Profile_Update
         makePostAPICallWithMultipart(with: completeUrl, dict: profileImg ?? nil, params: params!, headers: self.getHeaders()) { (message, success, json, responseType) in
             if success{
+                let token = Global.shared.user.token
                 let userObj = UserViewModel(obj: json![KEY_RESPONSE_DATA])
+                userObj.token = token
                 self.saveUserInfo(userObj)
                 completion(message,success, userObj)
             }else{

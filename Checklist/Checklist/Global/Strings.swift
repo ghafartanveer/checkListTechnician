@@ -160,6 +160,7 @@ struct ValidationMessages {
     static let commentsMissing              = "Comment field cannot empty"
     static let noLocationAdded              = "Location info is must in order to become a supplier"
     static let fillAllFields              = "Please fill all fields"
+    static let FailedEmailIncorrect       = "Failed ! Email is incorrect"
 }
 
 struct CellIdentifier {
@@ -230,6 +231,7 @@ struct LocalStrings {
     static let disableProduct       = "Please Select Product To Disable"
     static let EmptySubject        = "Please Enter Subject"
     static let EmptyMessage        = "Please Enter Message"
+    static let PlsSelectDescription = "Please select description"
 }
 
 struct QuestionListOptions {

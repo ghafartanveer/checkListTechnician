@@ -86,6 +86,8 @@ struct EndPoints {
     static let UploaImage = "image_upload"
     static let DeleteImage = "delete_image"
     static let getImages = "get_images"
+    
+    static let delAllImagesOnKill = "images_delete"
 }
 
 //Default values for data types

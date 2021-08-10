@@ -66,6 +66,18 @@ class CommonService: BaseService {
         }
     }
     
+    func deleteImageApiOnKill(params:ParamsAny?, completion: @escaping (_ message:String, _ success:Bool)->Void) {
+        let completeUrl = EndPoints.BASE_URL + EndPoints.delAllImagesOnKill
+        self.makePostAPICall(with: completeUrl, params: params, headers: self.getHeaders()) { (message, success, json, responseType) in
+            if success{
+                completion(message,success)
+            }else{
+                completion(message,success)
+            }
+            
+        }
+    }
+    
     //MARK:- image LIST API
     func imageListApi(params: ParamsAny?,completion: @escaping (_ error: String, _ success: Bool, _ object: ImageListViewModel?)->Void){
         

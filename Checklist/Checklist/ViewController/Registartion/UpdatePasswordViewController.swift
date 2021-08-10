@@ -47,6 +47,7 @@ class UpdatePasswordViewController: BaseViewController {
         let validEmail = Validations.emailValidation(self.txtEmail.text!)
         let validPassword = Validations.passwordValidation(self.txtNewPassword.text!)
         
+        
         if !validEmail.isValid{
             self.showAlertView(message: validEmail.message)
             isValid = false
@@ -56,7 +57,11 @@ class UpdatePasswordViewController: BaseViewController {
         }else if self.txtPinCode.text!.isEmpty{
             self.showAlertView(message: ValidationMessages.emptyPincode)
             isValid = false
+        } else if !(email == txtEmail.text) {
+            self.showAlertView(message: ValidationMessages.FailedEmailIncorrect)//Failed ! Email is incorrect
+            isValid = false
         }
+        
         return isValid
     }
     

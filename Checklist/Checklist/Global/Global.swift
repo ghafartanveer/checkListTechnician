@@ -25,5 +25,7 @@ class Global {
     var catWithImagesId = 0
     var isFromNotification = false
     var notificationId = 0
+    
+    var imageIdsToDeleteOnKill = [Int]()
   }
 

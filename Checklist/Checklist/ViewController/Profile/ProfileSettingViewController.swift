@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CropViewController
 
 class ProfileSettingViewController: BaseViewController, TopBarDelegate {
     
@@ -112,7 +113,17 @@ class ProfileSettingViewController: BaseViewController, TopBarDelegate {
             lNameTF.text = userData.lastName
             emailTF.text = userData.email
             phoneTF.text = userData.phoneNumber
-            setImageWithUrl(imageView: imgProfile, url: userData.image)
+            
+            
+            if !(userData.image.isEmpty) {
+                setImageWithUrl(imageView: imgProfile, url: userData.image)
+                imgProfile.backgroundColor = .white
+            }else {
+                //setBtnImageWithUrl(btn: container.btnRightMenu, urlStr: userData.image)
+                imgProfile.backgroundColor = .gray
+                imgProfile.image = UIImage(named: "user_image")
+            }
+            
         }
     }
     
@@ -128,11 +139,19 @@ class ProfileSettingViewController: BaseViewController, TopBarDelegate {
     }
     
     //MARK: - IMAGE PICKER CONTROLLER DELEGATE METHODS
-    override func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+//    override func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+//        self.imgProfile.image = image
+//        picker.dismiss(animated: true, completion: nil)
+//    }
+    
+    override func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        cropViewController.dismiss(animated: true, completion: nil)
+        
         self.imgProfile.image = image
-        picker.dismiss(animated: true, completion: nil)
+        // 'image' is the newly cropped version of the original image
     }
+    
 }
 
 extension ProfileSettingViewController :  UITextFieldDelegate {
@@ -164,6 +183,16 @@ extension ProfileSettingViewController {
                     self.stopActivity()
                     if success{
                         self.showAlertView(message: message)
+                        self.setUsrData()
+                        
+//                        self.showAlertView(message: message, title: "", doneButtonTitle: "Ok") { (UIAlertAction) in
+//                            self.loadHomeController()
+//                            //self.navigationController?.popViewController(animated: true)
+//                        }
+                        
+                        
+                      //  self.showAlertView(message: message)
+                    
                     }else{
                         self.showAlertView(message: message)
                     }
@@ -194,5 +223,3 @@ extension ProfileSettingViewController {
     }
 
 }
-
-

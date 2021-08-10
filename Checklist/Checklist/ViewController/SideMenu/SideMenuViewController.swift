@@ -12,13 +12,19 @@ class SideMenuViewController: BaseViewController {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblEmail: UILabel!
     @IBOutlet weak var imgImageUser: UIImageView!
+    @IBOutlet weak var logoutIcon: UIImageView!
     
     //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUsrData()
+       // setUsrData()
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        setUsrData()
+
     }
     //MARK: - IBACTION METHODS
     @IBAction func actionLogOut(_ sender: UIButton){
@@ -42,11 +48,26 @@ class SideMenuViewController: BaseViewController {
     }
     
     func setUsrData() {
+        
+        logoutIcon.tintColor = #colorLiteral(red: 0.9803921569, green: 0.06666666667, blue: 0, alpha: 1)
         if let userData = UserDefaultsManager.shared.userInfo {
            
             lblTitle.text = userData.firstName + " " + userData.lastName
             lblEmail.text = userData.email
-            setImageWithUrl(imageView: imgImageUser, url: userData.image)
+            
+            
+            if !(userData.image.isEmpty) {
+                setImageWithUrl(imageView: imgImageUser, url: userData.image)
+                imgImageUser.backgroundColor = .white
+            }else {
+                //setBtnImageWithUrl(btn: container.btnRightMenu, urlStr: userData.image)
+                imgImageUser.backgroundColor = .gray
+                imgImageUser.image = UIImage(named: "user_image")
+            }
+            
+            
+            
+            //setImageWithUrl(imageView: imgImageUser, url: userData.image)
         }
     }
     

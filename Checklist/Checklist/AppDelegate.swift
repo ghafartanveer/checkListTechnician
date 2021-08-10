@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,  MessagingDelegate {
     var gcmMessageIDKey = "gcm message 1234"
 
     var window: UIWindow?
+    var bgTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //self.setupInitialController()
@@ -179,6 +180,71 @@ class AppDelegate: UIResponder, UIApplicationDelegate,  MessagingDelegate {
         // Print full message.
         print(userInfo)
         completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        bgTask = application.beginBackgroundTask(withName:"DeleteAllImages", expirationHandler: {() -> Void in
+            // Do something to stop our background task or the app will be killed
+            application.endBackgroundTask(self.bgTask)
+            self.bgTask = UIBackgroundTaskIdentifier.invalid
+        })
+        
+        DispatchQueue.global(qos: .background).async {
+            if Global.shared.imageIdsToDeleteOnKill.count > 0 {
+                let formattedArray = (Global.shared.imageIdsToDeleteOnKill.map{String($0)}).joined(separator: ",")
+                
+                self.deleteImageServerCall( params: [DictKeys.ImageId: formattedArray])
+            }
+            //make your API call here
+        }
+        // Perform your background task here
+        print("The task has started")
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        bgTask = application.beginBackgroundTask(withName:"DeleteAllImages", expirationHandler: {() -> Void in
+            // Do something to stop our background task or the app will be killed
+            application.endBackgroundTask(self.bgTask)
+            self.bgTask = UIBackgroundTaskIdentifier.invalid
+        })
+        
+        DispatchQueue.global(qos: .background).async {
+            if Global.shared.imageIdsToDeleteOnKill.count > 0 {
+                let formattedArray = (Global.shared.imageIdsToDeleteOnKill.map{String($0)}).joined(separator: ",")
+                
+                self.deleteImageServerCall( params: [DictKeys.ImageId: formattedArray])
+            }
+            //make your API call here
+        }
+        // Perform your background task here
+        print("The task has started")
+    }
+    
+    func deleteImageServerCall(params: ParamsAny){
+        
+      //  self.startActivity()
+        GCD.async(.Background) {
+            CommonService.shared().deleteImageApiOnKill(params: params) { (message, success) in
+                GCD.async(.Main) { [self] in
+                    //self.stopActivity()
+                    if success{
+                        print("ImagesDeleted")
+                        //self.imageList.remove(at: index)
+                        //self.selectedImageList.remove(at: index)
+                        
+                       // self.getImagesAgainstCat()
+                        //self.viewCollection.reloadData()
+                    }
+//                    else{
+//                        self.showAlertView(message: message)
+//                    }
+                }
+            }
+        }
     }
 }
 
