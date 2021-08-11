@@ -491,9 +491,13 @@ extension UploadFileViewController {
                         //self.imageList.append(image)
                         self.isPopUpOpened = false
                         self.checkIfPopUpOpened()
-                        uploadImagePopUpContainer.removeFromSuperview()
                         popUpDescriptionTxtV.text = ""
                         imageDescriptionTxt = ""
+                        
+                        dropDown.selectRow(0)
+                        dropDownBtn.setTitle(dropDownsOptionList[0], for: .normal)
+                        uploadImagePopUpContainer.removeFromSuperview()
+                   
                         self.getImagesAgainstCat()
                         //self.viewCollection.reloadData()
                         //self.showAlertView(message: message)

@@ -435,6 +435,8 @@ class Utilities {
         replaced = replaced.replacingOccurrences(of: " am", with: "", options: [.caseInsensitive])
         
         //29-07-2021
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+
         formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         let date = formatter.date(from: replaced) ?? Date()
         
