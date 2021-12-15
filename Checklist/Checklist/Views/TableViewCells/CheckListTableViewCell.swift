@@ -16,6 +16,7 @@ protocol CheckListTableViewCellDelegate: NSObjectProtocol {
 class CheckListTableViewCell: BaseTableViewCell {
     //MARK: -- IBOUTLETS
     @IBOutlet weak var taskTitleLbl: UILabel!
+    @IBOutlet weak var noteLbl: UILabel!
     @IBOutlet weak var btnYes: UIButton!
     @IBOutlet weak var btnNo: UIButton!
     @IBOutlet weak var btnNotAvailable: UIButton!
@@ -44,6 +45,7 @@ class CheckListTableViewCell: BaseTableViewCell {
 
         let indexStr = String(index+1)
         self.taskTitleLbl.text = indexStr + ") " + info.subcategoryName
+        self.noteLbl.text = info.notes
         let status = info.status
         if status == QuestionListOptions.yes {
             btnYes.isSelected = true

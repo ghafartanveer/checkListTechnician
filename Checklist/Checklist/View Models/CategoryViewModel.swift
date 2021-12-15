@@ -80,6 +80,7 @@ class TaskSubcatgoryViewModel {
     var createdAt : String
     var updatedAt : String
     var status : String
+    var notes: String
     init() {
         self.id = 0
         self.categoryId = 0
@@ -90,6 +91,7 @@ class TaskSubcatgoryViewModel {
         self.deletedAt = ""
         self.createdAt = ""
         self.updatedAt = ""
+        self.notes = ""
         self.status = QuestionListOptions.defaultValue
     }
     
@@ -103,6 +105,7 @@ class TaskSubcatgoryViewModel {
         self.deletedAt = obj["deleted_at"].string ?? ""
         self.createdAt = obj["created_at"].string ?? ""
         self.updatedAt = obj["updated_at"].string ?? ""
+        self.notes = obj["notes"].stringValue
         self.status = QuestionListOptions.defaultValue
     }
 }
