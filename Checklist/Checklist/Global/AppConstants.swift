@@ -57,6 +57,7 @@ struct DictKeys {
     static let ImageId = "image_id"
     static let fcm_token = "fcm_token"
     static let activity_id = "activity_id"
+    static var is_payable = "is_payable"
 
 }
 

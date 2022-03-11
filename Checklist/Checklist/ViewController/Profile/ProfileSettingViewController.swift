@@ -59,12 +59,13 @@ class ProfileSettingViewController: BaseViewController, TopBarDelegate {
         let imageData = ((imgProfile.image) ?? #imageLiteral(resourceName: "user_image") ) .jpegData(compressionQuality: 1.0)
     
         if self.checkValidations(){
+            let iss_payable = 0
             let storId = String(Global.shared.user.storeID)
             let userId = String(Global.shared.user.id)
             //let pasword = Global.shared.user.pass
             self.updateProfileServerCall(params: [DictKeys.email: self.emailTF.text!,
                                          DictKeys.first_name: self.fNameTF.text!,
-                                         DictKeys.login_type: LoginType.Technician, DictKeys.last_name: self.lNameTF.text!, DictKeys.phone_number: self.phoneTF.text!, DictKeys.Store_Id : storId, DictKeys.User_Id : userId], imageDic: [DictKeys.image : imageData] )
+                                                  DictKeys.login_type: LoginType.Technician, DictKeys.last_name: self.lNameTF.text!, DictKeys.phone_number: self.phoneTF.text!, DictKeys.Store_Id : storId, DictKeys.User_Id : userId , DictKeys.is_payable : iss_payable], imageDic: [DictKeys.image : imageData]  )
             
         }
         
@@ -184,7 +185,6 @@ extension ProfileSettingViewController {
                     if success{
                         self.showAlertView(message: message)
                         self.setUsrData()
-                        
 //                        self.showAlertView(message: message, title: "", doneButtonTitle: "Ok") { (UIAlertAction) in
 //                            self.loadHomeController()
 //                            //self.navigationController?.popViewController(animated: true)
