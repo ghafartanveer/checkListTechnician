@@ -33,8 +33,10 @@ extension TaskCategoryTableViewCell: UICollectionViewDelegate, UICollectionViewD
         if indexPath.item == 2 {
             if Global.shared.checkInId > 0 {
                 cell.checkinTickImg.isHidden = false
+                cell.lblTitle.text = "Checked-In"
             } else {
                 cell.checkinTickImg.isHidden = true
+                cell.lblTitle.text = "Check In"
             }
         } else {
             cell.checkinTickImg.isHidden = true

@@ -252,7 +252,7 @@ extension WorkListViewController{
                             self.filteredList.append(contentsOf: categoryObject.categoryList)
                             
                             if self.categoryObject.categoryList.count == 0 {
-                                viewTabel.setNoDataMessage(LocalStrings.NoDataFound)
+                                viewTabel.setNoDataMessage("CheckLists not found yet")
                             } else {
                                 viewTabel.setNoDataMessage("")
                             }

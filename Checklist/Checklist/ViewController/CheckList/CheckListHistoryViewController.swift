@@ -202,7 +202,7 @@ extension CheckListHistoryViewController{
                             self.historyObject.historyTaskList.reverse()
                             self.filteredObject.append(contentsOf: self.historyObject.historyTaskList)
                             if historyObject.historyTaskList.count == 0 {
-                                historyTableView.setNoDataMessage(LocalStrings.NoDataFound)
+                                historyTableView.setNoDataMessage("History not found yet")
                                 self.historyTableView.reloadData()
 
                             } else {

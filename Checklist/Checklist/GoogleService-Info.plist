@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>741121092389-cd45bvb01d0jcuqbgfkl1uos2vta8g02.apps.googleusercontent.com</string>
+	<string>157889751535-r7o1mejbbmrs2eqotu50b1bfho2t0ilq.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.741121092389-cd45bvb01d0jcuqbgfkl1uos2vta8g02</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>741121092389-8ghdkippdl367gmdo9skh01oqtmajjp8.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.157889751535-r7o1mejbbmrs2eqotu50b1bfho2t0ilq</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCiDJGC5B0s0jYcTQN_4XP9R6AbkAsXw7A</string>
+	<string>AIzaSyA-6fjXVTyB9SIBE6Ots-w7nsNWAJN59l0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>741121092389</string>
+	<string>157889751535</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.Rapidzz.CheckList-Technician</string>
+	<string>com.app.checklisttechnician</string>
 	<key>PROJECT_ID</key>
-	<string>check-list-fb341</string>
+	<string>vqc-tech</string>
 	<key>STORAGE_BUCKET</key>
-	<string>check-list-fb341.appspot.com</string>
+	<string>vqc-tech.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:741121092389:ios:2dfca30311f0e493d5c8cc</string>
+	<string>1:157889751535:ios:8ab2470034bf12a11f6e1a</string>
 </dict>
 </plist>

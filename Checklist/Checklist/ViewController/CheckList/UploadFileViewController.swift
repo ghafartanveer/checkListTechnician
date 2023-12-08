@@ -16,22 +16,15 @@ class UploadFileViewController: BaseViewController, TopBarDelegate {
     @IBOutlet weak var dropDownContainer: UIView!
     @IBOutlet weak var dropDownBtn: UIButton!
     @IBOutlet weak var viewCollection: UICollectionView!
-    
     @IBOutlet weak var descriptionTxtV: KMPlaceholderTextView!
-    
     @IBOutlet weak var imagrequiresTaskLbl: UILabel!
-    
     @IBOutlet var uploadImagePopUpContainer: UIView!
-    
     @IBOutlet weak var popUpImgV: UIImageView!
     @IBOutlet weak var closeImagePopUp: UIButton!
     @IBOutlet weak var popUpDescriptionTxtV: KMPlaceholderTextView!
     @IBOutlet weak var submitImageBtnAction: UIButton!
-    
     @IBOutlet weak var sumbitTaskBtn: UIButton!
     @IBOutlet weak var scrolV: UIScrollView!
-    
-    
     @IBOutlet weak var collectionContainerHeight: NSLayoutConstraint!
     
     
@@ -39,18 +32,13 @@ class UploadFileViewController: BaseViewController, TopBarDelegate {
     //var selectedImgDetailsIndex = 0
     var isPopUpOpened = false
     var isImageRequired = false
-    
     var taskSubCategoryList:[CategoryViewModel] = [] //selectedList
-    
     let dropDown = DropDown()
     var imageList = [UIImage]()
     var taskViewModel: TaskViewModel? = nil
-    
     var dropDownsOptionList: [String] = []
     var dropDownOptionIdList: [Int] = []
-    
     var imageDescriptionTxt = "" // this is image description from dropdown or popUpTxtV
-    
     var globalId = 0
         //MARK: - OVERRIDE METHODS
     override func viewDidLoad() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		189636112AA9BB6800FEC753 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 189636102AA9BB6800FEC753 /* GoogleService-Info.plist */; };
 		352B8833262D728900E7B12E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352B8832262D728900E7B12E /* AppDelegate.swift */; };
 		352B8835262D728900E7B12E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352B8834262D728900E7B12E /* SceneDelegate.swift */; };
 		352B8837262D728900E7B12E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352B8836262D728900E7B12E /* ViewController.swift */; };
@@ -146,7 +147,6 @@
 		DE43BC072681F0E200C01AD4 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43BC062681F0E200C01AD4 /* HistoryService.swift */; };
 		DE43BC0D268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43BC0C268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift */; };
 		DE5651AB2684AC0B004ACAF9 /* CommonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5651AA2684AC0B004ACAF9 /* CommonService.swift */; };
-		DE619ACD2697028200DB9601 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE619ACC2697028200DB9601 /* GoogleService-Info.plist */; };
 		DE69790F26807D8900875B09 /* HistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE69790E26807D8900875B09 /* HistoryDetailsViewController.swift */; };
 		DE6979142680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6979132680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift */; };
 		DE7492F02683462200AA7159 /* CheckInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7492EF2683462200AA7159 /* CheckInViewModel.swift */; };
@@ -176,6 +176,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		189636102AA9BB6800FEC753 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1DFF1C432515F3C870FE7473 /* Pods-Checklist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Checklist.release.xcconfig"; path = "Target Support Files/Pods-Checklist/Pods-Checklist.release.xcconfig"; sourceTree = "<group>"; };
 		352B882F262D728900E7B12E /* Checklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		352B8832262D728900E7B12E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -334,7 +335,6 @@
 		DE43BC062681F0E200C01AD4 /* HistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
 		DE43BC0C268225DC00C01AD4 /* FilterSelctionPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelctionPopUpViewController.swift; sourceTree = "<group>"; };
 		DE5651AA2684AC0B004ACAF9 /* CommonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonService.swift; sourceTree = "<group>"; };
-		DE619ACC2697028200DB9601 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE69790E26807D8900875B09 /* HistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsViewController.swift; sourceTree = "<group>"; };
 		DE6979132680814400875B09 /* HistoryDetailsTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsTaskListTableViewCell.swift; sourceTree = "<group>"; };
 		DE7492EF2683462200AA7159 /* CheckInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewModel.swift; sourceTree = "<group>"; };
@@ -413,8 +413,8 @@
 				352B883E262D728A00E7B12E /* Assets.xcassets */,
 				352B8840262D728A00E7B12E /* LaunchScreen.storyboard */,
 				352B8843262D728A00E7B12E /* Info.plist */,
-				DE619ACC2697028200DB9601 /* GoogleService-Info.plist */,
 				352B883B262D728900E7B12E /* Checklist.xcdatamodeld */,
+				189636102AA9BB6800FEC753 /* GoogleService-Info.plist */,
 				352B88C7262D739800E7B12E /* Checklist-bridging-header.h */,
 			);
 			path = Checklist;
@@ -1081,7 +1081,6 @@
 				355FE2C72631723F00A2B770 /* Setting.storyboard in Resources */,
 				352B8930262D745300E7B12E /* GOTHIC_0.TTF in Resources */,
 				352B8921262D745300E7B12E /* README.md in Resources */,
-				DE619ACD2697028200DB9601 /* GoogleService-Info.plist in Resources */,
 				352B89CF26315DCD00E7B12E /* Poppins-Light.ttf in Resources */,
 				352B8928262D745300E7B12E /* sf-compact-display-medium-5864711817c30.otf in Resources */,
 				352B89D726315DCD00E7B12E /* Poppins-LightItalic.ttf in Resources */,
@@ -1095,6 +1094,7 @@
 				352B897C262ECF9200E7B12E /* Home.storyboard in Resources */,
 				352B892E262D745300E7B12E /* GOTHICI_0.TTF in Resources */,
 				352B89CE26315DCD00E7B12E /* Poppins-BoldItalic.ttf in Resources */,
+				189636112AA9BB6800FEC753 /* GoogleService-Info.plist in Resources */,
 				352B89DA26315DCD00E7B12E /* Poppins-Thin.ttf in Resources */,
 				352B883F262D728A00E7B12E /* Assets.xcassets in Resources */,
 				DE21FC78267B33A300F09090 /* Help.storyboard in Resources */,
@@ -1461,17 +1461,22 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Checklist/Checklist.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5MVY25HYQD;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3.0;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = W32H86W5R4;
 				INFOPLIST_FILE = Checklist/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Rapidzz.CheckList-Technician";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.checklisttechnician;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = TechnicianDevelopmentProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Checklist/Checklist-bridging-header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1486,17 +1491,22 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Checklist/Checklist.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5MVY25HYQD;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3.0;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = W32H86W5R4;
 				INFOPLIST_FILE = Checklist/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Rapidzz.CheckList-Technician";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.checklisttechnician;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = TechnicianDevelopmentProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Checklist/Checklist-bridging-header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

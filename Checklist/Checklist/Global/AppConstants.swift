@@ -63,7 +63,7 @@ struct DictKeys {
 
 struct EndPoints {
     
-    static let BASE_URL = "http://mashghol.com/checklist_app/public/api/"
+    static let BASE_URL = "http://12voltqc.com/api/"//"http://mashghol.com/checklist_app/public/api/"
     static let login = "login"
     static let categories_List = "categories_list"
     static let technicians_List = "technicians_list"
