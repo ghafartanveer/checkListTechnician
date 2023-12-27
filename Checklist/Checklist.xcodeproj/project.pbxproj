@@ -1491,7 +1491,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Checklist/Checklist.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3.0;
 				DEVELOPMENT_TEAM = "";
@@ -1506,7 +1506,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.checklisttechnician;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = TechnicianDevelopmentProfile;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = TechnicianAdhocProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Checklist/Checklist-bridging-header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
